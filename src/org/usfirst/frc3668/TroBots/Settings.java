@@ -37,5 +37,10 @@ public class Settings {
 	public static final int trayRightLimitDIOPort = 6;
 	public static final int trayLeftLimitDIOPort = 5;
 	
-	
+	//Profile Settings
+	public static final String profileTestLogName = "logs\\motionProfileTestResults";
+	public static final String profileLogName = "//media//sda1//motionProfile";
+	public static final double profileAdditionLoopNumber = 0;
+	public static final String profileLogFileExtension = ".txt";
+		
 }
