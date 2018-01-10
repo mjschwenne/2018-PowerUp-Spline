@@ -1,0 +1,7 @@
+#ignore the complied java files
+**/*.class
+**/build
+/bin/
+
+**.jar
+sysProps.xml
