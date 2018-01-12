@@ -15,7 +15,7 @@ public class Settings {
 	public static final int chassisLeftSonarPortB = 2;
 	public static final int chassisRightSonarPortA = 3;
 	public static final int chassisRightSonarPortB = 4;
-	
+	public static final double chassisEncoderDeadValueThreshold = 0.5;
 	//Intake Settings
 	public static final int intakeRightIntakeWheelCanID = 5;
 	public static final int intakeLeftIntakeWheelCanID = 6;
