@@ -9,7 +9,7 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc3668.TroBots.subsystems;
+package org.usfirst.frc3668.TroBots.subSystems;
 
 import org.usfirst.frc3668.TroBots.RobotMap;
 

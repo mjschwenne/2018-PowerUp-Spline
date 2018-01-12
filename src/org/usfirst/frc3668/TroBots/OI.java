@@ -14,7 +14,7 @@ package org.usfirst.frc3668.TroBots;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc3668.TroBots.commands.*;
-import org.usfirst.frc3668.TroBots.subsystems.*;
+import org.usfirst.frc3668.TroBots.subSystems.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 

@@ -12,7 +12,7 @@
 package org.usfirst.frc3668.TroBots;
 
 import org.usfirst.frc3668.TroBots.commands.*;
-import org.usfirst.frc3668.TroBots.subsystems.*;
+import org.usfirst.frc3668.TroBots.subSystems.*;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
