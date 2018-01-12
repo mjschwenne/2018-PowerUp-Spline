@@ -21,6 +21,8 @@ public class Settings {
 	public static final int intakeLeftIntakeWheelCanID = 6;
 	public static final int intakeRightArmCanID = 7;
 	public static final int intakeLeftArmCanID = 8;
+	public static final double intakeRightValue = 1;
+	public static final double intakeLeftValue = -1;
 	
 	//Lift Settings
 	public static final int liftMotorCanID = 9;
@@ -31,6 +33,7 @@ public class Settings {
 	//Climb Settings
 	public static final int climbMotor1CanID = 10;
 	public static final int climbMotor2CanID = 11;
+	public static final double climbMotorSpeed = 0.8;
 	
 	//Tray Settings
 	public static final int trayRollerCanID = 12;

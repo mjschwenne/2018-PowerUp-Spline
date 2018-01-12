@@ -1,5 +1,6 @@
 package org.usfirst.frc3668.TroBots;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -19,6 +20,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class RobotMap {
     public static WPI_TalonSRX rightDrive1;
     public static WPI_TalonSRX rightDrive2;
+    public static FeedbackDevice feedbackTest;
     public static SpeedControllerGroup rightChassisMotors;
     public static WPI_TalonSRX leftDrive1;
     public static WPI_TalonSRX leftDrive2;
@@ -42,6 +44,7 @@ public class RobotMap {
 
     public static void init() {
         rightDrive1 = new WPI_TalonSRX(Settings.chassisRightDrive1CanID);
+        //rightDrive1.configSelectedFeedbackSensor(arg0, arg1, arg2)
         rightDrive2 = new WPI_TalonSRX(Settings.chassisRightDrive2CanID);
         rightChassisMotors = new SpeedControllerGroup(rightDrive1, rightDrive2);
         
