@@ -44,15 +44,15 @@ public class RobotMap {
 
     public static void init() {
         rightDrive1 = new WPI_TalonSRX(Settings.chassisRightDrive1CanID);
-        rightDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+        //rightDrive1.configSelectedFeedbackSensor(arg0, arg1, arg2)
         rightDrive2 = new WPI_TalonSRX(Settings.chassisRightDrive2CanID);
         rightChassisMotors = new SpeedControllerGroup(rightDrive1, rightDrive2);
-        
+
         leftDrive1 = new WPI_TalonSRX(Settings.chassisLeftDrive1CanID);
         leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
         leftDrive2 = new WPI_TalonSRX(Settings.chassisLeftDrive2CanID);
         leftChassisMotors = new SpeedControllerGroup(leftDrive1, leftDrive2);
-        
+
         chassisDrive = new DifferentialDrive(leftChassisMotors, rightChassisMotors);
         chassisDrive.setSafetyEnabled(Settings.chassisDriveSafety);
         chassisDrive.setExpiration(Settings.chassisDriveExpiration);
@@ -60,23 +60,23 @@ public class RobotMap {
 
         gyro = new AnalogGyro(Settings.chassisGyroAnalogPort);
         gyro.setSensitivity(Settings.chassisGyroSensitivity);
-        
+
         leftSonar = new Ultrasonic(Settings.chassisLeftSonarPortA, Settings.chassisLeftSonarPortB);
         rightSonar = new Ultrasonic(Settings.chassisRightSonarPortA, Settings.chassisRightSonarPortB);
-        
+
         rightIntakeWheel = new WPI_TalonSRX(Settings.intakeRightIntakeWheelCanID);
         leftIntakeWheel = new WPI_TalonSRX(Settings.intakeLeftIntakeWheelCanID);
         intakeRightArm = new WPI_TalonSRX(Settings.intakeRightArmCanID);
         intakeleftArm = new WPI_TalonSRX(Settings.intakeLeftArmCanID);
-        
-        
+
+
         liftMotor = new WPI_TalonSRX(Settings.liftMotorCanID);
         liftPotentiometer = new AnalogPotentiometer(Settings.liftPotentiometerAnalogPort, Settings.liftPotentiometerRange, Settings.liftPotentiometerOffset);
-        
+
         climb1 = new WPI_TalonSRX(Settings.climbMotor1CanID);
         climb2 = new WPI_TalonSRX(Settings.climbMotor2CanID);
         climbController = new SpeedControllerGroup(climb1, climb2);
-        
+
         trayRoller = new WPI_TalonSRX(Settings.trayRollerCanID);
         trayRightLimit = new DigitalInput(Settings.trayRightLimitDIOPort);
         trayLeftLimit = new DigitalInput(Settings.trayLeftLimitDIOPort);
