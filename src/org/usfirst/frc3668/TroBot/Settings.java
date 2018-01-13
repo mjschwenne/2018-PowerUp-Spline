@@ -6,7 +6,7 @@ public class Settings {
 	public static final int chassisRightDrive2CanID = 2;
 	public static final int chassisLeftDrive1CanID = 3;
 	public static final int chassisLeftDrive2CanID = 4;
-	public static final boolean chassisDriveSafety = true;
+	public static final boolean chassisDriveSafety = false;
 	public static final double chassisDriveExpiration = 1.0;
 	public static final double chassisDriveMaxOutput = 1.0;
 	public static final int chassisGyroAnalogPort = 0;
@@ -19,7 +19,7 @@ public class Settings {
 	public static final double testChassisGearRatio = 10.71; //10.71:1
 	public static final int chassisEncoderTicsPerRevolution = 4096; 
 	public static final double chassisEncoderDistancePerPulse = (6*Math.PI)/chassisEncoderTicsPerRevolution;
-	public static final double chassisLeftSideScalar = 1/(4/3);
+	public static final double chassisLeftSideScalar = 18.98301225008481/19.843575472088656;
 	public static final double chassisRightSideScalar = 1;
 	public static final double chassisMaxInchesPerSecond = 168;
 	public static final double chassisDriveStraightGyroKp = 0.007;
