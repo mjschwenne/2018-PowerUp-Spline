@@ -21,6 +21,8 @@ public class Settings {
 	public static final double chassisEncoderDistancePerPulse = (6*Math.PI)/chassisEncoderTicsPerRevolution;
 	public static final double chassisLeftSideScalar = 1/(4/3);
 	public static final double chassisRightSideScalar = 1;
+	public static final double chassisMaxInchesPerSecond = 168;
+	public static final double chassisDriveStraightGyroKp = 0.007;
 	//Intake Settings
 	public static final int intakeRightIntakeWheelCanID = 5;
 	public static final int intakeLeftIntakeWheelCanID = 6;
@@ -50,5 +52,10 @@ public class Settings {
 	public static final String profileLogName = "//media//sda1//motionProfile";
 	public static final double profileAdditionLoopNumber = 0;
 	public static final String profileLogFileExtension = ".txt";
-		
+	public static final double profileDriveAccelration = 15; //inches/sec/sec
+	public static final double profileKp = 0.0;
+	public static final double profileKi = 0.0;
+	public static final double profileKd = 0.0;
+	public static final double profileInitVelocity = 0.0;
+	public static final double profileMovementThreshold = 0.0;
 }
