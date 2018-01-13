@@ -11,7 +11,6 @@
 
 package org.usfirst.frc3668.TroBot.commands;
 import org.usfirst.frc3668.TroBot.Robot;
-import org.usfirst.frc3668.TroBot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -33,6 +32,7 @@ public class TeleopDrive extends Command {
     @Override
     protected void initialize() {
     	Robot.subChassis.resetRightEncoder();
+    	Robot.subChassis.resetGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -40,7 +40,7 @@ public class TeleopDrive extends Command {
     protected void execute() {
     	Robot.subChassis.Drive(Robot.oi.joyDrive);
     	
-    	System.err.println("Right Encoder: " + Robot.subChassis.getRightEncoderDist());
+    	System.err.println("Right Encoder: " + Robot.subChassis.getRightEncoderDist() + " Gryo: " + Robot.subChassis.gyroNormalize((int)Robot.subChassis.getGyroAngle()));
     }
 
     // Make this return true when this Command no longer needs to run execute()
