@@ -2,28 +2,24 @@ package org.usfirst.frc3668.TroBot.commands;
 
 import org.usfirst.frc3668.TroBot.PID;
 import org.usfirst.frc3668.TroBot.Robot;
+import org.usfirst.frc3668.TroBot.RobotMath;
 import org.usfirst.frc3668.TroBot.Settings;
-import org.usfirst.frc3668.TroBot.motionProfile.Logger;
 import org.usfirst.frc3668.TroBot.motionProfile.MotionProfiler;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoDriveProfileGyro extends Command{
-	double MAXSPEED = Settings.chassisMaxInchesPerSecond;
-	double _distance;
-	double _cruiseSpeed;
-	boolean _isFinished = false;
-	double _accerlation = Settings.profileDriveAccelration; // inches/sec/sec
-	double _startTime;
-	double _requestedHeading = 0;
-	double _distanceSignum;
-	double _absDistance;
-	double _abortTime;
-	boolean _isRunaway;
-	MotionProfiler mp;
-	Logger log = new Logger(Settings.profileLogName);
-	PID pid = new PID(Settings.profileKp, Settings.profileKi, Settings.profileKd);
+	private double _distance;
+	private double _cruiseSpeed;
+	private boolean _isFinished = false;
+	private double _startTime;
+	private double _requestedHeading = 0;
+	private double _distanceSignum;
+	private double _absDistance;
+	private double _abortTime;
+	private MotionProfiler mp;
+	private PID pid = new PID(Settings.profileDriveKp, Settings.profileDriveKi, Settings.profileDriveKd);
 
 	public AutoDriveProfileGyro(double requestedHeading, double cruiseSpeed, double distance) {
 		requires(Robot.subChassis);
@@ -51,7 +47,7 @@ public class AutoDriveProfileGyro extends Command{
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		mp = new MotionProfiler(_absDistance, Settings.profileInitVelocity, _cruiseSpeed, _accerlation);
+		mp = new MotionProfiler(_absDistance, Settings.profileInitVelocity, _cruiseSpeed, Settings.profileDriveAccelration);
 		Robot.subChassis.resetBothEncoders();
 		_abortTime = _absDistance / _cruiseSpeed;
 		System.err.println(String.format(
@@ -66,10 +62,10 @@ public class AutoDriveProfileGyro extends Command{
 		double encoderVal = Robot.subChassis.getLeftEncoderDist();
 		double deltaTime = RobotMath.getTime() - _startTime;
 		double profileDist = mp.getTotalDistanceTraveled(deltaTime);
-		double currentHeading = Robot.subChassis.gyroNormalize((int)Robot.subChassis.getGyroAngle);
-		double turnValue = headingDelta(currentHeading);
+		double currentHeading = Robot.subChassis.gyroNormalize((int)Robot.subChassis.getGyroAngle());
+		double turnValue = calcTurnRate(currentHeading);
 		double profileVelocity = mp.getProfileCurrVelocity(deltaTime);
-		double throttlePos = (profileVelocity / MAXSPEED);
+		double throttlePos = (profileVelocity / Settings.chassisMaxInchesPerSecond);
 		double pidVal = pid.calcPID(profileDist, encoderVal);
 		double finalThrottle = throttlePos + pidVal;
 		
@@ -82,7 +78,7 @@ public class AutoDriveProfileGyro extends Command{
 		System.err.println(msg);
 		//log.makeEntry(msg);
 		SmartDashboard.putNumber("Drive Left Encoder:", Robot.subChassis.getLeftEncoderDist());
-		SmartDashboard.putNumber("Drive Right Encoder", Robot.subChassis.getRightEncoderDist());
+		SmartDashboard.putNumber("Drive Right Encoder: ", Robot.subChassis.getRightEncoderDist());
 
 		Robot.subChassis.Drive((finalThrottle * _distanceSignum), turnValue);
 
@@ -97,8 +93,12 @@ public class AutoDriveProfileGyro extends Command{
 		}
 	}
 
-	protected double headingDelta(double currentHeading) {
-		return RobotMath.headingDelta(currentHeading, _requestedHeading, Settings.chassisDriveStraightGyroKp);
+	protected double calcTurnRate(double currentHeading) {
+		double turnRate = RobotMath.calcTurnRate(currentHeading, _requestedHeading, Settings.chassisDriveStraightGyroKp);
+		if(currentHeading < _requestedHeading) {
+			turnRate = turnRate * -1;
+		}
+		return turnRate;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -110,7 +110,7 @@ public class AutoDriveProfileGyro extends Command{
 	protected void end() {
 		Robot.subChassis.Drive(0, 0);
 		Robot.subChassis.resetBothEncoders();
-		System.out.println("CmdBothDriveWithProfileAndGyro is Finished");
+		System.out.println("AutoDriveProfileGyro is Finished");
 		System.err.println(String.format(
 				"Projected Accelration Time: %1$.3f \tProjected Cruise Time: %2$.3f \t Projected Deccelration Time: %3$.3f \t Projected Length of Drive: %4$.3f \t Given Distance: %5$.3f",
 				mp._accelTime, mp._cruiseTime, mp._deccelTime, mp._stopTime, _distance));
