@@ -19,7 +19,7 @@ public class Settings {
 	public static final boolean chassisSquareJoyInput = false;
 	public static final double chassisLeftSideScalar = 18.98301225008481/19.843575472088656; //0.9566326530612244
 	public static final double chassisRightSideScalar = 1;
-	public static final double chassisMaxInchesPerSecond = 168;
+	public static final double chassisMaxInchesPerSecond = 126;//168;
 	public static final double chassisDriveStraightGyroKp = 10;
 	public static final double chassisMaxDregeesPreSecond = 15;
 	
@@ -54,16 +54,16 @@ public class Settings {
 	public static final String profileLogName = "//media//sda1//motionProfile";
 	public static final double profileAdditionLoopNumber = 50;
 	public static final String profileLogFileExtension = ".txt";
-	public static final double profileDriveAccelration = 15; //inches/sec/sec
+	public static final double profileDriveAccelration = 20; //inches/sec/sec
 	public static final double profileDriveKp = 0.125;
-	public static final double profileDriveKi = 0.00005;
-	public static final double profileDriveKd = 0.000025;
-	public static final double profileTurnKp = 0.125;
-	public static final double profileTurnKi = 0.00005;
-	public static final double profileTurnKd = 0.000025;
+	public static final double profileDriveKi = 0.0;
+	public static final double profileDriveKd = 0.0;
+	public static final double profileTurnKp = 0.0;
+	public static final double profileTurnKi = 0.0;
+	public static final double profileTurnKd = 0.0;
 	public static final double profileAnglarAccelration = 10;
 	public static final double profileInitVelocity = 0.0;
-	public static final double profileMovementThreshold = 0.0625;
+	public static final double profileMovementThreshold = 0.5;
 	
 	public static enum profileTurnDirection{
 		turnRight, turnLeft
@@ -79,4 +79,14 @@ public class Settings {
 	public static final int joyArtSetLiftToSwitchButton = 11;
 	public static final int joyArtSetLiftToScaleButton = 10;
 	public static final int joyArtClimbButton = 6;
+	
+	//Auto Settings
+	public static enum autoAction {
+		autoSwitch, autoScale, autoLine, nothing
+	}
+	public static enum autoPosition{
+		leftPortal, center, rightPortal
+	}
+	public static final double autoCruiseSpeed = 135;
+	public static final double autoLineDistance = 144;
 }

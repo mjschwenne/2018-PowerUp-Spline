@@ -25,8 +25,8 @@ public class SubChassis extends Subsystem {
 		double leftMotorThrottle;//= (-joyX + joyY) * Settings.chassisLeftSideScalar;
 		if (Robot.isDriveInverted) {
 			// RobotMap.chassisDrive.arcadeDrive(-joyY, -joyX, true);
-			rightMotorThrottle = (joyY + joyX) * Settings.chassisRightSideScalar;
-			leftMotorThrottle = (joyY - joyX) * Settings.chassisLeftSideScalar;
+			rightMotorThrottle = (joyX + joyY) * Settings.chassisRightSideScalar;
+			leftMotorThrottle = (joyX - joyY) * Settings.chassisLeftSideScalar;
 				if(Settings.chassisSquareJoyInput) {
 					double rightSignum = Math.signum(rightMotorThrottle);
 					double leftSignum = Math.signum(leftMotorThrottle);
@@ -38,8 +38,8 @@ public class SubChassis extends Subsystem {
 
 		} else {
 			// RobotMap.chassisDrive.arcadeDrive(joyY, -joyX, true);
-			rightMotorThrottle = (-joyY - joyX) * Settings.chassisRightSideScalar;
-			leftMotorThrottle = (-joyY + joyX) * Settings.chassisLeftSideScalar;
+			rightMotorThrottle = (-joyX - joyY) * Settings.chassisRightSideScalar;
+			leftMotorThrottle = (-joyX + joyY) * Settings.chassisLeftSideScalar;
 			if(Settings.chassisSquareJoyInput) {
 				double rightSignum = Math.signum(rightMotorThrottle);
 				double leftSignum = Math.signum(leftMotorThrottle);
@@ -177,7 +177,7 @@ public class SubChassis extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		setDefaultCommand(new TeleopDrive());
+		//setDefaultCommand(new TeleopDrive());
 	}
 
 	@Override

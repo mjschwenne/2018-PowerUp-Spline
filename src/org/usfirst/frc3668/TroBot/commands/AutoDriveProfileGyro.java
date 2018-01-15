@@ -22,6 +22,7 @@ public class AutoDriveProfileGyro extends Command{
 	private PID pid = new PID(Settings.profileDriveKp, Settings.profileDriveKi, Settings.profileDriveKd);
 
 	public AutoDriveProfileGyro(double requestedHeading, double cruiseSpeed, double distance) {
+		System.err.println("AutoDriveProfileGyro");
 		requires(Robot.subChassis);
 		_distance = distance;
 		_absDistance = Math.abs(distance);
@@ -47,8 +48,10 @@ public class AutoDriveProfileGyro extends Command{
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		System.err.println("Initializing");
 		mp = new MotionProfiler(_absDistance, Settings.profileInitVelocity, _cruiseSpeed, Settings.profileDriveAccelration);
 		Robot.subChassis.resetBothEncoders();
+		Robot.subChassis.resetGyro();
 		_abortTime = _absDistance / _cruiseSpeed;
 		System.err.println(String.format(
 				"Projected Accelration Time: %1$.3f \tProjected Cruise Time: %2$.3f \t Projected Deccelration Time: %3$.3f \t Projected Length of Drive: %4$.3f \t Given Distance: %5$.3f \t Abort: %6$.3f",
@@ -59,10 +62,10 @@ public class AutoDriveProfileGyro extends Command{
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double encoderVal = Robot.subChassis.getLeftEncoderDist();
+		double encoderVal = Robot.subChassis.getRightEncoderDist();
 		double deltaTime = RobotMath.getTime() - _startTime;
 		double profileDist = mp.getTotalDistanceTraveled(deltaTime);
-		double currentHeading = Robot.subChassis.gyroNormalize((int)Robot.subChassis.getGyroAngle());
+		double currentHeading = Robot.subChassis.getNomalizedGyroAngle();
 		double turnValue = calcTurnRate(currentHeading);
 		double profileVelocity = mp.getProfileCurrVelocity(deltaTime);
 		double throttlePos = (profileVelocity / Settings.chassisMaxInchesPerSecond);
@@ -70,23 +73,23 @@ public class AutoDriveProfileGyro extends Command{
 		double finalThrottle = throttlePos + pidVal;
 		
 		String msg = String.format(
-				"CurrVel: %1$.3f \t throttle: %2$.3f \t Time: %3$.3f \t ProfileX: %4$.3f \t Encoder: %5$.3f \t PID Value: %10$.3f \t P: %14$.3f \t I: %13$.3f \t D: %11$.3f \t Final Throttle: %12$.3f",
+				"CurrVel: %1$.3f \t throttle: %2$.3f \t Time: %3$.3f \t ProfileX: %4$.3f \t Encoder: %5$.3f \t PID Value: %10$.3f \t P: %14$.3f \t I: %13$.3f \t D: %11$.3f \t Final Throttle: %12$.3f \t Gyro: %15$.3f",
 				profileVelocity, throttlePos, deltaTime, mp.getTotalDistanceTraveled(deltaTime),
 				encoderVal, Robot.subChassis.getLeftEncoderDist(),
-				Robot.subChassis.getRightEncoderDist(), currentHeading, turnValue, pidVal, pid.getDError(), finalThrottle, pid.getIError(), pid.getPError());
+				Robot.subChassis.getRightEncoderDist(), currentHeading, turnValue, pidVal, pid.getDError(), finalThrottle, pid.getIError(), pid.getPError(), currentHeading);
 		//FULL LOG MESSAGE: CurrVel: %1$.3f \t throttle: %2$.3f \t deltaTime: %3$.3f \t Disantce Travelled: %4$.3f \t AvgEncoder: %5$.3f \t Left Encoder: %6$.3f \t Right Encoder: %7$.3f \t Gyro Raw Heading: %8$.3f \t Turn Value: %9$.3f \t PID Value: %10$.3f \t P Value: %11$.3f \t Final Throttle: %12$.3f
 		System.err.println(msg);
 		//log.makeEntry(msg);
 		SmartDashboard.putNumber("Drive Left Encoder:", Robot.subChassis.getLeftEncoderDist());
 		SmartDashboard.putNumber("Drive Right Encoder: ", Robot.subChassis.getRightEncoderDist());
 
-		Robot.subChassis.Drive((finalThrottle * _distanceSignum), turnValue);
+		Robot.subChassis.Drive((finalThrottle * _distanceSignum), 0);
 
-		if (deltaTime > _abortTime && Robot.subChassis.getEncoderAvgDistInch() == 0) {
-			System.out.println("Pasted Abort Time, Dead Encoders");
-			_isFinished = true;
-			Robot.subChassis._isSafeToMove = false;
-		}
+//		if (deltaTime > _abortTime && Robot.subChassis.getEncoderAvgDistInch() == 0) {
+//			System.out.println("Pasted Abort Time, Dead Encoders");
+//			_isFinished = true;
+//			Robot.subChassis._isSafeToMove = false;
+//		}
 		if ( encoderVal < _absDistance + Settings.profileMovementThreshold && encoderVal > _absDistance - Settings.profileMovementThreshold) {
 			System.err.println("At Distance");
 			_isFinished = true;
@@ -95,7 +98,7 @@ public class AutoDriveProfileGyro extends Command{
 
 	protected double calcTurnRate(double currentHeading) {
 		double turnRate = RobotMath.calcTurnRate(currentHeading, _requestedHeading, Settings.chassisDriveStraightGyroKp);
-		if(currentHeading < _requestedHeading) {
+		if(currentHeading > _requestedHeading) {
 			turnRate = turnRate * -1;
 		}
 		return turnRate;

@@ -114,7 +114,7 @@ public class MotionProfiler {
 			afterStopLoopCounter = afterStopLoopCounter + 1;
 			retVal = retVal + (afterStopDistLoop * afterStopLoopCounter);
 		} else {
-			afterStopDistLoop = (_distance - retVal) / Settings.profileAdditionLoopNumber;
+			//afterStopDistLoop = (_distance - retVal) / Settings.profileAdditionLoopNumber;
 		}
 		return retVal;
 	}

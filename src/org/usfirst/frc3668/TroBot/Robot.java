@@ -1,21 +1,29 @@
 package org.usfirst.frc3668.TroBot;
 
+import org.usfirst.frc3668.TroBot.Settings.autoAction;
+import org.usfirst.frc3668.TroBot.Settings.autoPosition;
+import org.usfirst.frc3668.TroBot.commands.AutoDriveProfileGyro;
+import org.usfirst.frc3668.TroBot.commands.AutoGroupCenterSwitch;
+import org.usfirst.frc3668.TroBot.commands.AutoGroupScale;
 import org.usfirst.frc3668.TroBot.subSystems.SubChassis;
 import org.usfirst.frc3668.TroBot.subSystems.SubClimb;
 import org.usfirst.frc3668.TroBot.subSystems.SubIntake;
 import org.usfirst.frc3668.TroBot.subSystems.SubLift;
 import org.usfirst.frc3668.TroBot.subSystems.SubTray;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
 
     Command autonomousCommand;
-    SendableChooser<Command> chooser = new SendableChooser<>();
-
+    SendableChooser<autoAction> autoActionChooser = new SendableChooser<>();
+    SendableChooser<autoPosition> autoPositionChooser = new SendableChooser<>();
+    
     public static final SubChassis subChassis = new SubChassis();
     public static final SubIntake subIntake = new SubIntake();
     public static final SubLift subLift = new SubLift();
@@ -25,7 +33,7 @@ public class Robot extends TimedRobot {
     public static final OI oi = new OI();
     
 	public static boolean isDriveInverted = false;
-
+	public static String gameData;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -34,6 +42,17 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         RobotMap.init();
         subChassis.initializeGyro();
+        
+        autoPositionChooser.addObject("Left", autoPosition.leftPortal);
+        autoPositionChooser.addObject("Right", autoPosition.rightPortal);
+        autoPositionChooser.addObject("Center", autoPosition.center);
+        SmartDashboard.putData("Position Chooser", autoPositionChooser);
+        
+        autoActionChooser.addObject("Switch", autoAction.autoSwitch);
+        autoActionChooser.addObject("Scale", autoAction.autoScale);
+        autoActionChooser.addDefault("Line", autoAction.autoLine);
+        autoActionChooser.addObject("nothing", autoAction.nothing);
+        SmartDashboard.putData("Action Chooser", autoActionChooser);
         
         //chooser.addDefault("Autonomous Command", new AutonomousCommand());
         //SmartDashboard.putData("Auto mode", chooser);
@@ -55,8 +74,24 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        //autonomousCommand = chooser.getSelected();
-        // schedule the autonomous command (example)
+    	gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	//if (gameData.charAt(0)== 'L')
+        autoAction selectedAction = (autoAction) autoActionChooser.getSelected();
+        autoPosition selectedPosition = (autoPosition) autoPositionChooser.getSelected();
+        switch(selectedAction) {
+        case autoSwitch:
+        	autonomousCommand = new AutoGroupCenterSwitch();
+        	break;
+        case autoScale:
+        	autonomousCommand = new AutoGroupScale(selectedPosition);
+        	break;
+        case autoLine:
+        	System.err.println("Settings up the command");
+        	autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance );
+        	break;
+        case nothing:
+        	autonomousCommand = null;
+        }
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -65,7 +100,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousPeriodic() {
-        //Scheduler.getInstance().run();
+        Scheduler.getInstance().run();
     }
 
     @Override

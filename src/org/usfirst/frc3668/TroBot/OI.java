@@ -62,9 +62,9 @@ public class OI {
     	intakeIn.whileHeld(new TeleopIntakeIn());
     	intakeReverse.whileHeld(new TeleopIntakeOut());
     	
-    	liftToZero.whenPressed(new TeleopLift(0));
-    	liftToSwitch.whenPressed(new TeleopLift(Settings.liftSwitchHeight));
-    	liftToScale.whenPressed(new TeleopLift(Settings.liftScaleHeight));
+    	//liftToZero.whenPressed(new TeleopLift(0));
+    	//liftToSwitch.whenPressed(new TeleopLift(Settings.liftSwitchHeight));
+    	//liftToScale.whenPressed(new TeleopLift(Settings.liftScaleHeight));
     	
     	enableClimb.whileHeld(new TeleopClimb());
     }
