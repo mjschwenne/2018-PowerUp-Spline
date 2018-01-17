@@ -5,12 +5,28 @@ public class RobotMath {
 		return (System.nanoTime() / Math.pow(10, 9));
 	}
 
-	public static double calcTurnRate( double currentHeading, double desiredHeading, double proportion) {
-		double headingDelta = Math.abs(currentHeading - desiredHeading);
-		if(headingDelta > 180) {
-			headingDelta = headingDelta - 180;
-		}
-		double commandedTurnRate = headingDelta / proportion;
+	public static double calcTurnRate( double currentHeading, double targetHeading, double proportion) {
+
+        double headingDelta = 0;
+
+        //Positive value
+        if (currentHeading >= 0 && targetHeading >= 0) {
+            headingDelta = targetHeading - currentHeading;
+        }
+        // one of each
+        else if (currentHeading >= 0 && targetHeading <= 0) {
+            headingDelta =  (targetHeading + currentHeading);
+        }
+        //one of each again
+        else if (currentHeading <= 0 && targetHeading >= 0) {
+            headingDelta = -1 * (targetHeading + currentHeading);
+        }
+        // both negative
+        else if (currentHeading <= 0 && targetHeading <= 0) {
+            headingDelta = targetHeading - currentHeading;
+        }
+
+		double commandedTurnRate = headingDelta * proportion;
 		return commandedTurnRate; //IS ALWAYS POSITIVE!
 	}
 	

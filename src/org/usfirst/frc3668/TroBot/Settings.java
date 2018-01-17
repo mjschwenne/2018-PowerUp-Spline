@@ -20,7 +20,7 @@ public class Settings {
 	public static final double chassisLeftSideScalar = 18.98301225008481/19.843575472088656; //0.9566326530612244
 	public static final double chassisRightSideScalar = 1;
 	public static final double chassisMaxInchesPerSecond = 126;//168;
-	public static final double chassisDriveStraightGyroKp = 10;
+	public static final double chassisDriveStraightGyroKp = 0.04;
 	public static final double chassisMaxDregeesPreSecond = 15;
 	
 	//Intake Settings
@@ -56,8 +56,8 @@ public class Settings {
 	public static final String profileLogFileExtension = ".txt";
 	public static final double profileDriveAccelration = 20; //inches/sec/sec
 	public static final double profileDriveKp = 0.125;
-	public static final double profileDriveKi = 0.0;
-	public static final double profileDriveKd = 0.0;
+	public static final double profileDriveKi = 0.0006;
+	public static final double profileDriveKd = 0.0007555555;
 	public static final double profileTurnKp = 0.0;
 	public static final double profileTurnKi = 0.0;
 	public static final double profileTurnKd = 0.0;

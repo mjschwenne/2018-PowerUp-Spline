@@ -51,7 +51,6 @@ public class AutoDriveProfileGyro extends Command{
 		System.err.println("Initializing");
 		mp = new MotionProfiler(_absDistance, Settings.profileInitVelocity, _cruiseSpeed, Settings.profileDriveAccelration);
 		Robot.subChassis.resetBothEncoders();
-		Robot.subChassis.resetGyro();
 		_abortTime = _absDistance / _cruiseSpeed;
 		System.err.println(String.format(
 				"Projected Accelration Time: %1$.3f \tProjected Cruise Time: %2$.3f \t Projected Deccelration Time: %3$.3f \t Projected Length of Drive: %4$.3f \t Given Distance: %5$.3f \t Abort: %6$.3f",
@@ -83,7 +82,7 @@ public class AutoDriveProfileGyro extends Command{
 		SmartDashboard.putNumber("Drive Left Encoder:", Robot.subChassis.getLeftEncoderDist());
 		SmartDashboard.putNumber("Drive Right Encoder: ", Robot.subChassis.getRightEncoderDist());
 
-		Robot.subChassis.Drive((finalThrottle * _distanceSignum), 0);
+		Robot.subChassis.Drive((finalThrottle * _distanceSignum), turnValue);
 
 //		if (deltaTime > _abortTime && Robot.subChassis.getEncoderAvgDistInch() == 0) {
 //			System.out.println("Pasted Abort Time, Dead Encoders");
@@ -98,9 +97,9 @@ public class AutoDriveProfileGyro extends Command{
 
 	protected double calcTurnRate(double currentHeading) {
 		double turnRate = RobotMath.calcTurnRate(currentHeading, _requestedHeading, Settings.chassisDriveStraightGyroKp);
-		if(currentHeading > _requestedHeading) {
-			turnRate = turnRate * -1;
-		}
+		//if(currentHeading > _requestedHeading) {
+		//	turnRate = turnRate * -1;
+		//}
 		return turnRate;
 	}
 
