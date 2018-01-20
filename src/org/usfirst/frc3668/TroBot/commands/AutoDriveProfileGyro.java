@@ -64,7 +64,7 @@ public class AutoDriveProfileGyro extends Command{
 		double encoderVal = Robot.subChassis.getRightEncoderDist();
 		double deltaTime = RobotMath.getTime() - _startTime;
 		double profileDist = mp.getTotalDistanceTraveled(deltaTime);
-		double currentHeading = Robot.subChassis.getNomalizedGyroAngle();
+		double currentHeading = Robot.subChassis.getNormaliziedNavxAngle();
 		double turnValue = calcTurnRate(currentHeading);
 		double profileVelocity = mp.getProfileCurrVelocity(deltaTime);
 		double throttlePos = (profileVelocity / Settings.chassisMaxInchesPerSecond);

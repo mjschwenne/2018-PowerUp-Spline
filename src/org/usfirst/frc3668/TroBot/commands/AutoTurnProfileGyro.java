@@ -4,7 +4,7 @@ import org.usfirst.frc3668.TroBot.PID;
 import org.usfirst.frc3668.TroBot.Robot;
 import org.usfirst.frc3668.TroBot.RobotMath;
 import org.usfirst.frc3668.TroBot.Settings;
-import org.usfirst.frc3668.TroBot.Settings.profileTurnDirection;
+import org.usfirst.frc3668.TroBot.Settings.chassisTurnDirection;
 import org.usfirst.frc3668.TroBot.motionProfile.MotionProfiler;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,9 +20,9 @@ public class AutoTurnProfileGyro extends Command {
 	private double _abortTime;
 	private MotionProfiler mp;
 	private PID pid = new PID(Settings.profileTurnKp, Settings.profileTurnKi, Settings.profileTurnKd);
-	private profileTurnDirection turnDir;
+	private chassisTurnDirection turnDir;
 	
-    public AutoTurnProfileGyro(double anglarCuriseSpeed, double desiredAngle, profileTurnDirection dir) {
+    public AutoTurnProfileGyro(double anglarCuriseSpeed, double desiredAngle, chassisTurnDirection dir) {
         requires(Robot.subChassis);
         _anglarCruiseSpeed = anglarCuriseSpeed;
         _desiredAngle = desiredAngle;
@@ -31,7 +31,7 @@ public class AutoTurnProfileGyro extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	_initHeading = Robot.subChassis.getNomalizedGyroAngle();
+    	_initHeading = Robot.subChassis.getNormalizedGyroAngle();
     	_startTime = RobotMath.getTime();
     	_anglarDelta = RobotMath.calcAnglarDelta(_initHeading, _desiredAngle);
     	mp = new MotionProfiler(_anglarDelta, Settings.profileInitVelocity, _anglarCruiseSpeed, Settings.profileAnglarAccelration);
@@ -41,7 +41,7 @@ public class AutoTurnProfileGyro extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double currGyro = Robot.subChassis.getNomalizedGyroAngle();
+    	double currGyro = Robot.subChassis.getNormalizedGyroAngle();
     	double deltaTime = RobotMath.getTime() - _startTime;
     	double currVelocity = mp.getProfileCurrVelocity(deltaTime);
     	double pidVal = pid.calcPID(_desiredAngle, currGyro);
@@ -49,7 +49,7 @@ public class AutoTurnProfileGyro extends Command {
     	double leftThrottle = throttlePos;
     	double rightThrottle = throttlePos;
     	
-    	if(turnDir == Settings.profileTurnDirection.turnLeft) {
+    	if(turnDir == Settings.chassisTurnDirection.turnLeft) {
     		leftThrottle = leftThrottle * -1;
     	} else {
     		rightThrottle = rightThrottle * -1;

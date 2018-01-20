@@ -2,9 +2,9 @@ package org.usfirst.frc3668.TroBot;
 
 import org.usfirst.frc3668.TroBot.Settings.autoAction;
 import org.usfirst.frc3668.TroBot.Settings.autoPosition;
-import org.usfirst.frc3668.TroBot.commands.AutoDriveProfileGyro;
 import org.usfirst.frc3668.TroBot.commands.AutoGroupCenterSwitch;
 import org.usfirst.frc3668.TroBot.commands.AutoGroupScale;
+import org.usfirst.frc3668.TroBot.commands.AutoTurnGyro;
 import org.usfirst.frc3668.TroBot.subSystems.SubChassis;
 import org.usfirst.frc3668.TroBot.subSystems.SubClimb;
 import org.usfirst.frc3668.TroBot.subSystems.SubIntake;
@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         RobotMap.init();
-        subChassis.initializeGyro();
+        subChassis.resetNavx();
         
         autoPositionChooser.addObject("Left", autoPosition.leftPortal);
         autoPositionChooser.addObject("Right", autoPosition.rightPortal);
@@ -87,7 +87,8 @@ public class Robot extends TimedRobot {
         	break;
         case autoLine:
         	System.err.println("Settings up the command");
-        	autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance );
+        	//autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance );
+        	autonomousCommand = new AutoTurnGyro(Settings.autoTurnSpeed, -179, Settings.chassisTurnDirection.turnLeft);
         	break;
         case nothing:
         	autonomousCommand = null;

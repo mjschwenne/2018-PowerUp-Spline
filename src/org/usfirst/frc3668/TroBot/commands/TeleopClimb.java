@@ -3,6 +3,7 @@ package org.usfirst.frc3668.TroBot.commands;
 import org.usfirst.frc3668.TroBot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TeleopClimb extends Command {
 
@@ -21,6 +22,7 @@ public class TeleopClimb extends Command {
     @Override
     protected void execute() {
     	Robot.subClimb.joyClimb(Robot.oi.joyArt);
+    	SmartDashboard.putNumber("Gyro Angle", Robot.subChassis.getNormaliziedNavxAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()

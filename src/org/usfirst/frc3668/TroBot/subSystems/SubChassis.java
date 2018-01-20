@@ -95,12 +95,20 @@ public class SubChassis extends Subsystem {
 		RobotMap.leftDrive1.setSelectedSensorPosition(0, 0, 0);
 	}
 
-	public double getGyroAngle() {
+	public double getGyroAngleRaw() {
 		return RobotMap.gyro.getAngle();
 	}
 	
-	public double getNomalizedGyroAngle() {
-		return gyroNormalize(getGyroAngle());
+	public double getNavxAngleRaw() {
+		return RobotMap.navx.getAngle();
+	}
+	
+	public double getNormalizedGyroAngle() {
+		return gyroNormalize(getGyroAngleRaw());
+	}
+	
+	public double getNormaliziedNavxAngle() {
+		return gyroNormalize(getNavxAngleRaw());
 	}
 
 	public void initializeGyro() {
@@ -113,6 +121,10 @@ public class SubChassis extends Subsystem {
 		RobotMap.gyro.reset();
 	}
 
+	public void resetNavx() {
+		RobotMap.navx.reset();
+	}
+	
 	public double gyroNormalize(double heading) {
 		// takes the full turns out of heading
 		// gives us values from 0 to 180 for the right side of the robot

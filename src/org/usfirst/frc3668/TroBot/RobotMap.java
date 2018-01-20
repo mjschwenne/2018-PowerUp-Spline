@@ -2,10 +2,13 @@ package org.usfirst.frc3668.TroBot;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -26,6 +29,7 @@ public class RobotMap {
     public static SpeedControllerGroup leftChassisMotors;
     public static DifferentialDrive chassisDrive;
     public static AnalogGyro gyro;
+    public static AHRS navx;
     public static WPI_TalonSRX rightIntakeWheel;
     public static WPI_TalonSRX leftIntakeWheel;
     public static WPI_TalonSRX intakeRightArm;
@@ -60,6 +64,8 @@ public class RobotMap {
         gyro = new AnalogGyro(Settings.chassisGyroAnalogPort);
         gyro.setSensitivity(Settings.chassisGyroSensitivity);
 
+        navx = new AHRS(SPI.Port.kMXP);
+        
         rightIntakeWheel = new WPI_TalonSRX(Settings.intakeRightIntakeWheelCanID);
         leftIntakeWheel = new WPI_TalonSRX(Settings.intakeLeftIntakeWheelCanID);
         intakeRightArm = new WPI_TalonSRX(Settings.intakeRightArmCanID);

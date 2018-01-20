@@ -4,12 +4,9 @@ public class RobotMath {
 	public static double getTime() {
 		return (System.nanoTime() / Math.pow(10, 9));
 	}
-
-	public static double calcTurnRate( double currentHeading, double targetHeading, double proportion) {
-
-        double headingDelta = 0;
-
-        //Positive value
+	public static double headingDelta(double currentHeading, double targetHeading) {
+		double headingDelta = 0;
+		 //Positive value
         if (currentHeading >= 0 && targetHeading >= 0) {
             headingDelta = targetHeading - currentHeading;
         }
@@ -25,7 +22,13 @@ public class RobotMath {
         else if (currentHeading <= 0 && targetHeading <= 0) {
             headingDelta = targetHeading - currentHeading;
         }
+        return headingDelta;
+	}
+	public static double calcTurnRate( double currentHeading, double targetHeading, double proportion) {
 
+        double headingDelta = headingDelta(currentHeading, targetHeading);
+        
+       
 		double commandedTurnRate = headingDelta * proportion;
 		return commandedTurnRate; //IS ALWAYS POSITIVE!
 	}

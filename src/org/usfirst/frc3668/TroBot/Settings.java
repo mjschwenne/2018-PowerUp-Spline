@@ -11,7 +11,7 @@ public class Settings {
 	public static final double chassisDriveMaxOutput = 1.0;
 	public static final int chassisGyroAnalogPort = 0;
 	public static final double chassisGyroSensitivity = 0.007;
-	public static final double chassisGyroTol = 2;
+	public static final double chassisGyroTol = 1;
 	public static final double chassisEncoderDeadValueThreshold = 0.5;
 	public static final double testChassisGearRatio = 10.71; //10.71:1
 	public static final int chassisEncoderTicsPerRevolution = 4096; 
@@ -22,6 +22,13 @@ public class Settings {
 	public static final double chassisMaxInchesPerSecond = 126;//168;
 	public static final double chassisDriveStraightGyroKp = 0.04;
 	public static final double chassisMaxDregeesPreSecond = 15;
+	public static final double chassisTurnKp = 0.0027;
+
+	
+	public static enum chassisTurnDirection{
+		turnRight, turnLeft
+	}
+	
 	
 	//Intake Settings
 	public static final int intakeRightIntakeWheelCanID = 5;
@@ -65,10 +72,6 @@ public class Settings {
 	public static final double profileInitVelocity = 0.0;
 	public static final double profileMovementThreshold = 0.5;
 	
-	public static enum profileTurnDirection{
-		turnRight, turnLeft
-	}
-	
 	//Interface Settings
 	public static final int joyDrivePort = 0;
 	public static final int joyDriveInvertDriveButton = 2;
@@ -89,4 +92,5 @@ public class Settings {
 	}
 	public static final double autoCruiseSpeed = 135;
 	public static final double autoLineDistance = 144;
+	public static final double autoTurnSpeed = 0.1;
 }

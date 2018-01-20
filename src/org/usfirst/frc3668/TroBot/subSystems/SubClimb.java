@@ -2,6 +2,7 @@ package org.usfirst.frc3668.TroBot.subSystems;
 
 import org.usfirst.frc3668.TroBot.RobotMap;
 import org.usfirst.frc3668.TroBot.Settings;
+import org.usfirst.frc3668.TroBot.commands.TeleopClimb;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,7 +24,8 @@ public class SubClimb extends Subsystem {
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new TeleopClimb());
+		
 	}
 
 	@Override
