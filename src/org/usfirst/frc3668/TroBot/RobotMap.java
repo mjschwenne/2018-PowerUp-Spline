@@ -1,6 +1,7 @@
 package org.usfirst.frc3668.TroBot;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -46,14 +47,17 @@ public class RobotMap {
 
     public static void init() {
         rightDrive1 = new WPI_TalonSRX(Settings.chassisRightDrive1CanID);
+        rightDrive1.setNeutralMode(NeutralMode.Brake);
         rightDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
         rightDrive2 = new WPI_TalonSRX(Settings.chassisRightDrive2CanID);
+        rightDrive2.setNeutralMode(NeutralMode.Brake);
         rightChassisMotors = new SpeedControllerGroup(rightDrive1, rightDrive2);
         
         leftDrive1 = new WPI_TalonSRX(Settings.chassisLeftDrive1CanID);
+        leftDrive1.setNeutralMode(NeutralMode.Brake);
         leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
         leftDrive2 = new WPI_TalonSRX(Settings.chassisLeftDrive2CanID);
-        
+        leftDrive2.setNeutralMode(NeutralMode.Brake);
         leftChassisMotors = new SpeedControllerGroup(leftDrive1, leftDrive2);
 
         chassisDrive = new DifferentialDrive(leftChassisMotors, rightChassisMotors);

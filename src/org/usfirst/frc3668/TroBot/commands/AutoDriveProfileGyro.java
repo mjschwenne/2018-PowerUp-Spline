@@ -79,7 +79,7 @@ public class AutoDriveProfileGyro extends Command{
 		//FULL LOG MESSAGE: CurrVel: %1$.3f \t throttle: %2$.3f \t deltaTime: %3$.3f \t Disantce Travelled: %4$.3f \t AvgEncoder: %5$.3f \t Left Encoder: %6$.3f \t Right Encoder: %7$.3f \t Gyro Raw Heading: %8$.3f \t Turn Value: %9$.3f \t PID Value: %10$.3f \t P Value: %11$.3f \t Final Throttle: %12$.3f
 		System.err.println(msg);
 		//log.makeEntry(msg);
-		SmartDashboard.putNumber("Drive Left Encoder:", Robot.subChassis.getLeftEncoderDist());
+		//SmartDashboard.putNumber("Drive Left Encoder:", Robot.subChassis.getLeftEncoderDist());
 		SmartDashboard.putNumber("Drive Right Encoder: ", Robot.subChassis.getRightEncoderDist());
 
 		Robot.subChassis.Drive((finalThrottle * _distanceSignum), turnValue);

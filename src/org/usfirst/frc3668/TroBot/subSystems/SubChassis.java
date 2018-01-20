@@ -57,7 +57,7 @@ public class SubChassis extends Subsystem {
 	}
 
 	public void Drive(double move, double rotate) {
-		RobotMap.chassisDrive.arcadeDrive(move, rotate);
+		RobotMap.chassisDrive.arcadeDrive(move, rotate, false);
 	}
 
 	public double getEncoderAvgDistInch() {

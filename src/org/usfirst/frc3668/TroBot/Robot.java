@@ -2,6 +2,7 @@ package org.usfirst.frc3668.TroBot;
 
 import org.usfirst.frc3668.TroBot.Settings.autoAction;
 import org.usfirst.frc3668.TroBot.Settings.autoPosition;
+import org.usfirst.frc3668.TroBot.commands.AutoDriveProfileGyro;
 import org.usfirst.frc3668.TroBot.commands.AutoGroupCenterSwitch;
 import org.usfirst.frc3668.TroBot.commands.AutoGroupScale;
 import org.usfirst.frc3668.TroBot.commands.AutoTurnGyro;
@@ -21,8 +22,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
 
     Command autonomousCommand;
-    SendableChooser<autoAction> autoActionChooser = new SendableChooser<>();
-    SendableChooser<autoPosition> autoPositionChooser = new SendableChooser<>();
+    SendableChooser<autoAction> autoActionChooser;
+    SendableChooser<autoPosition> autoPositionChooser;
     
     public static final SubChassis subChassis = new SubChassis();
     public static final SubIntake subIntake = new SubIntake();
@@ -43,19 +44,18 @@ public class Robot extends TimedRobot {
         RobotMap.init();
         subChassis.resetNavx();
         
+        autoPositionChooser = new SendableChooser<autoPosition>();
         autoPositionChooser.addObject("Left", autoPosition.leftPortal);
         autoPositionChooser.addObject("Right", autoPosition.rightPortal);
         autoPositionChooser.addObject("Center", autoPosition.center);
         SmartDashboard.putData("Position Chooser", autoPositionChooser);
         
+        autoActionChooser = new SendableChooser<autoAction>();
         autoActionChooser.addObject("Switch", autoAction.autoSwitch);
-        autoActionChooser.addObject("Scale", autoAction.autoScale);
-        autoActionChooser.addDefault("Line", autoAction.autoLine);
-        autoActionChooser.addObject("nothing", autoAction.nothing);
+        autoActionChooser.addDefault("Scale", autoAction.autoScale);
+        autoActionChooser.addObject("Line", autoAction.autoLine);
+        autoActionChooser.addObject("Nothing", autoAction.nothing);
         SmartDashboard.putData("Action Chooser", autoActionChooser);
-        
-        //chooser.addDefault("Autonomous Command", new AutonomousCommand());
-        //SmartDashboard.putData("Auto mode", chooser);
     }
 
     /**
@@ -87,8 +87,7 @@ public class Robot extends TimedRobot {
         	break;
         case autoLine:
         	System.err.println("Settings up the command");
-        	//autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance );
-        	autonomousCommand = new AutoTurnGyro(Settings.autoTurnSpeed, -179, Settings.chassisTurnDirection.turnLeft);
+        	autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance );
         	break;
         case nothing:
         	autonomousCommand = null;

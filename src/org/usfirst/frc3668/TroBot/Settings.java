@@ -11,7 +11,7 @@ public class Settings {
 	public static final double chassisDriveMaxOutput = 1.0;
 	public static final int chassisGyroAnalogPort = 0;
 	public static final double chassisGyroSensitivity = 0.007;
-	public static final double chassisGyroTol = 1;
+	public static final double chassisGyroTol = 1.5;
 	public static final double chassisEncoderDeadValueThreshold = 0.5;
 	public static final double testChassisGearRatio = 10.71; //10.71:1
 	public static final int chassisEncoderTicsPerRevolution = 4096; 
@@ -63,8 +63,8 @@ public class Settings {
 	public static final String profileLogFileExtension = ".txt";
 	public static final double profileDriveAccelration = 20; //inches/sec/sec
 	public static final double profileDriveKp = 0.125;
-	public static final double profileDriveKi = 0.0006;
-	public static final double profileDriveKd = 0.0007555555;
+	public static final double profileDriveKi = 0.001;
+	public static final double profileDriveKd = 0.0009;
 	public static final double profileTurnKp = 0.0;
 	public static final double profileTurnKi = 0.0;
 	public static final double profileTurnKd = 0.0;
@@ -92,5 +92,5 @@ public class Settings {
 	}
 	public static final double autoCruiseSpeed = 135;
 	public static final double autoLineDistance = 144;
-	public static final double autoTurnSpeed = 0.1;
+	public static final double autoTurnSpeed = 0.12; //0.18 for carpet, 0.12 for tile
 }
