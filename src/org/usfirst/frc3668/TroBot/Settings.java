@@ -93,4 +93,10 @@ public class Settings {
 	public static final double autoCruiseSpeed = 135;
 	public static final double autoLineDistance = 144;
 	public static final double autoTurnSpeed = 0.12; //0.18 for carpet, 0.12 for tile
+	public static final double autoPivotToBumper = 36; //Not really, added a buffer
+	public static final double autoAngleToSwitchLeft = -40;
+	public static final double autoAngleToSwitchRight = 34.5;
+	public static final double autoDiagToSwitchLeft = 88.75;
+	public static final double autoDiagToSwitchRight = 82.5;
+	
 }

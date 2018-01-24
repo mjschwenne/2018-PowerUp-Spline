@@ -3,7 +3,7 @@ package org.usfirst.frc3668.TroBot;
 import org.usfirst.frc3668.TroBot.Settings.autoAction;
 import org.usfirst.frc3668.TroBot.Settings.autoPosition;
 import org.usfirst.frc3668.TroBot.commands.AutoDriveProfileGyro;
-import org.usfirst.frc3668.TroBot.commands.AutoGroupCenterSwitch;
+import org.usfirst.frc3668.TroBot.commands.AutoGroupSwitch;
 import org.usfirst.frc3668.TroBot.commands.AutoGroupScale;
 import org.usfirst.frc3668.TroBot.commands.AutoTurnGyro;
 import org.usfirst.frc3668.TroBot.subSystems.SubChassis;
@@ -80,7 +80,7 @@ public class Robot extends TimedRobot {
         autoPosition selectedPosition = (autoPosition) autoPositionChooser.getSelected();
         switch(selectedAction) {
         case autoSwitch:
-        	autonomousCommand = new AutoGroupCenterSwitch();
+        	autonomousCommand = new AutoGroupSwitch();
         	break;
         case autoScale:
         	autonomousCommand = new AutoGroupScale(selectedPosition);
