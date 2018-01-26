@@ -1,18 +1,20 @@
 package org.usfirst.frc3668.TroBot.subSystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-
 import org.usfirst.frc3668.TroBot.RobotMap;
-import org.usfirst.frc3668.TroBot.commands.*;
+import org.usfirst.frc3668.TroBot.commands.AutoLift;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SubLift extends Subsystem {
 
+	public void lift(double throttle) {
+		RobotMap.liftMotor.set(throttle);
+	}
+	
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new AutoLift());
     }
 
     @Override

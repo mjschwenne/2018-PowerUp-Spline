@@ -1,6 +1,8 @@
 package org.usfirst.frc3668.TroBot;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
@@ -9,7 +11,6 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -76,10 +77,12 @@ public class RobotMap {
         intakeleftArm = new WPI_TalonSRX(Settings.intakeLeftArmCanID);
 
         liftMotor = new WPI_TalonSRX(Settings.liftMotorCanID);
+        liftMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed, 10);
+        liftMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed, 10);
         
         liftEncoder = new Encoder(Settings.liftEncoderDIOPortA, Settings.liftEncoderDIOPortB);
         
-        liftZeroLimit = new DigitalInput(Settings.liftLimitSwitchDIOPort);
+        //liftZeroLimit = new DigitalInput(Settings.liftLimitSwitchDIOPort);
 
         climb1 = new WPI_TalonSRX(Settings.climbMotor1CanID);
         climb2 = new WPI_TalonSRX(Settings.climbMotor2CanID);
