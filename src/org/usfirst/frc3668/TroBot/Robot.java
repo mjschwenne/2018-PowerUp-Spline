@@ -45,8 +45,8 @@ public class Robot extends TimedRobot {
         subChassis.resetNavx();
         
         autoPositionChooser = new SendableChooser<autoPosition>();
-        autoPositionChooser.addObject("Left", autoPosition.leftPortal);
-        autoPositionChooser.addObject("Right", autoPosition.rightPortal);
+        autoPositionChooser.addObject("Left", autoPosition.left);
+        autoPositionChooser.addObject("Right", autoPosition.right);
         autoPositionChooser.addObject("Center", autoPosition.center);
         SmartDashboard.putData("Position Chooser", autoPositionChooser);
         
