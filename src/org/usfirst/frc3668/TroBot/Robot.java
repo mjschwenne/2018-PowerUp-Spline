@@ -80,7 +80,7 @@ public class Robot extends TimedRobot {
         autoPosition selectedPosition = (autoPosition) autoPositionChooser.getSelected();
         switch(selectedAction) {
         case autoSwitch:
-        	autonomousCommand = new AutoGroupSwitch();
+        	autonomousCommand = new AutoGroupSwitch(selectedPosition);
         	break;
         case autoScale:
         	autonomousCommand = new AutoGroupScale(selectedPosition);

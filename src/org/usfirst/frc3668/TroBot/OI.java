@@ -77,4 +77,3 @@ public class OI {
         return joyArt;
     }
 }
-
