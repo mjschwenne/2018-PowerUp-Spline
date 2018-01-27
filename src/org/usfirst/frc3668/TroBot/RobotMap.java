@@ -1,5 +1,6 @@
 package org.usfirst.frc3668.TroBot;
 
+import com.ctre.phoenix.CANifier;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
@@ -37,6 +38,7 @@ public class RobotMap {
 	public static WPI_TalonSRX intakeLift1;
 	public static WPI_TalonSRX intakeLift2;
 	public static WPI_TalonSRX liftMotor;
+	public static CANifier liftCANifier;
 	public static Encoder liftEncoder;
 	public static DigitalInput liftZeroLimit;
 	public static WPI_TalonSRX climb1;
@@ -88,6 +90,9 @@ public class RobotMap {
 		liftMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed,
 				Settings.limitSwitchTimeOut);
 
+		liftCANifier = new CANifier(Settings.liftMotorCanID);
+		liftCANifier.setGeneralOutput(CANifier.GeneralPin.LIMF, false, true);
+		
 		liftEncoder = new Encoder(Settings.liftEncoderDIOPortA, Settings.liftEncoderDIOPortB);
 
 		// liftZeroLimit = new DigitalInput(Settings.liftLimitSwitchDIOPort);
