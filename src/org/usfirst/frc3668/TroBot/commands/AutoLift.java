@@ -25,6 +25,7 @@ public class AutoLift extends Command {
     @Override
     protected void execute() {
     //	Robot.subLift.lift(Robot.oi.joyArt.getY());
+    	System.err.println("Limit: " + Robot.subLift.readLiftLimits());
     }
 
     
