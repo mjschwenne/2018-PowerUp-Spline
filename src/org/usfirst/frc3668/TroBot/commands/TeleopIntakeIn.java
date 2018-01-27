@@ -1,6 +1,7 @@
 package org.usfirst.frc3668.TroBot.commands;
 
 import org.usfirst.frc3668.TroBot.Robot;
+import org.usfirst.frc3668.TroBot.Settings;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -20,7 +21,7 @@ public class TeleopIntakeIn extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.subIntake.intakeIn();
+		Robot.subIntake.intakeIn(Settings.intakeShootOut);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -11,17 +11,22 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class SubIntake extends Subsystem {
 
-	public void intakeIn() {
-		RobotMap.rightIntakeWheel.set(Settings.intakeRightValue);
-		RobotMap.leftIntakeWheel.set(Settings.intakeLeftValue);
+	public void intakeIn(double throttle) {
+		RobotMap.rightIntakeWheel.set(throttle);
+		RobotMap.leftIntakeWheel.set(-throttle);
 
 	}
 
-	public void intakeOut() {
-		RobotMap.rightIntakeWheel.set(-Settings.intakeRightValue);
-		RobotMap.leftIntakeWheel.set(-Settings.intakeLeftValue);
+	public void intakeOut(double throttle) {
+		RobotMap.rightIntakeWheel.set(-throttle);
+		RobotMap.leftIntakeWheel.set(throttle);
 	}
 	
+	public void liftIntake(double throttle) {
+		RobotMap.intakeLift1.set(throttle);
+		
+		
+	}
 	public void stopIntake() {
 		RobotMap.rightIntakeWheel.set(0);
 		RobotMap.leftIntakeWheel.set(0);
@@ -30,7 +35,7 @@ public class SubIntake extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new TeleopIntakeLift());
 	}
 
 	@Override

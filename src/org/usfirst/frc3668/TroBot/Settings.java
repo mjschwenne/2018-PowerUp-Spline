@@ -23,7 +23,7 @@ public class Settings {
 	public static final double chassisDriveStraightGyroKp = 0.04;
 	public static final double chassisMaxDregeesPreSecond = 15;
 	public static final double chassisTurnKp = 0.0027;
-
+	public static final int limitSwitchTimeOut = 10;
 	
 	public static enum chassisTurnDirection{
 		turnRight, turnLeft
@@ -33,10 +33,11 @@ public class Settings {
 	//Intake Settings
 	public static final int intakeRightIntakeWheelCanID = 5;
 	public static final int intakeLeftIntakeWheelCanID = 6;
-	public static final int intakeRightArmCanID = 7;
-	public static final int intakeLeftArmCanID = 8;
-	public static final double intakeRightValue = 1;
-	public static final double intakeLeftValue = -1;
+	public static final int intakeLift1CanID = 7;
+	public static final int intakeLift2CanID = 8;
+	public static final double intakeSpitOut = 0.5;
+	public static final double intakeShootOut = 1;
+
 	
 	//Lift Settings
 	public static final int liftMotorCanID = 9;
