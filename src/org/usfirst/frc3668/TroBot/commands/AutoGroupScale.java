@@ -20,14 +20,25 @@ public class AutoGroupScale extends CommandGroup {
 			angleMod = -1;
 		}
 		if (scaleSide == position) {
+			
+			CommandGroup ApproachScale = new CommandGroup();
+			ApproachScale.addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoStraightTurnToScale,
+					Settings.autoCruiseSpeed, Settings.autoForwardToBeCloseToScale));
+			ApproachScale.addParallel(new CmdLift(Settings.liftStandardSpeed, Settings.liftTicsToScale));
+			
 			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoStraightToScale));
 			addParallel(new CmdCalibrateLift());
 			addParallel(new CmdCalibrateIntakePivot());
 			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoStraightTurnToScale));
-			addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoStraightTurnToScale,
-					Settings.autoCruiseSpeed, Settings.autoForwardToBeCloseToScale));
+			addSequential(ApproachScale);
+			addSequential(new AutoIntake(Settings.autoEjectCubeTime));
 		}
 		if (scaleSide != position) {
+			
+			CommandGroup ApproachScale = new CommandGroup();
+			ApproachScale.addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToPlaceInScale));
+			ApproachScale.addParallel(new CmdLift(Settings.liftStandardSpeed, Settings.liftTicsToScale));
+			
 			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoWallToScaleDist));
 			addParallel(new CmdCalibrateLift());
 			addParallel(new CmdCalibrateIntakePivot());
@@ -37,7 +48,8 @@ public class AutoGroupScale extends CommandGroup {
 			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToFaceScale));
 			addSequential(new AutoDriveProfileGyro(Settings.autoTurnToFaceScale, Settings.autoCruiseSpeed,
 					Settings.autoDriveToScale));
-			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToPlaceInScale));
+			addSequential(ApproachScale);
+			addSequential(new AutoIntake(Settings.autoEjectCubeTime));
 		}
 	}
 }
