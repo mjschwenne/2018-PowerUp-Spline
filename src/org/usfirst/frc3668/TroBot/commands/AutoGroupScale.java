@@ -21,12 +21,16 @@ public class AutoGroupScale extends CommandGroup {
 		}
 		if (scaleSide == position) {
 			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoStraightToScale));
+			addParallel(new CmdCalibrateLift());
+			addParallel(new CmdCalibrateIntakePivot());
 			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoStraightTurnToScale));
 			addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoStraightTurnToScale,
 					Settings.autoCruiseSpeed, Settings.autoForwardToBeCloseToScale));
 		}
 		if (scaleSide != position) {
 			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoWallToScaleDist));
+			addParallel(new CmdCalibrateLift());
+			addParallel(new CmdCalibrateIntakePivot());
 			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToFaceWall));
 			addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoTurnToFaceWall, Settings.autoCruiseSpeed,
 					Settings.autoDrivePastSwitch));

@@ -1,6 +1,6 @@
 #ignore the complied java files
 **/*.class
-**/build
+**/build/*
 /bin/*
 
 **.jar

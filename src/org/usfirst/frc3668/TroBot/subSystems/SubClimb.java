@@ -8,7 +8,13 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SubClimb extends Subsystem {
-
+	
+	public void disengageClimber( ) {
+		RobotMap.climbServo.setAngle(Settings.climbDisengaged);
+	}
+	public void engageClimber() {
+		RobotMap.climbServo.setAngle(Settings.climbEngaged);
+	}
 	public void climbFixedSpeed() {
 		RobotMap.climb1.set(Settings.climbMotorSpeed);
 		RobotMap.climb2.set(Settings.climbMotorSpeed);

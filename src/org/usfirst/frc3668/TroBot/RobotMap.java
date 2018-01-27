@@ -1,6 +1,5 @@
 package org.usfirst.frc3668.TroBot;
 
-import com.ctre.phoenix.CANifier;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
@@ -12,6 +11,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -37,17 +37,16 @@ public class RobotMap {
 	public static WPI_TalonSRX leftIntakeWheel;
 	public static WPI_TalonSRX intakeLift1;
 	public static WPI_TalonSRX intakeLift2;
+	public static Encoder intakeLift1Encoder;
+	public static Encoder intakeLift2Encoder;
 	public static WPI_TalonSRX liftMotor;
-	public static CANifier liftCANifier;
 	public static Encoder liftEncoder;
 	public static DigitalInput liftZeroLimit;
 	public static WPI_TalonSRX climb1;
 	public static WPI_TalonSRX climb2;
 	public static SpeedControllerGroup climbController;
-	public static WPI_TalonSRX trayRoller;
-	public static DigitalInput trayRightLimit;
-	public static DigitalInput trayLeftLimit;
-
+	public static Servo climbServo;
+	
 	public static void init() {
 		rightDrive1 = new WPI_TalonSRX(Settings.chassisRightDrive1CanID);
 		rightDrive1.setNeutralMode(NeutralMode.Brake);
@@ -74,6 +73,8 @@ public class RobotMap {
 		navx = new AHRS(SPI.Port.kMXP);
 
 		rightIntakeWheel = new WPI_TalonSRX(Settings.intakeRightIntakeWheelCanID);
+		rightIntakeWheel.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
+				LimitSwitchNormal.NormallyClosed, Settings.limitSwitchTimeOut);
 		leftIntakeWheel = new WPI_TalonSRX(Settings.intakeLeftIntakeWheelCanID);
 		intakeLift1 = new WPI_TalonSRX(Settings.intakeLift1CanID);
 		intakeLift1.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
@@ -83,26 +84,22 @@ public class RobotMap {
 		intakeLift2 = new WPI_TalonSRX(Settings.intakeLift2CanID);
 		intakeLift2.follow(intakeLift1);
 		intakeLift2.setInverted(true);
-
+		
+		intakeLift1Encoder = new Encoder(Settings.intakeLift1DIOPortA, Settings.intakeLift1DIOPortB);
+		intakeLift2Encoder = new Encoder(Settings.intakeLift2DIOPortA, Settings.intakeLift2DIOPortB);
+		
 		liftMotor = new WPI_TalonSRX(Settings.liftMotorCanID);
 		liftMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed,
 				Settings.limitSwitchTimeOut);
 		liftMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed,
 				Settings.limitSwitchTimeOut);
-
-		liftCANifier = new CANifier(Settings.liftMotorCanID);
-		liftCANifier.setGeneralOutput(CANifier.GeneralPin.LIMF, false, true);
 		
 		liftEncoder = new Encoder(Settings.liftEncoderDIOPortA, Settings.liftEncoderDIOPortB);
-
-		// liftZeroLimit = new DigitalInput(Settings.liftLimitSwitchDIOPort);
 
 		climb1 = new WPI_TalonSRX(Settings.climbMotor1CanID);
 		climb2 = new WPI_TalonSRX(Settings.climbMotor2CanID);
 		climbController = new SpeedControllerGroup(climb1, climb2);
-
-		trayRoller = new WPI_TalonSRX(Settings.trayRollerCanID);
-		trayRightLimit = new DigitalInput(Settings.trayRightLimitDIOPort);
-		trayLeftLimit = new DigitalInput(Settings.trayLeftLimitDIOPort);
+		
+		climbServo = new Servo(Settings.climbServoPWMPort);
 	}
 }
