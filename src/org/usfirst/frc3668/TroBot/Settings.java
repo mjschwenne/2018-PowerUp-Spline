@@ -111,11 +111,11 @@ public class Settings {
 	public static final double autoAngleToSwitchRight = 34.5;
 	public static final double autoDiagToSwitchLeft = 88.75;
 	public static final double autoDiagToSwitchRight = 82.5;
-	public static final double autoWallToScaleDist = 201.235;
+	public static final double autoWallToScaleDist = 12;//201.235;
 	public static final double autoTurnToFaceWall = 90;
-	public static final double autoDrivePastSwitch = 205.5;
+	public static final double autoDrivePastSwitch = 144;//205.5;
 	public static final double autoTurnToFaceScale = 0;
-	public static final double autoDriveToScale = 88.765;
+	public static final double autoDriveToScale = 12;//88.765;
 	public static final double autoTurnToPlaceInScale = -90;
 	public static final double autoStraightToScale = 297.5;
 	public static final double autoStraightTurnToScale = 90;

@@ -19,9 +19,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
 
-    Command autonomousCommand;
-    SendableChooser<autoAction> autoActionChooser;
-    SendableChooser<autoPosition> autoPositionChooser;
+    static Command autonomousCommand;
+    static SendableChooser<autoAction> autoActionChooser;
+    static SendableChooser<autoPosition> autoPositionChooser;
+    static SmartDashboard smartDashboard;
     
     public static final SubChassis subChassis = new SubChassis();
     public static final SubIntake subIntake = new SubIntake();
@@ -42,18 +43,20 @@ public class Robot extends TimedRobot {
         subChassis.resetNavx();
         subClimb.disengageClimber();
         
+        smartDashboard = new SmartDashboard();
+        
         autoPositionChooser = new SendableChooser<autoPosition>();
         autoPositionChooser.addObject("Left", autoPosition.left);
         autoPositionChooser.addObject("Right", autoPosition.right);
         autoPositionChooser.addObject("Center", autoPosition.center);
-        SmartDashboard.putData("Position Chooser", autoPositionChooser);
+        smartDashboard.putData("Position Chooser", autoPositionChooser);
         
         autoActionChooser = new SendableChooser<autoAction>();
         autoActionChooser.addObject("Switch", autoAction.autoSwitch);
         autoActionChooser.addDefault("Scale", autoAction.autoScale);
         autoActionChooser.addObject("Line", autoAction.autoLine);
         autoActionChooser.addObject("Nothing", autoAction.nothing);
-        SmartDashboard.putData("Action Chooser", autoActionChooser);
+        smartDashboard.putData("Action Chooser", autoActionChooser);
     }
 
     /**
@@ -73,7 +76,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
     	gameData = DriverStation.getInstance().getGameSpecificMessage();
-    	//if (gameData.charAt(0)== 'L')
+    	System.err.print("Game data: " + gameData);
         autoAction selectedAction = (autoAction) autoActionChooser.getSelected();
         autoPosition selectedPosition = (autoPosition) autoPositionChooser.getSelected();
         switch(selectedAction) {
@@ -84,7 +87,6 @@ public class Robot extends TimedRobot {
         	autonomousCommand = new AutoGroupScale(selectedPosition);
         	break;
         case autoLine:
-        	System.err.println("Settings up the command");
         	autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance );
         	break;
         case nothing:

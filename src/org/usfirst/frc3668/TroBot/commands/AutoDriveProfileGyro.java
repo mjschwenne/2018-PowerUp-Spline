@@ -80,7 +80,7 @@ public class AutoDriveProfileGyro extends Command{
 		System.err.println(msg);
 		//log.makeEntry(msg);
 		//SmartDashboard.putNumber("Drive Left Encoder:", Robot.subChassis.getLeftEncoderDist());
-		SmartDashboard.putNumber("Drive Right Encoder: ", Robot.subChassis.getRightEncoderDist());
+		//SmartDashboard.putNumber("Drive Right Encoder: ", Robot.subChassis.getRightEncoderDist());
 
 		Robot.subChassis.Drive((finalThrottle * _distanceSignum), turnValue);
 

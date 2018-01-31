@@ -33,6 +33,7 @@ public class AutoGroupScale extends CommandGroup {
 			addSequential(ApproachScale);
 			addSequential(new AutoIntake(Settings.autoEjectCubeTime));
 		}
+		
 		if (scaleSide != position) {
 			
 			CommandGroup ApproachScale = new CommandGroup();
