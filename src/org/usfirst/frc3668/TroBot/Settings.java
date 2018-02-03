@@ -20,7 +20,7 @@ public class Settings {
 	public static final double chassisLeftSideScalar = 18.98301225008481 / 19.843575472088656; // 0.9566326530612244
 	public static final double chassisRightSideScalar = 1;
 	public static final double chassisMaxInchesPerSecond = 126;// 168;
-	public static final double chassisDriveStraightGyroKp = 0.04;
+	public static final double chassisDriveStraightGyroKp = 0.06;
 	public static final double chassisMaxDregeesPreSecond = 15;
 	public static final double chassisTurnKp = 0.0027;
 	public static final int limitSwitchTimeOut = 10;
@@ -99,9 +99,12 @@ public class Settings {
 	}
 
 	public static enum autoPosition {
-		left, center, right
+		left, center, right, error
 	}
-
+	public static enum autoAlly {
+		scale, irrelevent
+	}
+	
 	public static final double autoEjectCubeTime = 500;
 	public static final double autoCruiseSpeed = 135;
 	public static final double autoLineDistance = 144;
@@ -117,7 +120,8 @@ public class Settings {
 	public static final double autoTurnToFaceScale = 0;
 	public static final double autoDriveToScale = 12;//88.765;
 	public static final double autoTurnToPlaceInScale = -90;
-	public static final double autoStraightToScale = 297.5;
+	public static final double autoStraightToScale = 240;//297.5;
 	public static final double autoStraightTurnToScale = 90;
 	public static final double autoForwardToBeCloseToScale = 14.57;
+	
 }
