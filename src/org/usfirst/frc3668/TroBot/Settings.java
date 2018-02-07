@@ -95,14 +95,11 @@ public class Settings {
 
 	// Auto Settings
 	public static enum autoAction {
-		autoSwitch, autoScale, autoLine, nothing
+		autoSwitch, autoScale, autoSafeScale, autoLine, nothing
 	}
 
 	public static enum autoPosition {
 		left, center, right, error
-	}
-	public static enum autoAlly {
-		scale, irrelevent
 	}
 	
 	public static final double autoEjectCubeTime = 500;
@@ -123,5 +120,7 @@ public class Settings {
 	public static final double autoStraightToScale = 240;//297.5;
 	public static final double autoStraightTurnToScale = 90;
 	public static final double autoForwardToBeCloseToScale = 14.57;
+	public static final boolean autoAllyToScale = false;
+	public static final boolean autoAllyNotToScale = true; 
 	
 }

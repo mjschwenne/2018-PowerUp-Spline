@@ -2,7 +2,6 @@ package org.usfirst.frc3668.TroBot.commands;
 
 import org.usfirst.frc3668.TroBot.Robot;
 import org.usfirst.frc3668.TroBot.Settings;
-import org.usfirst.frc3668.TroBot.Settings.autoAlly;
 import org.usfirst.frc3668.TroBot.Settings.autoPosition;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -10,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoGroupScale extends CommandGroup {
 
-	public AutoGroupScale(autoPosition position, autoAlly ally) {
+	public AutoGroupScale(autoPosition position, boolean safe) {
 		autoPosition scaleSide;
 		boolean goodData = true;
 		double angleMod = 1;
@@ -57,7 +56,7 @@ public class AutoGroupScale extends CommandGroup {
 			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToFaceWall));
 			addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoTurnToFaceWall, Settings.autoCruiseSpeed,
 					Settings.autoDrivePastSwitch));
-			if (ally != autoAlly.scale) {
+			if (safe) {
 				addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToFaceScale));
 				addSequential(new AutoDriveProfileGyro(Settings.autoTurnToFaceScale, Settings.autoCruiseSpeed,
 						Settings.autoDriveToScale));

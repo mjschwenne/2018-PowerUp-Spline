@@ -1,7 +1,6 @@
 package org.usfirst.frc3668.TroBot;
 
 import org.usfirst.frc3668.TroBot.Settings.autoAction;
-import org.usfirst.frc3668.TroBot.Settings.autoAlly;
 import org.usfirst.frc3668.TroBot.Settings.autoPosition;
 import org.usfirst.frc3668.TroBot.commands.AutoDriveProfileGyro;
 import org.usfirst.frc3668.TroBot.commands.AutoGroupScale;
@@ -24,7 +23,6 @@ public class Robot extends TimedRobot {
 	static SendableChooser<autoAction> autoActionChooser;
 	static SendableChooser<autoPosition> autoPositionChooser;
 	static SmartDashboard smartDashboard;
-	static SendableChooser<autoAlly> autoAllyChooser;
 
 	public static final SubChassis subChassis = new SubChassis();
 	public static final SubIntake subIntake = new SubIntake();
@@ -55,11 +53,6 @@ public class Robot extends TimedRobot {
 		autoPositionChooser.addObject("Center", autoPosition.center);
 		smartDashboard.putData("Position Chooser", autoPositionChooser);
 
-		autoAllyChooser = new SendableChooser<autoAlly>();
-		autoAllyChooser.addObject("To Scale", autoAlly.scale);
-		autoAllyChooser.addObject("Not Interfering", autoAlly.irrelevent);
-		smartDashboard.putData("Ally Action Chooser", autoAllyChooser);
-
 		autoActionChooser = new SendableChooser<autoAction>();
 		autoActionChooser.addObject("Switch", autoAction.autoSwitch);
 		autoActionChooser.addObject("Scale", autoAction.autoScale);
@@ -88,29 +81,32 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("Game Data", "Game Data: " + gameData);
 		autoAction selectedAction = (autoAction) autoActionChooser.getSelected();
 		autoPosition selectedPosition = (autoPosition) autoPositionChooser.getSelected();
-		autoAlly selectedAllyAction = (autoAlly) autoAllyChooser.getSelected();
-		/*
-		 * switch(selectedAction) { case autoSwitch: autonomousCommand = new
-		 * AutoGroupSwitch(selectedPosition); break; case autoScale: autonomousCommand =
-		 * new AutoGroupScale(selectedPosition); if(selectedPosition ==
-		 * autoPosition.center) { autonomousCommand = new
-		 * AutoGroupSwitch(selectedPosition); } break; case autoLine: autonomousCommand
-		 * = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed,
-		 * Settings.autoLineDistance ); break; case nothing: autonomousCommand = null; }
-		 */
-		if (selectedAction == autoAction.nothing) {
-			autonomousCommand = null;
-		} else if (selectedPosition == autoPosition.center) {
-			autonomousCommand = new AutoGroupSwitch(selectedPosition);
-		} else if (selectedAction == autoAction.autoLine) {
-			autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance);
-		} else if (selectedAction == autoAction.autoScale) {
-			autonomousCommand = new AutoGroupScale(selectedPosition, selectedAllyAction);
-		} else if (selectedPosition != autoPosition.center) {// wont trigger if its set to line, intended to catch
-																// switch + wrong pos
-			autonomousCommand = new AutoGroupScale(selectedPosition, selectedAllyAction);
-		} else {
-			autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance);
+
+		switch (selectedPosition) {
+		case center:
+			if(selectedAction == autoAction.autoSwitch) {
+				autonomousCommand = new AutoGroupSwitch();	
+			}
+			else {
+				autonomousCommand = null;
+			}
+			break;
+		default:
+			if(selectedAction == autoAction.autoScale) {
+				autonomousCommand = new AutoGroupScale(selectedPosition, Settings.autoAllyNotToScale);
+			}
+			else if(selectedAction == autoAction.autoSafeScale) {
+				autonomousCommand = new AutoGroupScale(selectedPosition, Settings.autoAllyToScale);
+			}
+			else if(selectedAction == autoAction.autoLine) {
+				autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance);
+			}
+			else {
+				autonomousCommand = null;
+			}
+			break;
+		
+		
 		}
 
 		if (autonomousCommand != null)
