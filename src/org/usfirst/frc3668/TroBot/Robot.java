@@ -56,6 +56,7 @@ public class Robot extends TimedRobot {
 		autoActionChooser = new SendableChooser<autoAction>();
 		autoActionChooser.addObject("Switch", autoAction.autoSwitch);
 		autoActionChooser.addObject("Scale", autoAction.autoScale);
+		autoActionChooser.addObject("Safe Scale", autoAction.autoSafeScale);
 		autoActionChooser.addDefault("Line", autoAction.autoLine);
 		autoActionChooser.addObject("Nothing", autoAction.nothing);
 		smartDashboard.putData("Action Chooser", autoActionChooser);

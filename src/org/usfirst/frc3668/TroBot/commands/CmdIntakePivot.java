@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleopIntakeLift extends Command {
+public class CmdIntakePivot extends Command {
 	double _initEncoder;
 	boolean _isFinished = false;
 	boolean _goingForward;
 
-	public TeleopIntakeLift() {
+	public CmdIntakePivot() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.subIntake);
 	}

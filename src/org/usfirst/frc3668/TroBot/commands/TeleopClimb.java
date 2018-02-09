@@ -2,6 +2,7 @@ package org.usfirst.frc3668.TroBot.commands;
 
 import org.usfirst.frc3668.TroBot.Robot;
 import org.usfirst.frc3668.TroBot.RobotMap;
+import org.usfirst.frc3668.TroBot.Settings;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,6 +13,7 @@ public class TeleopClimb extends Command {
 	
     public TeleopClimb() {
         requires(Robot.subClimb);
+        requires(Robot.subLift);
     }
 
     // Called just before this Command runs the first time
@@ -24,6 +26,7 @@ public class TeleopClimb extends Command {
     @Override
     protected void execute() {
     	Robot.subClimb.joyClimb(Robot.oi.joyArt);
+    	Robot.subLift.lift(-Math.abs(Robot.oi.joyArt.getY()));
     }
 
     // Make this return true when this Command no longer needs to run execute()

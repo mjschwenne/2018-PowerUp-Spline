@@ -51,13 +51,16 @@ public class Settings {
 	public static final int liftEncoderDIOPortB = 2;
 	public static final int liftLimitSwitchDIOPort = 3;
 	public static final double liftEncoderTicsPerInch = (3.25 * Math.PI)/1440;
-	public static final double liftSwitchHeight = 20;
+	public static final double liftMaxHight = 32;
+	public static final int liftMaxTics = (int) (liftMaxHight * liftEncoderTicsPerInch);
+	public static final double liftSwitchHeight = 10;
 	public static final int liftTicsToSwitch = (int) (liftSwitchHeight * liftEncoderTicsPerInch);
-	public static final double liftScaleHeight = 66;
+	public static final double liftScaleHeight = 32;
 	public static final int liftTicsToScale = (int) (liftScaleHeight * liftEncoderTicsPerInch);
 	public static final double liftCalibrationSpeed = -0.1;
 	public static final double liftStandardSpeed = 0.5;
 	public static final int liftWindow = 5;
+	public static final double liftJoyScalar = 0.5;
 	// Climb Settings
 	public static final int climbMotor1CanID = 10;
 	public static final int climbMotor2CanID = 11;
@@ -92,6 +95,7 @@ public class Settings {
 	public static final int joyArtSetLiftToSwitchButton = 11;
 	public static final int joyArtSetLiftToScaleButton = 10;
 	public static final int joyArtClimbButton = 6;
+	public static final int joyArtIntakePivotButton = 4;
 
 	// Auto Settings
 	public static enum autoAction {

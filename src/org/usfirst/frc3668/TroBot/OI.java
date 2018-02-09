@@ -29,16 +29,19 @@ public class OI {
     public Button liftToScale = new JoystickButton(joyArt, Settings.joyArtSetLiftToScaleButton);
     
     public Button enableClimb = new JoystickButton(joyArt, Settings.joyArtClimbButton);
+    
+    public Button intakePivot = new JoystickButton(joyArt, Settings.joyArtIntakePivotButton);
 
     public OI() {
     	invertDrive.whenPressed(new TeleopInvertDrive());
     	
     	intakeIn.whileHeld(new TeleopIntakeIn());
     	intakeReverse.whileHeld(new TeleopIntakeOut());
+    	intakePivot.whenPressed(new CmdIntakePivot());
     	
-    	//liftToZero.whenPressed(new TeleopLift(0));
-    	//liftToSwitch.whenPressed(new TeleopLift(Settings.liftSwitchHeight));
-    	//liftToScale.whenPressed(new TeleopLift(Settings.liftScaleHeight));
+    	liftToZero.whenPressed(new CmdLift(Settings.liftStandardSpeed, 0));
+    	liftToSwitch.whenPressed(new CmdLift(Settings.liftStandardSpeed, Settings.liftTicsToSwitch));
+    	liftToScale.whenPressed(new CmdLift(Settings.liftStandardSpeed, Settings.liftTicsToScale));
     	
     	enableClimb.whileHeld(new TeleopClimb());
     }

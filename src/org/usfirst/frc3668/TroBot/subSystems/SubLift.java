@@ -1,14 +1,16 @@
 package org.usfirst.frc3668.TroBot.subSystems;
 
 import org.usfirst.frc3668.TroBot.RobotMap;
-import org.usfirst.frc3668.TroBot.commands.CmdLift;
+import org.usfirst.frc3668.TroBot.commands.TeleopJoyLift;
 
-import com.ctre.phoenix.CANifier;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SubLift extends Subsystem {
-
+	public void setLiftNeutralMode(NeutralMode mode) {
+		RobotMap.liftMotor.setNeutralMode(mode);
+	}
 	public void lift(double throttle) {
 		RobotMap.liftMotor.set(throttle);
 	}
@@ -29,7 +31,7 @@ public class SubLift extends Subsystem {
     @Override
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-       // setDefaultCommand(new AutoLift());
+        setDefaultCommand(new TeleopJoyLift());
     }
 
     @Override

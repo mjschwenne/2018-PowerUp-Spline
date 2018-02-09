@@ -23,9 +23,21 @@ public class AutoIntake extends Command {
 	boolean _isFinished =false;
 	double _initTime;
 	double _waitTime;
+	double _direction;
+	public AutoIntake (double waitTime, boolean invert) {
+		requires(Robot.subIntake);
+		_waitTime = waitTime;
+		if(invert) {
+			_direction = -1;
+		}
+		else {
+			_direction = 1;
+		}
+	}
 	public AutoIntake(double waitTime) {
 		requires(Robot.subIntake);
 		_waitTime = waitTime;
+		_direction = 1;
     }
 
     @Override
@@ -36,7 +48,7 @@ public class AutoIntake extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.subIntake.intakeOut(Settings.intakeSpitOut);
+    	Robot.subIntake.intakeOut(Settings.intakeSpitOut * _direction);
     	if((RobotMath.getTime() - _initTime) > _waitTime) {
     		_isFinished = true;
     	}

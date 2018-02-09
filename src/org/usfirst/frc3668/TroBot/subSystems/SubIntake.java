@@ -2,7 +2,7 @@ package org.usfirst.frc3668.TroBot.subSystems;
  
 import org.usfirst.frc3668.TroBot.RobotMap;
 import org.usfirst.frc3668.TroBot.Settings;
-import org.usfirst.frc3668.TroBot.commands.TeleopIntakeLift;
+import org.usfirst.frc3668.TroBot.commands.CmdIntakePivot;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 

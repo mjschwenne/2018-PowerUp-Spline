@@ -23,7 +23,7 @@ public class AutoGroupScale extends CommandGroup {
 			SmartDashboard.putString("error", "GAME DATA ERROR");
 			goodData = false;
 		}
-		
+
 		if (position == autoPosition.right) {
 			angleMod = -1;
 		}
@@ -40,7 +40,10 @@ public class AutoGroupScale extends CommandGroup {
 			addParallel(new CmdCalibrateIntakePivot());
 			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoStraightTurnToScale));
 			addSequential(ApproachScale);
-			addSequential(new AutoIntake(Settings.autoEjectCubeTime));
+			if (safe) {
+				addSequential(new AutoIntake(Settings.autoEjectCubeTime)); 
+			}
+
 		}
 
 		if (scaleSide != position && scaleSide != autoPosition.error) {
