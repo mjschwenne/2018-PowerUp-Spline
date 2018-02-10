@@ -74,15 +74,15 @@ public class RobotMap {
 
 		rightIntakeWheel = new WPI_TalonSRX(Settings.intakeRightIntakeWheelCanID);
 		rightIntakeWheel.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-				LimitSwitchNormal.NormallyClosed, Settings.limitSwitchTimeOut);
+				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
 		rightIntakeWheel.setNeutralMode(NeutralMode.Coast);
 		leftIntakeWheel = new WPI_TalonSRX(Settings.intakeLeftIntakeWheelCanID);
 		leftIntakeWheel.setNeutralMode(NeutralMode.Coast);
 		intakeLift1 = new WPI_TalonSRX(Settings.intakeLift1CanID);
 		intakeLift1.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-				LimitSwitchNormal.NormallyClosed, Settings.limitSwitchTimeOut);
+				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
 		intakeLift1.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-				LimitSwitchNormal.NormallyClosed, Settings.limitSwitchTimeOut);
+				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
 		intakeLift1.setNeutralMode(NeutralMode.Brake);
 		intakeLift2 = new WPI_TalonSRX(Settings.intakeLift2CanID);
 		intakeLift2.follow(intakeLift1);
@@ -93,9 +93,9 @@ public class RobotMap {
 		intakeLift2Encoder = new Encoder(Settings.intakeLift2DIOPortA, Settings.intakeLift2DIOPortB);
 		
 		liftMotor = new WPI_TalonSRX(Settings.liftMotorCanID);
-		liftMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed,
+		liftMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen,
 				Settings.limitSwitchTimeOut);
-		liftMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyClosed,
+		liftMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen,
 				Settings.limitSwitchTimeOut);
 		liftMotor.setNeutralMode(NeutralMode.Brake);
 		

@@ -50,7 +50,7 @@ public class Settings {
 	public static final int liftEncoderDIOPortA = 1;
 	public static final int liftEncoderDIOPortB = 2;
 	public static final int liftLimitSwitchDIOPort = 3;
-	public static final double liftEncoderTicsPerInch = (3.25 * Math.PI)/1440;
+	public static final double liftEncoderTicsPerInch = (3.25 * Math.PI) / 1440;
 	public static final double liftMaxHight = 32;
 	public static final int liftMaxTics = (int) (liftMaxHight * liftEncoderTicsPerInch);
 	public static final double liftSwitchHeight = 10;
@@ -68,7 +68,7 @@ public class Settings {
 	public static final int climbServoPWMPort = 0;
 	public static final int climbEngaged = 180;
 	public static final int climbDisengaged = 0;
-	
+
 	// Profile Settings
 	public static final String profileTestLogName = "logs\\motionProfileTestResults";
 	public static final String profileLogName = "//media//sda1//motionProfile";
@@ -105,7 +105,7 @@ public class Settings {
 	public static enum autoPosition {
 		left, center, right, error
 	}
-	
+
 	public static final double autoEjectCubeTime = 500;
 	public static final double autoCruiseSpeed = 135;
 	public static final double autoLineDistance = 144;
@@ -115,16 +115,16 @@ public class Settings {
 	public static final double autoAngleToSwitchRight = 34.5;
 	public static final double autoDiagToSwitchLeft = 88.75;
 	public static final double autoDiagToSwitchRight = 82.5;
-	public static final double autoWallToScaleDist = 12;//201.235;
+	public static final double autoWallToScaleDist =  201.235;// 12;
 	public static final double autoTurnToFaceWall = 90;
-	public static final double autoDrivePastSwitch = 144;//205.5;
+	public static final double autoDrivePastSwitch = 205.5;// 144;
 	public static final double autoTurnToFaceScale = 0;
-	public static final double autoDriveToScale = 12;//88.765;
+	public static final double autoDriveToScale = 88.765;// 12;
 	public static final double autoTurnToPlaceInScale = -90;
-	public static final double autoStraightToScale = 240;//297.5;
+	public static final double autoStraightToScale = 297.5; // 240;
 	public static final double autoStraightTurnToScale = 90;
 	public static final double autoForwardToBeCloseToScale = 14.57;
 	public static final boolean autoAllyToScale = false;
-	public static final boolean autoAllyNotToScale = true; 
-	
+	public static final boolean autoAllyNotToScale = true;
+
 }
