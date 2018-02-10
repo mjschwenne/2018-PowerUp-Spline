@@ -1,4 +1,5 @@
 package org.usfirst.frc3668.TroBot.subSystems;
+
  
 import org.usfirst.frc3668.TroBot.RobotMap;
 import org.usfirst.frc3668.TroBot.Settings;
@@ -7,6 +8,7 @@ import org.usfirst.frc3668.TroBot.commands.CmdIntakePivot;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SubIntake extends Subsystem {
+	
 	public double getLiftEncoder() {
 		double retVal = 0;
 		double intake1Tics = RobotMap.intakeLift1Encoder.get();
@@ -24,25 +26,28 @@ public class SubIntake extends Subsystem {
 		RobotMap.intakeLift1Encoder.reset();
 		RobotMap.intakeLift2Encoder.reset();
 	}
-	public boolean getForwardLiftLimitSwitch() {
-		return !RobotMap.intakeLift1.getSensorCollection().isFwdLimitSwitchClosed();
+	public boolean getForwardPivotLimitSwitch() {
+		return RobotMap.intakePivot1.getSensorCollection().isFwdLimitSwitchClosed();
 	}
-	public boolean getReverseLiftLimitSwitch() {
-		return !RobotMap.intakeLift1.getSensorCollection().isRevLimitSwitchClosed();
+	public boolean getReversePivotLimitSwitch() {
+		return RobotMap.intakePivot1.getSensorCollection().isRevLimitSwitchClosed();
 	}
 	public void intakeIn(double throttle) {
+		if(!RobotMap.rightIntakeWheel.getSensorCollection().isFwdLimitSwitchClosed()) {
 		RobotMap.rightIntakeWheel.set(throttle);
-		RobotMap.leftIntakeWheel.set(-throttle);
-
+		RobotMap.leftIntakeWheel.set(throttle);
+		} else {
+			stopIntake();
+		}
 	}
 	
 	public void intakeOut(double throttle) {
 		RobotMap.rightIntakeWheel.set(-throttle);
-		RobotMap.leftIntakeWheel.set(throttle);
+		RobotMap.leftIntakeWheel.set(-throttle);
 	}
 	
 	public void liftIntake(double throttle) {
-		RobotMap.intakeLift1.set(throttle);
+		RobotMap.intakePivot1.set(throttle);
 		
 		
 	}

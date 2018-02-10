@@ -45,7 +45,8 @@ public class Robot extends TimedRobot {
 		subChassis.resetNavx();
 		subChassis.resetBothEncoders();
 		subClimb.disengageClimber();
-
+		subLift.resetEncoder();
+		
 		smartDashboard = new SmartDashboard();
 
 		autoPositionChooser = new SendableChooser<autoPosition>();

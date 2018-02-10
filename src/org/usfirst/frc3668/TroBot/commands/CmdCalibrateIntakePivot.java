@@ -14,7 +14,7 @@ public class CmdCalibrateIntakePivot extends Command {
 
     
     protected void initialize() {
-    	if(Robot.subIntake.getReverseLiftLimitSwitch()) {
+    	if(Robot.subIntake.getReversePivotLimitSwitch()) {
     		_isFinished = true;
     	}
     }
@@ -22,7 +22,7 @@ public class CmdCalibrateIntakePivot extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.subIntake.liftIntake(Settings.intakeCalibrationSpeed);
-    	if(Robot.subIntake.getReverseLiftLimitSwitch()) {
+    	if(Robot.subIntake.getReversePivotLimitSwitch()) {
     		_isFinished = true;
     	}
     }

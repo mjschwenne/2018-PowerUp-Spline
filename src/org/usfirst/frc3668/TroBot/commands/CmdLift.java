@@ -26,9 +26,16 @@ public class CmdLift extends Command {
     @Override
     protected void execute() {
     	double currentTics = Robot.subLift.getEncoderTics();
-    	_deltaSignum = Math.signum(_targetTics-currentTics);
-    	Robot.subLift.lift(_deltaSignum * Settings.liftStandardSpeed);
-    	if(currentTics > _targetTics-Settings.liftWindow && currentTics < _targetTics+Settings.liftWindow ) {
+    	double throttle = 0;
+    	_deltaSignum = Math.signum(_targetTics - currentTics);
+    	if(_deltaSignum > 0) {
+    		throttle = Settings.liftUpSpeed;
+    	} else {
+    		throttle = Settings.liftDownSpeed;
+    	}
+    	System.err.println("Curr Tics: " + currentTics + " Target Tics: " + _targetTics);
+    	Robot.subLift.lift(_deltaSignum * throttle);
+    	if(currentTics > _targetTics - Settings.liftWindow && currentTics < _targetTics + Settings.liftWindow ) {
     		_isFinished = true;
     	}
     	

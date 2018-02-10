@@ -20,7 +20,7 @@ public class CmdIntakePivot extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		if (Robot.subIntake.getReverseLiftLimitSwitch()) {
+		if (Robot.subIntake.getReversePivotLimitSwitch()) {
 			_goingForward = true;
 		} else {
 			_goingForward = false;
@@ -30,21 +30,22 @@ public class CmdIntakePivot extends Command {
 	protected void execute() {
 		double throttle = 0;
 		double currentTics = Robot.subIntake.getLiftEncoder();
-		if (_goingForward == true && currentTics < Settings.intakeLiftGravityFallThreshold) {
-			throttle = Settings.intakeLiftGravityFallFast;
-		} else if (_goingForward == false && currentTics > Settings.intakeLiftGravityFallThreshold) {
-			throttle = -Settings.intakeLiftGravityFallFast;
-		} else if (_goingForward == true && currentTics > Settings.intakeLiftGravityFallThreshold) {
-			throttle = Settings.intakeLiftGravityFallSlow;
-		} else if (_goingForward == false && currentTics < Settings.intakeLiftGravityFallThreshold) {
-			throttle = -Settings.intakeLiftGravityFallSlow;
+		if (_goingForward == true && currentTics < Settings.intakePivotGravityFallThreshold) {
+			throttle = Settings.intakePivotGravityFallFast;
+		} else if (_goingForward == false && currentTics > Settings.intakePivotGravityFallThreshold) {
+			throttle = -Settings.intakePivotGravityFallFast;
+		} else if (_goingForward == true && currentTics > Settings.intakePivotGravityFallThreshold) {
+			throttle = Settings.intakePivotGravityFallSlow;
+		} else if (_goingForward == false && currentTics < Settings.intakePivotGravityFallThreshold) {
+			throttle = -Settings.intakePivotGravityFallSlow;
 		}
+		System.err.println("currentTics: " + currentTics + " Rev Limit: " + Robot.subIntake.getReversePivotLimitSwitch() + " Frw Limit: " + Robot.subIntake.getForwardPivotLimitSwitch());
 		Robot.subIntake.liftIntake(throttle);
-		if(_goingForward == true && Robot.subIntake.getForwardLiftLimitSwitch()) {
+		if(_goingForward == true && Robot.subIntake.getForwardPivotLimitSwitch()) {
 			_isFinished = true;
 			
 		}
-		if(_goingForward == false && Robot.subIntake.getReverseLiftLimitSwitch()) {
+		if(_goingForward == false && Robot.subIntake.getReversePivotLimitSwitch()) {
 			_isFinished = true;
 		}
 	}
@@ -56,6 +57,7 @@ public class CmdIntakePivot extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		System.err.println("Done Pivot");
 		Robot.subIntake.liftIntake(0);
 	}
 

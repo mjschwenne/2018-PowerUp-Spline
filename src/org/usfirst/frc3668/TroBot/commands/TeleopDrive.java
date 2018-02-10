@@ -42,7 +42,7 @@ public class TeleopDrive extends Command {
     protected void execute() {
     	Robot.subChassis.Drive(Robot.oi.joyDrive);
     	//System.err.println("NavX: " + RobotMap.navx.getAngle() + " Old Gyro: " + Robot.subChassis.getGyroAngleRaw());
-    	System.err.println("Right Encoder: " + Robot.subChassis.getRightEncoderDist() + "\t Left Encoder: "+ Robot.subChassis.getLeftEncoderDist());
+    	//System.err.println("Right Encoder: " + Robot.subChassis.getRightEncoderDist() + "\t Left Encoder: "+ Robot.subChassis.getLeftEncoderDist());
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -18,7 +18,7 @@ public class SubLift extends Subsystem {
 		RobotMap.liftEncoder.reset();
 	}
 	public double getEncoderTics() {
-		return RobotMap.liftEncoder.get();
+		return -RobotMap.liftEncoder.get();
 	}
 	public boolean getLiftForwardLimit() {
 		

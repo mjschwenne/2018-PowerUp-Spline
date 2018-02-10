@@ -39,9 +39,9 @@ public class OI {
     	intakeReverse.whileHeld(new TeleopIntakeOut());
     	intakePivot.whenPressed(new CmdIntakePivot());
     	
-    	liftToZero.whenPressed(new CmdLift(Settings.liftStandardSpeed, 0));
-    	liftToSwitch.whenPressed(new CmdLift(Settings.liftStandardSpeed, Settings.liftTicsToSwitch));
-    	liftToScale.whenPressed(new CmdLift(Settings.liftStandardSpeed, Settings.liftTicsToScale));
+    	liftToZero.whenPressed(new CmdLift(Settings.liftUpSpeed, 0));
+    	liftToSwitch.whenPressed(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToSwitch));
+    	liftToScale.whenPressed(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToScale));
     	
     	enableClimb.whileHeld(new TeleopClimb());
     }

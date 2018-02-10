@@ -35,8 +35,8 @@ public class RobotMap {
 	public static AHRS navx;
 	public static WPI_TalonSRX rightIntakeWheel;
 	public static WPI_TalonSRX leftIntakeWheel;
-	public static WPI_TalonSRX intakeLift1;
-	public static WPI_TalonSRX intakeLift2;
+	public static WPI_TalonSRX intakePivot1;
+	public static WPI_TalonSRX intakePivot2;
 	public static Encoder intakeLift1Encoder;
 	public static Encoder intakeLift2Encoder;
 	public static WPI_TalonSRX liftMotor;
@@ -76,18 +76,22 @@ public class RobotMap {
 		rightIntakeWheel.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
 				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
 		rightIntakeWheel.setNeutralMode(NeutralMode.Coast);
+		
 		leftIntakeWheel = new WPI_TalonSRX(Settings.intakeLeftIntakeWheelCanID);
+		//leftIntakeWheel.follow(rightIntakeWheel);
+		leftIntakeWheel.setInverted(true);
 		leftIntakeWheel.setNeutralMode(NeutralMode.Coast);
-		intakeLift1 = new WPI_TalonSRX(Settings.intakeLift1CanID);
-		intakeLift1.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
+		
+		intakePivot1 = new WPI_TalonSRX(Settings.intakeLift1CanID);
+		intakePivot1.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
 				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
-		intakeLift1.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
+		intakePivot1.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
 				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
-		intakeLift1.setNeutralMode(NeutralMode.Brake);
-		intakeLift2 = new WPI_TalonSRX(Settings.intakeLift2CanID);
-		intakeLift2.follow(intakeLift1);
-		intakeLift2.setInverted(true);
-		intakeLift2.setNeutralMode(NeutralMode.Brake);
+		intakePivot1.setNeutralMode(NeutralMode.Brake);
+		intakePivot2 = new WPI_TalonSRX(Settings.intakeLift2CanID);
+		intakePivot2.follow(intakePivot1);
+		intakePivot2.setInverted(true);
+		intakePivot2.setNeutralMode(NeutralMode.Brake);
 		
 		intakeLift1Encoder = new Encoder(Settings.intakeLift1DIOPortA, Settings.intakeLift1DIOPortB);
 		intakeLift2Encoder = new Encoder(Settings.intakeLift2DIOPortA, Settings.intakeLift2DIOPortB);
