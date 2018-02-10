@@ -17,7 +17,7 @@ public class Settings {
 	public static final int chassisEncoderTicsPerRevolution = 4096;
 	public static final double chassisEncoderDistancePerPulse = (6 * Math.PI) / chassisEncoderTicsPerRevolution;
 	public static final boolean chassisSquareJoyInput = false;
-	public static final double chassisLeftSideScalar = 18.98301225008481 / 19.843575472088656; // 0.9566326530612244
+	public static final double chassisLeftSideScalar = 1;//18.98301225008481 / 19.843575472088656; // 0.9566326530612244
 	public static final double chassisRightSideScalar = 1;
 	public static final double chassisMaxInchesPerSecond = 126;// 168;
 	public static final double chassisDriveStraightGyroKp = 0.06;
@@ -91,7 +91,7 @@ public class Settings {
 	public static final int joyArtPort = 1;
 	public static final int joyArtIntakeInButton = 3;
 	public static final int joyArtReverseIntakeButton = 5;
-	public static final int joyArtSetLiftToZeroButton = 12;
+	public static final int joyArtSetLiftToZeroButton = 9;
 	public static final int joyArtSetLiftToSwitchButton = 11;
 	public static final int joyArtSetLiftToScaleButton = 10;
 	public static final int joyArtClimbButton = 6;

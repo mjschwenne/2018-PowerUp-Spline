@@ -93,6 +93,7 @@ public class RobotMap {
 		intakeLift2Encoder = new Encoder(Settings.intakeLift2DIOPortA, Settings.intakeLift2DIOPortB);
 		
 		liftMotor = new WPI_TalonSRX(Settings.liftMotorCanID);
+		liftMotor.setInverted(true);
 		liftMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen,
 				Settings.limitSwitchTimeOut);
 		liftMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen,

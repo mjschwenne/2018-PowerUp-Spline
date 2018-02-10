@@ -73,7 +73,7 @@ public class SubChassis extends Subsystem {
 		}
 		return retVal;
 	}
-
+	
 	public double getRightEncoderDist() {
 		return RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
 	}
@@ -189,7 +189,7 @@ public class SubChassis extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		//setDefaultCommand(new TeleopDrive());
+		setDefaultCommand(new TeleopDrive());
 	}
 
 	@Override

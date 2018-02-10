@@ -43,6 +43,7 @@ public class Robot extends TimedRobot {
 		RobotMap.init();
 
 		subChassis.resetNavx();
+		subChassis.resetBothEncoders();
 		subClimb.disengageClimber();
 
 		smartDashboard = new SmartDashboard();

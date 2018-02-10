@@ -18,7 +18,12 @@ public class TeleopJoyLift extends Command {
 	}
 
 	protected void execute() {
-		Robot.subLift.lift(Robot.oi.joyArt.getY()*Settings.liftJoyScalar);
+		double joyY = Robot.oi.joyArt.getY();
+		if(joyY < 0) {
+			Robot.subLift.lift(joyY);
+		} else {
+			Robot.subLift.lift(joyY * Settings.liftJoyScalar);
+		}
 	}
 	
 
