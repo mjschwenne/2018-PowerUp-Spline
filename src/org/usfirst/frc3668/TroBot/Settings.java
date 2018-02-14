@@ -16,7 +16,7 @@ public class Settings {
 	public static final double testChassisGearRatio = 10.71; // 10.71:1
 	public static final int chassisEncoderTicsPerRevolution = 4096;
 	public static final double chassisEncoderDistancePerPulse = (6 * Math.PI) / chassisEncoderTicsPerRevolution;
-	public static final boolean chassisSquareJoyInput = false;
+	public static final boolean chassisSquareJoyInput = true;
 	public static final double chassisLeftSideScalar = 1;//18.98301225008481 / 19.843575472088656; // 0.9566326530612244
 	public static final double chassisRightSideScalar = 1;
 	public static final double chassisMaxInchesPerSecond = 126;// 168;
@@ -32,8 +32,8 @@ public class Settings {
 	// Intake Settings
 	public static final int intakeRightIntakeWheelCanID = 5;
 	public static final int intakeLeftIntakeWheelCanID = 6;
-	public static final int intakeLift1CanID = 7;
-	public static final int intakeLift2CanID = 8;
+	public static final int intakePivot1CanID = 7;
+	public static final int intakePivot2CanID = 8;
 	public static final int intakeLift1DIOPortA = 3;
 	public static final int intakeLift1DIOPortB = 4;
 	public static final int intakeLift2DIOPortA = 6;
@@ -42,8 +42,8 @@ public class Settings {
 	public static final int intakePivotGravityFallThreshold = 497;
 	public static final double intakeSpitOut = -0.5;
 	public static final double intakeShootOut = -1;
-	public static final double intakePivotGravityFallSlow = 0.75;
-	public static final double intakePivotGravityFallFast = 0.75;
+	public static final double intakePivotGravityFallSlow = -0.75;
+	public static final double intakePivotGravityFallFast = -0.75;
 	public static final double intakeCalibrationSpeed = -0.1;
 	// Lift Settings
 	public static final int liftMotorCanID = 9;
@@ -56,6 +56,8 @@ public class Settings {
 	public static final int liftTicsToSwitch = (int) (liftSwitchHeight / liftEncoderTicsPerInch);
 	public static final double liftScaleHeight = 40;
 	public static final int liftTicsToScale = (int) (liftScaleHeight / liftEncoderTicsPerInch);
+	public static final int liftDownHieghtLimit = 1000;
+	public static final int liftFlipLimit = 340;
 	public static final double liftCalibrationSpeed = -0.1;
 	public static final double liftUpSpeed = -1;
 	public static final double liftDownSpeed = 0.5;
@@ -94,8 +96,9 @@ public class Settings {
 	public static final int joyArtSetLiftToZeroButton = 12;
 	public static final int joyArtSetLiftToSwitchButton = 10;
 	public static final int joyArtSetLiftToScaleButton = 8;
-	public static final int joyArtClimbButton = 6;
-	public static final int joyArtIntakePivotButton = 4;
+	public static final int joyArtClimbButton = 7;
+	public static final int joyArtIntakePivotUpButton = 6;
+	public static final int joyArtIntakePivotDownButton = 4;
 
 	// Auto Settings
 	public static enum autoAction {

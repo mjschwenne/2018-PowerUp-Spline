@@ -1,5 +1,6 @@
 package org.usfirst.frc3668.TroBot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
@@ -78,19 +79,18 @@ public class RobotMap {
 		rightIntakeWheel.setNeutralMode(NeutralMode.Coast);
 		
 		leftIntakeWheel = new WPI_TalonSRX(Settings.intakeLeftIntakeWheelCanID);
-		//leftIntakeWheel.follow(rightIntakeWheel);
 		leftIntakeWheel.setInverted(true);
 		leftIntakeWheel.setNeutralMode(NeutralMode.Coast);
 		
-		intakePivot1 = new WPI_TalonSRX(Settings.intakeLift1CanID);
+		intakePivot1 = new WPI_TalonSRX(Settings.intakePivot1CanID);
 		intakePivot1.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
 				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
 		intakePivot1.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
 				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
 		intakePivot1.setNeutralMode(NeutralMode.Brake);
-		intakePivot2 = new WPI_TalonSRX(Settings.intakeLift2CanID);
+		intakePivot1.setInverted(true);
+		intakePivot2 = new WPI_TalonSRX(Settings.intakePivot2CanID);
 		intakePivot2.follow(intakePivot1);
-		intakePivot2.setInverted(true);
 		intakePivot2.setNeutralMode(NeutralMode.Brake);
 		
 		intakeLift1Encoder = new Encoder(Settings.intakeLift1DIOPortA, Settings.intakeLift1DIOPortB);

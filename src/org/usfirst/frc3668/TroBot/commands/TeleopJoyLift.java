@@ -19,6 +19,7 @@ public class TeleopJoyLift extends Command {
 
 	protected void execute() {
 		double joyY = Robot.oi.joyArt.getY();
+		//System.err.println("Encoder Tics: " + Robot.subLift.getEncoderTics() + "\t Joy Y: " + joyY);
 		if(joyY < 0) {
 			Robot.subLift.lift(joyY);
 		} else {

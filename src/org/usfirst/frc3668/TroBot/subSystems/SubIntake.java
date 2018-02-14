@@ -3,7 +3,9 @@ package org.usfirst.frc3668.TroBot.subSystems;
  
 import org.usfirst.frc3668.TroBot.RobotMap;
 import org.usfirst.frc3668.TroBot.Settings;
-import org.usfirst.frc3668.TroBot.commands.CmdIntakePivot;
+import org.usfirst.frc3668.TroBot.commands.CmdIntakePivotUp;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -33,23 +35,18 @@ public class SubIntake extends Subsystem {
 		return RobotMap.intakePivot1.getSensorCollection().isRevLimitSwitchClosed();
 	}
 	public void intakeIn(double throttle) {
-		if(!RobotMap.rightIntakeWheel.getSensorCollection().isFwdLimitSwitchClosed()) {
 		RobotMap.rightIntakeWheel.set(throttle);
-		RobotMap.leftIntakeWheel.set(throttle);
-		} else {
-			stopIntake();
-		}
+		RobotMap.leftIntakeWheel.set(ControlMode.Follower, Settings.intakeRightIntakeWheelCanID);
 	}
 	
 	public void intakeOut(double throttle) {
 		RobotMap.rightIntakeWheel.set(-throttle);
-		RobotMap.leftIntakeWheel.set(-throttle);
+		RobotMap.leftIntakeWheel.set(ControlMode.Follower, Settings.intakeRightIntakeWheelCanID);
 	}
 	
 	public void liftIntake(double throttle) {
 		RobotMap.intakePivot1.set(throttle);
-		
-		
+		RobotMap.intakePivot2.set(ControlMode.Follower, Settings.intakePivot1CanID);	
 	}
 	public void stopIntake() {
 		RobotMap.rightIntakeWheel.set(0);

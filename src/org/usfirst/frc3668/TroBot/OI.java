@@ -1,9 +1,12 @@
 package org.usfirst.frc3668.TroBot;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc3668.TroBot.commands.*;
-import org.usfirst.frc3668.TroBot.subSystems.*;
+import org.usfirst.frc3668.TroBot.commands.CmdIntakePivotDown;
+import org.usfirst.frc3668.TroBot.commands.CmdIntakePivotUp;
+import org.usfirst.frc3668.TroBot.commands.CmdLift;
+import org.usfirst.frc3668.TroBot.commands.TeleopClimb;
+import org.usfirst.frc3668.TroBot.commands.TeleopIntakeIn;
+import org.usfirst.frc3668.TroBot.commands.TeleopIntakeOut;
+import org.usfirst.frc3668.TroBot.commands.TeleopInvertDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -30,14 +33,17 @@ public class OI {
     
     public Button enableClimb = new JoystickButton(joyArt, Settings.joyArtClimbButton);
     
-    public Button intakePivot = new JoystickButton(joyArt, Settings.joyArtIntakePivotButton);
-
+    public Button intakeDownPivot = new JoystickButton(joyArt, Settings.joyArtIntakePivotDownButton);
+    public Button intakeUpPivot = new JoystickButton(joyArt, Settings.joyArtIntakePivotUpButton);
+    
     public OI() {
     	invertDrive.whenPressed(new TeleopInvertDrive());
     	
     	intakeIn.whileHeld(new TeleopIntakeIn());
     	intakeReverse.whileHeld(new TeleopIntakeOut());
-    	intakePivot.whenPressed(new CmdIntakePivot());
+    	
+    	intakeUpPivot.whenPressed(new CmdIntakePivotUp());
+    	intakeDownPivot.whenPressed(new CmdIntakePivotDown());
     	
     	liftToZero.whenPressed(new CmdLift(Settings.liftUpSpeed, 0));
     	liftToSwitch.whenPressed(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToSwitch));
