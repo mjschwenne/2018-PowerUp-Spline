@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
 
 	public static final OI oi = new OI();
 
-	public static boolean isDriveInverted = false;
+	public static boolean isDriveInverted = true;
 	public static boolean isIntakeDown = false;
 	public static boolean isPivotMoving = false;
 	public static String gameData;

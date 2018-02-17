@@ -48,8 +48,10 @@ public class AutoIntake extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.subIntake.intakeOut(Settings.intakeOut * _direction);
-    	if((RobotMath.getTime() - _initTime) > _waitTime) {
+    	double deltaTime = RobotMath.getTime() - _initTime;
+    	System.err.println("Delta Time: " + deltaTime);
+    	Robot.subIntake.intakeOut(Settings.intakeAutoOut * _direction);
+    	if(deltaTime > _waitTime) {
     		_isFinished = true;
     	}
     }

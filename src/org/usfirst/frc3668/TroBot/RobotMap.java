@@ -52,14 +52,14 @@ public class RobotMap {
 	public static void init() {
 		rightDrive1 = new WPI_TalonSRX(Settings.chassisRightDrive1CanID);
 		rightDrive1.setNeutralMode(NeutralMode.Brake);
-		rightDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		rightDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Settings.chassisEncoderTimeOut);
 		rightDrive2 = new WPI_TalonSRX(Settings.chassisRightDrive2CanID);
 		rightDrive2.setNeutralMode(NeutralMode.Brake);
 		rightChassisMotors = new SpeedControllerGroup(rightDrive1, rightDrive2);
 
 		leftDrive1 = new WPI_TalonSRX(Settings.chassisLeftDrive1CanID);
 		leftDrive1.setNeutralMode(NeutralMode.Brake);
-		leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Settings.chassisEncoderTimeOut);
 		leftDrive2 = new WPI_TalonSRX(Settings.chassisLeftDrive2CanID);
 		leftDrive2.setNeutralMode(NeutralMode.Brake);
 		leftChassisMotors = new SpeedControllerGroup(leftDrive1, leftDrive2);

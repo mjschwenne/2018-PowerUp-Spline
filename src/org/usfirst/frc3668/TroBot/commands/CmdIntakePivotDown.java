@@ -16,7 +16,7 @@ public class CmdIntakePivotDown extends Command {
 
 	public CmdIntakePivotDown() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.subIntake);
+		//requires(Robot.subIntake);
 	}
 
 	// Called just before this Command runs the first time
@@ -35,8 +35,8 @@ public class CmdIntakePivotDown extends Command {
 			throttle = -Settings.intakePivotGravityFallSlow;
 		}
 
-		System.err.println("currentTics: " + currentTics + " lift Tics: " + Robot.subLift.getEncoderTics() + " Throttle: " + throttle + " Robot.isPovitMoving: "
-				+ Robot.isPivotMoving + " Robot.isIntakeDown: " + Robot.isIntakeDown);
+		//System.err.println("currentTics: " + currentTics + " lift Tics: " + Robot.subLift.getEncoderTics() + " Throttle: " + throttle + " Robot.isPovitMoving: "
+		//		+ Robot.isPivotMoving + " Robot.isIntakeDown: " + Robot.isIntakeDown);
 		Robot.subIntake.pivotIntake(throttle);
 
 		if (currentTics > (Settings.intakeDownEncoderThreshold - Settings.intakePivotEncoderWindow)

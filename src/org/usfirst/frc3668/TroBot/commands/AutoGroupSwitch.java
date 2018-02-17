@@ -11,13 +11,16 @@ public class AutoGroupSwitch extends CommandGroup {
 	public AutoGroupSwitch() {
 		double switchAngle = 0;
 		double switchDistance = 0;
+		double approachSwitch = 0;
 		boolean goodData = true;
 		if (Robot.gameData.charAt(0) == 'L') {
 			switchAngle = Settings.autoAngleToSwitchLeft;
 			switchDistance = Settings.autoDiagToSwitchLeft;
+			approachSwitch = Settings.autoApproachSwitchLeft;
 		} else if (Robot.gameData.charAt(0) == 'R') {
 			switchAngle = Settings.autoAngleToSwitchRight;
 			switchDistance = Settings.autoDiagToSwitchRight;
+			approachSwitch = Settings.autoApproachSwitchRight;
 		} else {
 			goodData = false;
 			switchAngle = Settings.autoAngleToSwitchLeft;
@@ -30,9 +33,10 @@ public class AutoGroupSwitch extends CommandGroup {
 		addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, switchAngle));
 		addSequential(new AutoDriveProfileGyro(switchAngle, Settings.autoCruiseSpeed, switchDistance));
 		addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, 0));
-		addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoPivotToBumper));
+		addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, approachSwitch));
 		if (goodData == true) {
 			addSequential(new AutoIntake(Settings.autoEjectCubeTime));
+			addSequential(new CmdIntakePivotDown());
 		}
 	}
 }

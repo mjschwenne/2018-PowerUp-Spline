@@ -23,6 +23,7 @@ public class TeleopLift extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.err.println("Manual lifting");
     	Robot.subLift.lift(_throttle);
     }
 
@@ -39,6 +40,7 @@ public class TeleopLift extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	System.err.println("Interrupted man lift");
     	end();
     }
 }

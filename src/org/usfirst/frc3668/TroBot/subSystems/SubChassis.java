@@ -62,16 +62,16 @@ public class SubChassis extends Subsystem {
 	}
 
 	public void Drive(double move, double rotate) {
-		RobotMap.chassisDrive.arcadeDrive(move, rotate, false);
+		RobotMap.chassisDrive.arcadeDrive(-move, rotate, false);
 	}
 
 	public double getEncoderAvgDistInch() {
 		double retVal = 0;
-		double leftDistance = RobotMap.leftDrive1.getSelectedSensorPosition(0);
-		double rightDistance = RobotMap.rightDrive1.getSelectedSensorPosition(0);
-		if (leftDistance < Settings.chassisEncoderDeadValueThreshold) {
+		double leftDistance = -1 * RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		double rightDistance = -1 * RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		if (Math.abs(leftDistance) < Settings.chassisEncoderDeadValueThreshold) {
 			retVal = rightDistance;
-		} else if (rightDistance < Settings.chassisEncoderDeadValueThreshold) {
+		} else if (Math.abs(rightDistance) < Settings.chassisEncoderDeadValueThreshold) {
 			retVal = leftDistance;
 		} else {
 			retVal = (leftDistance + rightDistance) / 2;
@@ -80,11 +80,11 @@ public class SubChassis extends Subsystem {
 	}
 	
 	public double getRightEncoderDist() {
-		return RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		return -RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
 	}
 
 	public double getLeftEncoderDist() {
-		return RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		return -RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
 	}
 
 	public void resetRightEncoder() {

@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TeleopJoyLift extends Command {
 
 	public TeleopJoyLift() {
-		requires(Robot.subLift);
+		//requires(Robot.subLift);
 	}
 
 	protected void initialize() {
@@ -36,7 +36,7 @@ public class TeleopJoyLift extends Command {
 	}
 
 	protected void end() {
-		Robot.subLift.lift(0);
+		//Robot.subLift.lift(0);
 	}
 
 	protected void interrupted() {

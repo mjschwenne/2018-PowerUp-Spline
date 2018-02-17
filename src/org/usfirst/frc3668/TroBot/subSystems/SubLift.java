@@ -18,7 +18,7 @@ public class SubLift extends Subsystem {
 		double encoder = getEncoderTics();
 		if (Robot.isPivotMoving == true) {
 			RobotMap.liftMotor.set(0);
-		} else if (!Robot.isIntakeDown) {
+		} else if (Robot.isIntakeDown == false) {
 			RobotMap.liftMotor.set(throttle);
 		} else if (Robot.isIntakeDown) {
 			if(throttle > 0) {
@@ -54,7 +54,7 @@ public class SubLift extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new TeleopJoyLift());
+		//setDefaultCommand(new TeleopJoyLift());
 	}
 
 	@Override

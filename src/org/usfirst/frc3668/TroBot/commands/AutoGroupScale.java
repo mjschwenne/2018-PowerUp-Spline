@@ -31,8 +31,8 @@ public class AutoGroupScale extends CommandGroup {
 		if (scaleSide == position && scaleSide != autoPosition.error) {
 
 			CommandGroup ApproachScale = new CommandGroup();
-			ApproachScale.addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoStraightTurnToScale,
-					Settings.autoCruiseSpeed, Settings.autoForwardToBeCloseToScale));
+			//ApproachScale.addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoStraightTurnToScale,
+			//		Settings.autoCruiseSpeed, Settings.autoForwardToBeCloseToScale));
 			ApproachScale.addParallel(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToScale));
 
 			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoStraightToScale));
@@ -42,6 +42,7 @@ public class AutoGroupScale extends CommandGroup {
 			addSequential(ApproachScale);
 			if (safe) {
 				addSequential(new AutoIntake(Settings.autoEjectCubeTime)); 
+				addSequential(new CmdLift(Settings.liftUpSpeed, 0));
 			}
 
 		}
@@ -49,8 +50,8 @@ public class AutoGroupScale extends CommandGroup {
 		if (scaleSide != position && scaleSide != autoPosition.error) {
 
 			CommandGroup ApproachScale = new CommandGroup();
-			ApproachScale.addSequential(
-					new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToPlaceInScale));
+			//ApproachScale.addSequential(
+			//		new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToPlaceInScale));
 			ApproachScale.addParallel(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToScale));
 
 			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoWallToScaleDist));
@@ -65,6 +66,7 @@ public class AutoGroupScale extends CommandGroup {
 						Settings.autoDriveToScale));
 				addSequential(ApproachScale);
 				addSequential(new AutoIntake(Settings.autoEjectCubeTime));
+				addSequential(new CmdLift(Settings.liftUpSpeed, 0));
 			}
 		}
 		if (!goodData) {
