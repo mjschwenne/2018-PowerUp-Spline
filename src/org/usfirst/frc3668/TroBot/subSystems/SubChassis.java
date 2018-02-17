@@ -21,10 +21,16 @@ public class SubChassis extends Subsystem {
 	public void Drive(Joystick stick) {
 		double joyX = stick.getX();
 		double joyY = stick.getY();
-		double rightMotorThrottle;//= (-joyX - joyY) * Settings.chassisRightSideScalar;
-		double leftMotorThrottle;//= (-joyX + joyY) * Settings.chassisLeftSideScalar;
+		
+		if(Math.abs(joyX) < Settings.joyDriveDeadband) {
+			joyX = 0;
+		} else if (Math.abs(joyY) < Settings.joyDriveDeadband) {
+			joyY = 0;
+		}
+		
+		double rightMotorThrottle;
+		double leftMotorThrottle;
 		if (Robot.isDriveInverted) {
-			// RobotMap.chassisDrive.arcadeDrive(-joyY, -joyX, true);
 			rightMotorThrottle = (joyX + joyY) * Settings.chassisRightSideScalar;
 			leftMotorThrottle = (joyX - joyY) * Settings.chassisLeftSideScalar;
 				if(Settings.chassisSquareJoyInput) {
@@ -37,7 +43,6 @@ public class SubChassis extends Subsystem {
 			RobotMap.rightChassisMotors.set(rightMotorThrottle);
 
 		} else {
-			// RobotMap.chassisDrive.arcadeDrive(joyY, -joyX, true);
 			rightMotorThrottle = (-joyX - joyY) * Settings.chassisRightSideScalar;
 			leftMotorThrottle = (-joyX + joyY) * Settings.chassisLeftSideScalar;
 			if(Settings.chassisSquareJoyInput) {

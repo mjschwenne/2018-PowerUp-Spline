@@ -16,8 +16,20 @@ public class SubLift extends Subsystem {
 
 	public void lift(double throttle) {
 		double encoder = getEncoderTics();
-		if ((encoder < Settings.liftDownHieghtLimit && Robot.isIntakeDown) || !Robot.isIntakeDown) {
+		if (Robot.isPivotMoving == true) {
+			RobotMap.liftMotor.set(0);
+		} else if (!Robot.isIntakeDown) {
 			RobotMap.liftMotor.set(throttle);
+		} else if (Robot.isIntakeDown) {
+			if(throttle > 0) {
+				RobotMap.liftMotor.set(throttle);
+			} else if (encoder < Settings.liftDownHieghtLimit) {
+				RobotMap.liftMotor.set(throttle);
+			} else {
+				RobotMap.liftMotor.set(0);
+			}
+		} else {
+			RobotMap.liftMotor.set(0);
 		}
 	}
 

@@ -1,41 +1,39 @@
 package org.usfirst.frc3668.TroBot.commands;
 
 import org.usfirst.frc3668.TroBot.Robot;
-import org.usfirst.frc3668.TroBot.Settings;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ *
+ */
+public class TeleopLift extends Command {
 
-public class CmdCalibrateIntakePivot extends Command {
-	boolean _isFinished = false;
-    public CmdCalibrateIntakePivot() {
-    	requires(Robot.subIntake);
+	double _throttle = 0;
+	
+    public TeleopLift(double throttle) {
+        // Use requires() here to declare subsystem dependencies
+        requires(Robot.subLift);
+        _throttle = throttle;
     }
 
-    
+    // Called just before this Command runs the first time
     protected void initialize() {
-    	if(Robot.subIntake.getReversePivotLimitSwitch()) {
-    		_isFinished = true;
-    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.subIntake.pivotIntake(Settings.intakeCalibrationSpeed);
-    	if(Robot.subIntake.getReversePivotLimitSwitch()) {
-    		_isFinished = true;
-    	}
+    	Robot.subLift.lift(_throttle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return _isFinished;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.subIntake.pivotIntake(0);
-    	Robot.subIntake.resetEncoders();
+    	Robot.subLift.lift(0);
     }
 
     // Called when another command which requires one or more of the same

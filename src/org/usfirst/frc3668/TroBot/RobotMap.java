@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.RemoteLimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -38,8 +39,8 @@ public class RobotMap {
 	public static WPI_TalonSRX leftIntakeWheel;
 	public static WPI_TalonSRX intakePivot1;
 	public static WPI_TalonSRX intakePivot2;
-	public static Encoder intakeLift1Encoder;
-	public static Encoder intakeLift2Encoder;
+	public static Encoder intakePivot1Encoder;
+	public static Encoder intakePivot2Encoder;
 	public static WPI_TalonSRX liftMotor;
 	public static Encoder liftEncoder;
 	public static DigitalInput liftZeroLimit;
@@ -47,7 +48,7 @@ public class RobotMap {
 	public static WPI_TalonSRX climb2;
 	public static SpeedControllerGroup climbController;
 	public static Servo climbServo;
-	
+
 	public static void init() {
 		rightDrive1 = new WPI_TalonSRX(Settings.chassisRightDrive1CanID);
 		rightDrive1.setNeutralMode(NeutralMode.Brake);
@@ -77,25 +78,32 @@ public class RobotMap {
 		rightIntakeWheel.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
 				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
 		rightIntakeWheel.setNeutralMode(NeutralMode.Coast);
-		
+
 		leftIntakeWheel = new WPI_TalonSRX(Settings.intakeLeftIntakeWheelCanID);
+		leftIntakeWheel.configForwardLimitSwitchSource(RemoteLimitSwitchSource.RemoteTalonSRX,
+				LimitSwitchNormal.NormallyOpen, Settings.intakeRightIntakeWheelCanID, Settings.limitSwitchTimeOut);
 		leftIntakeWheel.setInverted(true);
 		leftIntakeWheel.setNeutralMode(NeutralMode.Coast);
-		
+
 		intakePivot1 = new WPI_TalonSRX(Settings.intakePivot1CanID);
-		intakePivot1.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
-		intakePivot1.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector,
-				LimitSwitchNormal.NormallyOpen, Settings.limitSwitchTimeOut);
+		intakePivot1.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen,
+				Settings.limitSwitchTimeOut);
+		intakePivot1.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen,
+				Settings.limitSwitchTimeOut);
 		intakePivot1.setNeutralMode(NeutralMode.Brake);
 		intakePivot1.setInverted(true);
+
 		intakePivot2 = new WPI_TalonSRX(Settings.intakePivot2CanID);
-		intakePivot2.follow(intakePivot1);
+		//intakePivot2.follow(intakePivot1);
+//		intakePivot2.configForwardLimitSwitchSource(RemoteLimitSwitchSource.RemoteTalonSRX,
+//				LimitSwitchNormal.NormallyOpen, Settings.intakePivot2CanID, Settings.limitSwitchTimeOut);
+//		intakePivot2.configReverseLimitSwitchSource(RemoteLimitSwitchSource.RemoteTalonSRX,
+//				LimitSwitchNormal.NormallyOpen, Settings.intakePivot2CanID, Settings.limitSwitchTimeOut);
 		intakePivot2.setNeutralMode(NeutralMode.Brake);
-		
-		intakeLift1Encoder = new Encoder(Settings.intakeLift1DIOPortA, Settings.intakeLift1DIOPortB);
-		intakeLift2Encoder = new Encoder(Settings.intakeLift2DIOPortA, Settings.intakeLift2DIOPortB);
-		
+
+		intakePivot1Encoder = new Encoder(Settings.intakeLift1DIOPortA, Settings.intakeLift1DIOPortB);
+		intakePivot2Encoder = new Encoder(Settings.intakeLift2DIOPortA, Settings.intakeLift2DIOPortB);
+
 		liftMotor = new WPI_TalonSRX(Settings.liftMotorCanID);
 		liftMotor.setInverted(true);
 		liftMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen,
@@ -103,7 +111,7 @@ public class RobotMap {
 		liftMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen,
 				Settings.limitSwitchTimeOut);
 		liftMotor.setNeutralMode(NeutralMode.Brake);
-		
+
 		liftEncoder = new Encoder(Settings.liftEncoderDIOPortA, Settings.liftEncoderDIOPortB);
 
 		climb1 = new WPI_TalonSRX(Settings.climbMotor1CanID);
@@ -111,7 +119,7 @@ public class RobotMap {
 		climb2 = new WPI_TalonSRX(Settings.climbMotor2CanID);
 		climb2.setNeutralMode(NeutralMode.Brake);
 		climbController = new SpeedControllerGroup(climb1, climb2);
-		
+
 		climbServo = new Servo(Settings.climbServoPWMPort);
 	}
 }

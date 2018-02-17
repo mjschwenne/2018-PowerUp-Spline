@@ -48,7 +48,7 @@ public class AutoIntake extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.subIntake.intakeOut(Settings.intakeSpitOut * _direction);
+    	Robot.subIntake.intakeOut(Settings.intakeOut * _direction);
     	if((RobotMath.getTime() - _initTime) > _waitTime) {
     		_isFinished = true;
     	}

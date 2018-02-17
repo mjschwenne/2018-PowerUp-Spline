@@ -7,6 +7,7 @@ import org.usfirst.frc3668.TroBot.commands.TeleopClimb;
 import org.usfirst.frc3668.TroBot.commands.TeleopIntakeIn;
 import org.usfirst.frc3668.TroBot.commands.TeleopIntakeOut;
 import org.usfirst.frc3668.TroBot.commands.TeleopInvertDrive;
+import org.usfirst.frc3668.TroBot.commands.TeleopLift;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -36,6 +37,9 @@ public class OI {
     public Button intakeDownPivot = new JoystickButton(joyArt, Settings.joyArtIntakePivotDownButton);
     public Button intakeUpPivot = new JoystickButton(joyArt, Settings.joyArtIntakePivotUpButton);
     
+    public Button liftUp = new JoystickButton(joyArt, Settings.joyArtLiftUpButton);
+    public Button liftDown = new JoystickButton(joyArt, Settings.joyArtLiftDownButton);
+    
     public OI() {
     	invertDrive.whenPressed(new TeleopInvertDrive());
     	
@@ -48,6 +52,9 @@ public class OI {
     	liftToZero.whenPressed(new CmdLift(Settings.liftUpSpeed, 0));
     	liftToSwitch.whenPressed(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToSwitch));
     	liftToScale.whenPressed(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToScale));
+    	
+    	liftUp.whileHeld(new TeleopLift(Settings.liftTeleUpSpeed));
+    	liftDown.whileHeld(new TeleopLift(Settings.liftTeleDownSpeed));
     	
     	enableClimb.whileHeld(new TeleopClimb());
     }

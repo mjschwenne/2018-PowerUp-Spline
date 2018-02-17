@@ -1,5 +1,6 @@
 package org.usfirst.frc3668.TroBot.subSystems;
 
+import org.usfirst.frc3668.TroBot.Robot;
 import org.usfirst.frc3668.TroBot.RobotMap;
 import org.usfirst.frc3668.TroBot.Settings;
 import org.usfirst.frc3668.TroBot.commands.TeleopClimb;
@@ -21,7 +22,9 @@ public class SubClimb extends Subsystem {
 	}
 
 	public void joyClimb(Joystick joy) {
-		RobotMap.climbController.set(Math.abs(joy.getY()));
+		double throttle = Math.abs(joy.getY());
+		RobotMap.climbController.set(throttle);
+		Robot.subLift.lift(throttle);
 	}
 
 	public void stopClimb() {
