@@ -23,7 +23,7 @@ public class TeleopLift extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.err.println("Manual lifting");
+    	System.err.println("Manual lifting Encoder: " + Robot.subLift.getEncoderTics() + " throttle: " + _throttle + " Pivot Status: " + Robot.pivotStatus);
     	Robot.subLift.lift(_throttle);
     }
 

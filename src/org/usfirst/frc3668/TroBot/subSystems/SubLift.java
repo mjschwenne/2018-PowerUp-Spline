@@ -15,15 +15,15 @@ public class SubLift extends Subsystem {
 	}
 
 	public void lift(double throttle) {
-		double encoder = getEncoderTics();
-		if (Robot.isPivotMoving == true) {
+		Robot.subPivot.getPivotStatus();
+		if (Robot.pivotStatus == Settings.pivotStatus.isUnknown) {
 			RobotMap.liftMotor.set(0);
-		} else if (Robot.isIntakeDown == false) {
+		} else if (Robot.pivotStatus == Settings.pivotStatus.isUp) {
 			RobotMap.liftMotor.set(throttle);
-		} else if (Robot.isIntakeDown) {
+		} else if (Robot.pivotStatus == Settings.pivotStatus.isDown) {
 			if(throttle > 0) {
 				RobotMap.liftMotor.set(throttle);
-			} else if (encoder < Settings.liftDownHieghtLimit) {
+			} else if (getEncoderTics() < Settings.liftDownHieghtLimit) {
 				RobotMap.liftMotor.set(throttle);
 			} else {
 				RobotMap.liftMotor.set(0);

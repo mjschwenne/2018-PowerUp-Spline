@@ -85,24 +85,19 @@ public class RobotMap {
 		leftIntakeWheel.setInverted(true);
 		leftIntakeWheel.setNeutralMode(NeutralMode.Coast);
 
-		intakePivot1 = new WPI_TalonSRX(Settings.intakePivot1CanID);
+		intakePivot1 = new WPI_TalonSRX(Settings.pivot1CanID);
 		intakePivot1.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen,
 				Settings.limitSwitchTimeOut);
 		intakePivot1.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen,
 				Settings.limitSwitchTimeOut);
 		intakePivot1.setNeutralMode(NeutralMode.Brake);
-		intakePivot1.setInverted(true);
 
-		intakePivot2 = new WPI_TalonSRX(Settings.intakePivot2CanID);
-		//intakePivot2.follow(intakePivot1);
-//		intakePivot2.configForwardLimitSwitchSource(RemoteLimitSwitchSource.RemoteTalonSRX,
-//				LimitSwitchNormal.NormallyOpen, Settings.intakePivot2CanID, Settings.limitSwitchTimeOut);
-//		intakePivot2.configReverseLimitSwitchSource(RemoteLimitSwitchSource.RemoteTalonSRX,
-//				LimitSwitchNormal.NormallyOpen, Settings.intakePivot2CanID, Settings.limitSwitchTimeOut);
+		intakePivot2 = new WPI_TalonSRX(Settings.pivot2CanID);
+		intakePivot2.setInverted(true);
 		intakePivot2.setNeutralMode(NeutralMode.Brake);
 
-		intakePivot1Encoder = new Encoder(Settings.intakeLift1DIOPortA, Settings.intakeLift1DIOPortB);
-		intakePivot2Encoder = new Encoder(Settings.intakeLift2DIOPortA, Settings.intakeLift2DIOPortB);
+		intakePivot1Encoder = new Encoder(Settings.pivot1EncoderDIOPortA, Settings.pivot1EncoderDIOPortB);
+		intakePivot2Encoder = new Encoder(Settings.pivot2EncoderDIOPortA, Settings.pivot2EncoderDIOPortB); 
 
 		liftMotor = new WPI_TalonSRX(Settings.liftMotorCanID);
 		liftMotor.setInverted(true);

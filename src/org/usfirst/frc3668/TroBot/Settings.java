@@ -33,22 +33,29 @@ public class Settings {
 	// Intake Settings
 	public static final int intakeRightIntakeWheelCanID = 5;
 	public static final int intakeLeftIntakeWheelCanID = 6;
-	public static final int intakePivot1CanID = 12;//7;
-	public static final int intakePivot2CanID = 7;//8';
-	public static final int intakeLift1DIOPortA = 3;
-	public static final int intakeLift1DIOPortB = 4;
-	public static final int intakeLift2DIOPortA = 6;
-	public static final int intakeLift2DIOPortB = 7;
-	public static final int intakeTicsPerRevolution = 1988;// 497 * 4 (gear ratio)
-	public static final int intakePivotGravityFallThreshold = 497;
 	public static final double intakeOut = -0.75;
-	public static final double intakeAutoOut = -1;
-	public static final double intakePivotGravityFallSlow = -0.75;
-	public static final double intakePivotGravityFallFast = -0.75;
-	public static final double intakeCalibrationSpeed = -0.1;
-	public static final int intakeDownEncoderThreshold = 550;
-	public static final int intakeUpEncoderThreshold = 0;
-	public static final double intakePivotEncoderWindow = 20;
+	public static final double intakeAutoScaleOut = -1;
+	public static final double intakeAutoSwitchOut = -0.75;
+	
+	// Pivot Settings
+	public static enum pivotStatus {
+		isUp, isDown, isUnknown
+	}
+	
+	public static final int pivot1CanID = 12;//7;
+	public static final int pivot2CanID = 7;//8';
+	public static final int pivot1EncoderDIOPortA = 3;
+	public static final int pivot1EncoderDIOPortB = 4;
+	public static final int pivot2EncoderDIOPortA = 6;
+	public static final int pivot2EncoderDIOPortB = 7;
+	public static final double pivotGravityFallSlow = -0.75;
+	public static final double pivotGravityFallFast = -0.75;
+	public static final double pivotCalibrationSpeed = -0.25;
+	public static final int pivotDownEncoderThreshold = 540;
+	public static final int pivotUpEncoderThreshold = 0;
+	public static final double pivotEncoderWindow = 20;
+	public static final int pivotTicsPerRevolution = 1988;// 497 * 4 (gear ratio)
+	public static final int pivotGravityFallThreshold = 497;
 	// Lift Settings
 	public static final int liftMotorCanID = 9;
 	public static final int liftEncoderDIOPortA = 1;

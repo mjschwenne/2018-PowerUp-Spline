@@ -20,13 +20,15 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutoIntake extends Command {
-	boolean _isFinished =false;
+	boolean _isFinished = false;
 	double _initTime;
 	double _waitTime;
 	double _direction;
-	public AutoIntake (double waitTime, boolean invert) {
+	double _throttle;
+	public AutoIntake (double throttle, double waitTime, boolean invert) {
 		requires(Robot.subIntake);
 		_waitTime = waitTime;
+		_throttle = throttle;
 		if(invert) {
 			_direction = -1;
 		}
@@ -34,9 +36,10 @@ public class AutoIntake extends Command {
 			_direction = 1;
 		}
 	}
-	public AutoIntake(double waitTime) {
+	public AutoIntake(double throttle, double waitTime) {
 		requires(Robot.subIntake);
 		_waitTime = waitTime;
+		_throttle = throttle;
 		_direction = 1;
     }
 
@@ -50,7 +53,7 @@ public class AutoIntake extends Command {
     protected void execute() {
     	double deltaTime = RobotMath.getTime() - _initTime;
     	System.err.println("Delta Time: " + deltaTime);
-    	Robot.subIntake.intakeOut(Settings.intakeAutoOut * _direction);
+    	Robot.subIntake.intakeOut(_throttle * _direction);
     	if(deltaTime > _waitTime) {
     		_isFinished = true;
     	}

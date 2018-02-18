@@ -20,6 +20,7 @@ public class CmdLift extends Command {
 
 	@Override
 	protected void initialize() {
+		_isFinished = false;
 		double initTics = Robot.subLift.getEncoderTics();
 		_deltaSignum = Math.signum(_targetTics - initTics);
 	}
@@ -35,7 +36,7 @@ public class CmdLift extends Command {
 			throttle = Settings.liftDownSpeed;
 		}
 		System.err.println("Curr Tics: " + currentTics + " Target Tics: " + _targetTics + " throttle: " + throttle
-				+ " isPivotMoving: " + Robot.isPivotMoving + " isIntakeDown: " + Robot.isIntakeDown);
+				+ " Pivot Status: " + Robot.pivotStatus);
 		Robot.subLift.lift(throttle);
 		if (currentTics > _targetTics - Settings.liftWindow && currentTics < _targetTics + Settings.liftWindow) {
 			_isFinished = true;

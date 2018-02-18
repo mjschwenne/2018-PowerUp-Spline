@@ -2,6 +2,7 @@ package org.usfirst.frc3668.TroBot;
 
 import org.usfirst.frc3668.TroBot.Settings.autoAction;
 import org.usfirst.frc3668.TroBot.Settings.autoPosition;
+import org.usfirst.frc3668.TroBot.Settings.pivotStatus;
 import org.usfirst.frc3668.TroBot.commands.AutoDriveProfileGyro;
 import org.usfirst.frc3668.TroBot.commands.AutoGroupScale;
 import org.usfirst.frc3668.TroBot.commands.AutoGroupSwitch;
@@ -9,6 +10,7 @@ import org.usfirst.frc3668.TroBot.subSystems.SubChassis;
 import org.usfirst.frc3668.TroBot.subSystems.SubClimb;
 import org.usfirst.frc3668.TroBot.subSystems.SubIntake;
 import org.usfirst.frc3668.TroBot.subSystems.SubLift;
+import org.usfirst.frc3668.TroBot.subSystems.SubPivot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -26,14 +28,14 @@ public class Robot extends TimedRobot {
 
 	public static final SubChassis subChassis = new SubChassis();
 	public static final SubIntake subIntake = new SubIntake();
+	public static final SubPivot subPivot = new SubPivot();
 	public static final SubLift subLift = new SubLift();
 	public static final SubClimb subClimb = new SubClimb();
 
 	public static final OI oi = new OI();
 
 	public static boolean isDriveInverted = true;
-	public static boolean isIntakeDown = false;
-	public static boolean isPivotMoving = false;
+	public static pivotStatus pivotStatus = Settings.pivotStatus.isUnknown;
 	public static String gameData;
 
 	/**

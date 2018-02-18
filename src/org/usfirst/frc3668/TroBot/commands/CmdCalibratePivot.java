@@ -6,23 +6,23 @@ import org.usfirst.frc3668.TroBot.Settings;
 import edu.wpi.first.wpilibj.command.Command;
 
 
-public class CmdCalibrateIntakePivot extends Command {
+public class CmdCalibratePivot extends Command {
 	boolean _isFinished = false;
-    public CmdCalibrateIntakePivot() {
+    public CmdCalibratePivot() {
     	requires(Robot.subIntake);
     }
 
     
     protected void initialize() {
-    	if(Robot.subIntake.getReversePivotLimitSwitch()) {
+    	if(Robot.subPivot.getReverseLimitSwitch()) {
     		_isFinished = true;
     	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.subIntake.pivotIntake(Settings.intakeCalibrationSpeed);
-    	if(Robot.subIntake.getReversePivotLimitSwitch()) {
+    	Robot.subPivot.pivot(Settings.pivotCalibrationSpeed);
+    	if(Robot.subPivot.getReverseLimitSwitch()) {
     		_isFinished = true;
     	}
     }
@@ -34,8 +34,8 @@ public class CmdCalibrateIntakePivot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.subIntake.pivotIntake(0);
-    	Robot.subIntake.resetEncoders();
+    	Robot.subPivot.pivot(0);
+    	Robot.subPivot.resetEncoders();
     }
 
     // Called when another command which requires one or more of the same

@@ -1,7 +1,7 @@
 package org.usfirst.frc3668.TroBot;
 
-import org.usfirst.frc3668.TroBot.commands.CmdIntakePivotDown;
-import org.usfirst.frc3668.TroBot.commands.CmdIntakePivotUp;
+import org.usfirst.frc3668.TroBot.commands.CmdPivotUp;
+import org.usfirst.frc3668.TroBot.commands.CmdPivotDown;
 import org.usfirst.frc3668.TroBot.commands.CmdLift;
 import org.usfirst.frc3668.TroBot.commands.TeleopClimb;
 import org.usfirst.frc3668.TroBot.commands.TeleopIntakeIn;
@@ -46,8 +46,8 @@ public class OI {
     	intakeIn.whileHeld(new TeleopIntakeIn());
     	intakeReverse.whileHeld(new TeleopIntakeOut());
     	
-    	intakeUpPivot.whenPressed(new CmdIntakePivotUp());
-    	intakeDownPivot.whenPressed(new CmdIntakePivotDown());
+    	intakeUpPivot.whenPressed(new CmdPivotDown());
+    	intakeDownPivot.whenPressed(new CmdPivotUp());
     	
     	liftToZero.whenPressed(new CmdLift(Settings.liftUpSpeed, 0));
     	liftToSwitch.whenPressed(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToSwitch));
