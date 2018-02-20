@@ -42,8 +42,8 @@ public class Settings {
 		isUp, isDown, isUnknown
 	}
 	
-	public static final int pivot1CanID = 12;//7;
-	public static final int pivot2CanID = 7;//8';
+	public static final int pivot1CanID = 8;
+	public static final int pivot2CanID = 7;
 	public static final int pivot1EncoderDIOPortA = 3;
 	public static final int pivot1EncoderDIOPortB = 4;
 	public static final int pivot2EncoderDIOPortA = 6;

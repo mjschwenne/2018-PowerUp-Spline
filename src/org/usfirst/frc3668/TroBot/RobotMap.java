@@ -28,11 +28,8 @@ public class RobotMap {
 	public static WPI_TalonSRX rightDrive1;
 	public static WPI_TalonSRX rightDrive2;
 	public static FeedbackDevice rightDriveEncoder;
-	public static SpeedControllerGroup rightChassisMotors;
 	public static WPI_TalonSRX leftDrive1;
 	public static WPI_TalonSRX leftDrive2;
-	public static SpeedControllerGroup leftChassisMotors;
-	public static DifferentialDrive chassisDrive;
 	public static AnalogGyro gyro;
 	public static AHRS navx;
 	public static WPI_TalonSRX rightIntakeWheel;
@@ -46,28 +43,22 @@ public class RobotMap {
 	public static DigitalInput liftZeroLimit;
 	public static WPI_TalonSRX climb1;
 	public static WPI_TalonSRX climb2;
-	public static SpeedControllerGroup climbController;
 	public static Servo climbServo;
 
 	public static void init() {
 		rightDrive1 = new WPI_TalonSRX(Settings.chassisRightDrive1CanID);
 		rightDrive1.setNeutralMode(NeutralMode.Brake);
-		rightDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Settings.chassisEncoderTimeOut);
+		rightDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0,
+				Settings.chassisEncoderTimeOut);
 		rightDrive2 = new WPI_TalonSRX(Settings.chassisRightDrive2CanID);
 		rightDrive2.setNeutralMode(NeutralMode.Brake);
-		rightChassisMotors = new SpeedControllerGroup(rightDrive1, rightDrive2);
 
 		leftDrive1 = new WPI_TalonSRX(Settings.chassisLeftDrive1CanID);
 		leftDrive1.setNeutralMode(NeutralMode.Brake);
-		leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Settings.chassisEncoderTimeOut);
+		leftDrive1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0,
+				Settings.chassisEncoderTimeOut);
 		leftDrive2 = new WPI_TalonSRX(Settings.chassisLeftDrive2CanID);
 		leftDrive2.setNeutralMode(NeutralMode.Brake);
-		leftChassisMotors = new SpeedControllerGroup(leftDrive1, leftDrive2);
-
-		chassisDrive = new DifferentialDrive(leftChassisMotors, rightChassisMotors);
-		chassisDrive.setSafetyEnabled(Settings.chassisDriveSafety);
-		chassisDrive.setExpiration(Settings.chassisDriveExpiration);
-		chassisDrive.setMaxOutput(Settings.chassisDriveMaxOutput);
 
 		gyro = new AnalogGyro(Settings.chassisGyroAnalogPort);
 		gyro.setSensitivity(Settings.chassisGyroSensitivity);
@@ -97,7 +88,7 @@ public class RobotMap {
 		intakePivot2.setNeutralMode(NeutralMode.Brake);
 
 		intakePivot1Encoder = new Encoder(Settings.pivot1EncoderDIOPortA, Settings.pivot1EncoderDIOPortB);
-		intakePivot2Encoder = new Encoder(Settings.pivot2EncoderDIOPortA, Settings.pivot2EncoderDIOPortB); 
+		intakePivot2Encoder = new Encoder(Settings.pivot2EncoderDIOPortA, Settings.pivot2EncoderDIOPortB);
 
 		liftMotor = new WPI_TalonSRX(Settings.liftMotorCanID);
 		liftMotor.setInverted(true);
@@ -113,7 +104,6 @@ public class RobotMap {
 		climb1.setNeutralMode(NeutralMode.Brake);
 		climb2 = new WPI_TalonSRX(Settings.climbMotor2CanID);
 		climb2.setNeutralMode(NeutralMode.Brake);
-		climbController = new SpeedControllerGroup(climb1, climb2);
 
 		climbServo = new Servo(Settings.climbServoPWMPort);
 	}

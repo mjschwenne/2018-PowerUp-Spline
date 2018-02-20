@@ -42,7 +42,7 @@ public class SubPivot extends Subsystem {
 
 	public void pivot(double throttle) {
 		if (Robot.subLift.getEncoderTics() < Settings.liftPivotLimit) {
-			RobotMap.intakePivot1.set(throttle);
+			RobotMap.intakePivot1.set(ControlMode.PercentOutput, throttle);
 			RobotMap.intakePivot2.set(ControlMode.Follower, Settings.pivot1CanID);
 		} else {
 			RobotMap.intakePivot1.set(0);

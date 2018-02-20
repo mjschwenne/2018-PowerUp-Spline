@@ -5,6 +5,7 @@ import org.usfirst.frc3668.TroBot.RobotMap;
 import org.usfirst.frc3668.TroBot.Settings;
 import org.usfirst.frc3668.TroBot.commands.TeleopJoyLift;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -17,19 +18,19 @@ public class SubLift extends Subsystem {
 	public void lift(double throttle) {
 		Robot.subPivot.getPivotStatus();
 		if (Robot.pivotStatus == Settings.pivotStatus.isUnknown) {
-			RobotMap.liftMotor.set(0);
+			RobotMap.liftMotor.set(ControlMode.PercentOutput, 0);
 		} else if (Robot.pivotStatus == Settings.pivotStatus.isUp) {
-			RobotMap.liftMotor.set(throttle);
+			RobotMap.liftMotor.set(ControlMode.PercentOutput, throttle);
 		} else if (Robot.pivotStatus == Settings.pivotStatus.isDown) {
 			if(throttle > 0) {
-				RobotMap.liftMotor.set(throttle);
+				RobotMap.liftMotor.set(ControlMode.PercentOutput, throttle);
 			} else if (getEncoderTics() < Settings.liftDownHieghtLimit) {
-				RobotMap.liftMotor.set(throttle);
+				RobotMap.liftMotor.set(ControlMode.PercentOutput, throttle);
 			} else {
-				RobotMap.liftMotor.set(0);
+				RobotMap.liftMotor.set(ControlMode.PercentOutput, 0);
 			}
 		} else {
-			RobotMap.liftMotor.set(0);
+			RobotMap.liftMotor.set(ControlMode.PercentOutput, 0);
 		}
 	}
 

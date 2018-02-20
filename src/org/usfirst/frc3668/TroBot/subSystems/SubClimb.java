@@ -5,6 +5,8 @@ import org.usfirst.frc3668.TroBot.RobotMap;
 import org.usfirst.frc3668.TroBot.Settings;
 import org.usfirst.frc3668.TroBot.commands.TeleopClimb;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,18 +19,22 @@ public class SubClimb extends Subsystem {
 		RobotMap.climbServo.setAngle(Settings.climbEngaged);
 	}
 	public void climbFixedSpeed() {
-		RobotMap.climb1.set(Settings.climbMotorSpeed);
-		RobotMap.climb2.set(Settings.climbMotorSpeed);
+		RobotMap.climb1.set(ControlMode.PercentOutput, Settings.climbMotorSpeed);
+		RobotMap.climb2.set(ControlMode.PercentOutput, Settings.climbMotorSpeed);
 	}
 
 	public void joyClimb(Joystick joy) {
 		double throttle = Math.abs(joy.getY());
-		RobotMap.climbController.set(throttle);
+		setClimbMotors(throttle);
 		Robot.subLift.lift(throttle);
+	}
+	public void setClimbMotors(double throttle) {
+		RobotMap.climb1.set(ControlMode.PercentOutput, throttle);
+		RobotMap.climb2.set(ControlMode.PercentOutput, throttle);
 	}
 
 	public void stopClimb() {
-		RobotMap.climbController.set(0);
+		setClimbMotors(0);
 	}
 
 	public void initDefaultCommand() {

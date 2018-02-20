@@ -12,18 +12,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class SubIntake extends Subsystem {
 
 	public void intakeIn(double throttle) {
-		RobotMap.rightIntakeWheel.set(throttle);
+		RobotMap.rightIntakeWheel.set(ControlMode.PercentOutput, throttle);
 		RobotMap.leftIntakeWheel.set(ControlMode.Follower, Settings.intakeRightIntakeWheelCanID);
 	}
 
 	public void intakeOut(double throttle) {
-		RobotMap.rightIntakeWheel.set(-throttle);
+		RobotMap.rightIntakeWheel.set(ControlMode.PercentOutput, -throttle);
 		RobotMap.leftIntakeWheel.set(ControlMode.Follower, Settings.intakeRightIntakeWheelCanID);
 	}
 
 	public void stopIntake() {
-		RobotMap.rightIntakeWheel.set(0);
-		RobotMap.leftIntakeWheel.set(0);
+		RobotMap.rightIntakeWheel.set(ControlMode.PercentOutput, 0);
+		RobotMap.leftIntakeWheel.set(ControlMode.PercentOutput, 0);
 	}
 
 	@Override
