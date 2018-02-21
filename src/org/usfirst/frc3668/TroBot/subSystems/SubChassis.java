@@ -61,10 +61,12 @@ public class SubChassis extends Subsystem {
 		setLeftMotors(leftThrottle);
 		setRightMotors(-rightThrottle);
 	}
+	
 	public void setRightMotors(double throttle) {
 		RobotMap.rightDrive1.set(ControlMode.PercentOutput, throttle);
 		RobotMap.rightDrive2.set(ControlMode.PercentOutput, throttle);
 	}
+	
 	public void setLeftMotors(double throttle) {
 		RobotMap.leftDrive1.set(ControlMode.PercentOutput, throttle);
 		RobotMap.leftDrive2.set(ControlMode.PercentOutput, throttle);

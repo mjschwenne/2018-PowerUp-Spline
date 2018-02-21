@@ -36,8 +36,8 @@ public class AutoGroupScale extends CommandGroup {
 			ApproachScale.addParallel(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToScale));
 
 			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoStraightToScale));
-			addParallel(new CmdCalibrateLift());
-			addParallel(new CmdCalibratePivot());
+			//addParallel(new CmdCalibrateLift());
+			//addParallel(new CmdCalibratePivot());
 			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoStraightTurnToScale));
 			addSequential(ApproachScale);
 			if (safe) {
@@ -55,8 +55,8 @@ public class AutoGroupScale extends CommandGroup {
 			ApproachScale.addParallel(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToScale));
 
 			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoWallToScaleDist));
-			addParallel(new CmdCalibrateLift());
-			addParallel(new CmdCalibratePivot());
+			//addParallel(new CmdCalibrateLift());
+			//addParallel(new CmdCalibratePivot());
 			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToFaceWall));
 			addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoTurnToFaceWall, Settings.autoCruiseSpeed,
 					Settings.autoDrivePastSwitch));

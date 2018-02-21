@@ -18,8 +18,8 @@ public class Settings {
 	public static final double chassisEncoderDistancePerPulse = (6 * Math.PI) / chassisEncoderTicsPerRevolution;
 	public static final int chassisEncoderTimeOut = 10;
 	public static final boolean chassisSquareJoyInput = true;
-	public static final double chassisLeftSideScalar = 1;//18.98301225008481 / 19.843575472088656; // 0.9566326530612244
-	public static final double chassisRightSideScalar = 1;
+	public static final double chassisRightSideScalar = 1;//9/13;//18.960002538266526 / 24.64800329974648;//18.98301225008481 / 19.843575472088656;
+	public static final double chassisLeftSideScalar = 1;//5/7;
 	public static final double chassisMaxInchesPerSecond = 168;
 	public static final double chassisDriveStraightGyroKp = 0.05;
 	public static final double chassisMaxDregeesPreSecond = 15;

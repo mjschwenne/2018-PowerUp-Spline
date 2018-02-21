@@ -6,6 +6,7 @@ import org.usfirst.frc3668.TroBot.Settings;
 import org.usfirst.frc3668.TroBot.commands.TeleopClimb;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,6 +27,7 @@ public class SubClimb extends Subsystem {
 	public void joyClimb(Joystick joy) {
 		double throttle = Math.abs(joy.getY());
 		setClimbMotors(throttle);
+		//RobotMap.liftMotor.setNeutralMode(NeutralMode.Coast);
 		Robot.subLift.lift(throttle);
 	}
 	public void setClimbMotors(double throttle) {

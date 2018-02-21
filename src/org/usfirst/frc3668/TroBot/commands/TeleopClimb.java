@@ -26,7 +26,7 @@ public class TeleopClimb extends Command {
     @Override
     protected void execute() {
     	Robot.subClimb.joyClimb(Robot.oi.joyArt);
-    	Robot.subLift.lift(-Math.abs(Robot.oi.joyArt.getY()));
+    	//Robot.subLift.lift(-Math.abs(Robot.oi.joyArt.getY()));
     }
 
     // Make this return true when this Command no longer needs to run execute()
