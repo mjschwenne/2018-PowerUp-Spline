@@ -10,13 +10,14 @@ public class Settings {
 	public static final double chassisDriveExpiration = 1.0;
 	public static final double chassisDriveMaxOutput = 1.0;
 	public static final int chassisGyroAnalogPort = 0;
+	public static final int chassisDriveMaxCurrentLimit = 55;
+	public static final int chassisDriveMaxCurrentTimeout = 500;
 	public static final double chassisGyroSensitivity = 0.007;
 	public static final double chassisGyroTol = 1.5;
 	public static final double chassisEncoderDeadValueThreshold = 0.5;
 	public static final double testChassisGearRatio = 10.71; // 10.71:1
 	public static final int chassisEncoderTicsPerRevolution = 4096;
 	public static final double chassisEncoderDistancePerPulse = (6 * Math.PI) / chassisEncoderTicsPerRevolution;
-	public static final int chassisEncoderTimeOut = 10;
 	public static final boolean chassisSquareJoyInput = true;
 	public static final double chassisRightSideScalar = 1;//9/13;//18.960002538266526 / 24.64800329974648;//18.98301225008481 / 19.843575472088656;
 	public static final double chassisLeftSideScalar = 1;//5/7;
@@ -25,6 +26,7 @@ public class Settings {
 	public static final double chassisMaxDregeesPreSecond = 15;
 	public static final double chassisTurnKp = 0.0027;
 	public static final int limitSwitchTimeOut = 30;
+	public static final int talonTimeOut = 10;
 
 	public static enum chassisTurnDirection {
 		turnRight, turnLeft
@@ -33,7 +35,10 @@ public class Settings {
 	// Intake Settings
 	public static final int intakeRightIntakeWheelCanID = 5;
 	public static final int intakeLeftIntakeWheelCanID = 6;
+	public static final int intakeMaxCurrentLimit = 40;
+	public static final int intakeMaxCurrentTimeout = chassisDriveMaxCurrentTimeout;
 	public static final double intakeOut = -0.75;
+	public static final double intakeIn = 0.75;
 	public static final double intakeAutoScaleOut = -1;
 	public static final double intakeAutoSwitchOut = -0.75;
 	
@@ -48,6 +53,8 @@ public class Settings {
 	public static final int pivot1EncoderDIOPortB = 4;
 	public static final int pivot2EncoderDIOPortA = 6;
 	public static final int pivot2EncoderDIOPortB = 7;
+	public static final int pivotMaxCurrentLimit = 40;
+	public static final int pivotMaxCurrentTimeout = chassisDriveMaxCurrentTimeout;
 	public static final double pivotGravityFallSlow = -0.75;
 	public static final double pivotGravityFallFast = -0.75;
 	public static final double pivotCalibrationSpeed = -0.25;
@@ -58,6 +65,8 @@ public class Settings {
 	public static final int pivotGravityFallThreshold = 497;
 	// Lift Settings
 	public static final int liftMotorCanID = 9;
+	public static final int liftMaxCurrentLimit = chassisDriveMaxCurrentLimit;
+	public static final int liftMaxCurrentTimeout = chassisDriveMaxCurrentTimeout;
 	public static final int liftEncoderDIOPortA = 1;
 	public static final int liftEncoderDIOPortB = 2;
 	public static final double liftEncoderTicsPerInch = (3.25 * Math.PI) / 1440;
@@ -79,6 +88,8 @@ public class Settings {
 	// Climb Settings
 	public static final int climbMotor1CanID = 10;
 	public static final int climbMotor2CanID = 11;
+	public static final int climbMotorMaxCurrentLimit = chassisDriveMaxCurrentLimit;
+	public static final int climbMotorMaxCurrentTimeout = chassisDriveMaxCurrentTimeout;
 	public static final double climbMotorSpeed = 0.8;
 	public static final int climbServoPWMPort = 0;
 	public static final int climbEngaged = 180;
@@ -103,10 +114,11 @@ public class Settings {
 	// Interface Settings
 	public static final int joyDrivePort = 0;
 	public static final int joyDriveInvertDriveButton = 2;
+	public static final int joyDriveIntakeInButton = 3;
+	public static final int joyDriveIntakeOutButton = 5;
+	public static final int joyDriveOneWheelIntake = 4;
 	public static final double joyDriveDeadband = 0.05;
 	public static final int joyArtPort = 1;
-	public static final int joyArtIntakeInButton = 3;
-	public static final int joyArtReverseIntakeButton = 5;
 	public static final int joyArtLiftUpButton = 7;
 	public static final int joyArtLiftDownButton = 9;
 	public static final int joyArtSetLiftToZeroButton = 12;

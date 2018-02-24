@@ -1,11 +1,10 @@
 package org.usfirst.frc3668.TroBot;
 
-import org.usfirst.frc3668.TroBot.commands.CmdPivotUp;
-import org.usfirst.frc3668.TroBot.commands.CmdPivotDown;
 import org.usfirst.frc3668.TroBot.commands.CmdLift;
+import org.usfirst.frc3668.TroBot.commands.CmdPivotDown;
+import org.usfirst.frc3668.TroBot.commands.CmdPivotUp;
 import org.usfirst.frc3668.TroBot.commands.TeleopClimb;
-import org.usfirst.frc3668.TroBot.commands.TeleopIntakeIn;
-import org.usfirst.frc3668.TroBot.commands.TeleopIntakeOut;
+import org.usfirst.frc3668.TroBot.commands.TeleopIntake;
 import org.usfirst.frc3668.TroBot.commands.TeleopInvertDrive;
 import org.usfirst.frc3668.TroBot.commands.TeleopLift;
 
@@ -25,8 +24,9 @@ public class OI {
     
     public Button invertDrive = new JoystickButton(joyDrive, Settings.joyDriveInvertDriveButton);
     
-    public Button intakeIn = new JoystickButton(joyArt, Settings.joyArtIntakeInButton);
-    public Button intakeReverse = new JoystickButton(joyArt, Settings.joyArtReverseIntakeButton);
+    public Button intakeIn = new JoystickButton(joyDrive, Settings.joyDriveIntakeInButton);
+    public Button intakeReverse = new JoystickButton(joyDrive, Settings.joyDriveIntakeOutButton);
+    public Button intakeOneWheel = new JoystickButton(joyDrive, Settings.joyDriveOneWheelIntake);
     
     public Button liftToZero = new JoystickButton(joyArt, Settings.joyArtSetLiftToZeroButton);
     public Button liftToSwitch = new JoystickButton(joyArt, Settings.joyArtSetLiftToSwitchButton);
@@ -40,11 +40,13 @@ public class OI {
     public Button liftUp = new JoystickButton(joyArt, Settings.joyArtLiftUpButton);
     public Button liftDown = new JoystickButton(joyArt, Settings.joyArtLiftDownButton);
     
+    
     public OI() {
     	invertDrive.whenPressed(new TeleopInvertDrive());
     	
-    	intakeIn.whileHeld(new TeleopIntakeIn());
-    	intakeReverse.whileHeld(new TeleopIntakeOut());
+    	intakeIn.whileHeld(new TeleopIntake(Settings.intakeIn));
+    	intakeReverse.whileHeld(new TeleopIntake(Settings.intakeOut));
+    	intakeOneWheel.whileHeld(new TeleopIntake(0, Settings.intakeIn));
     	
     	intakeUpPivot.whenPressed(new CmdPivotDown());
     	intakeDownPivot.whenPressed(new CmdPivotUp());

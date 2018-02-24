@@ -15,8 +15,8 @@ public class SubPivot extends Subsystem {
 
 	public double getEncoders() {
 		double retVal = 0;
-		double intakePivot1Tics = -1 * RobotMap.intakePivot1Encoder.get();
-		double intakePivot2Tics = -1 * RobotMap.intakePivot2Encoder.get();
+		double intakePivot1Tics = -1 * RobotMap.pivot1Encoder.get();
+		double intakePivot2Tics = -1 * RobotMap.pivot2Encoder.get();
 		if (intakePivot1Tics < Settings.chassisEncoderDeadValueThreshold) {
 			retVal = intakePivot2Tics;
 		} else if (intakePivot2Tics < Settings.chassisEncoderDeadValueThreshold) {
@@ -28,25 +28,25 @@ public class SubPivot extends Subsystem {
 	}
 
 	public void resetEncoders() {
-		RobotMap.intakePivot1Encoder.reset();
-		RobotMap.intakePivot2Encoder.reset();
+		RobotMap.pivot1Encoder.reset();
+		RobotMap.pivot2Encoder.reset();
 	}
 
 	public boolean getForwardLimitSwitch() { //Talon inverted, need to change which switch is which
-		return RobotMap.intakePivot1.getSensorCollection().isFwdLimitSwitchClosed();
+		return RobotMap.pivot1.getSensorCollection().isFwdLimitSwitchClosed();
 	}
 
 	public boolean getReverseLimitSwitch() { //Talon inverted, need to change which switch is which
-		return RobotMap.intakePivot1.getSensorCollection().isRevLimitSwitchClosed();
+		return RobotMap.pivot1.getSensorCollection().isRevLimitSwitchClosed();
 	}
 
 	public void pivot(double throttle) {
 		if (Robot.subLift.getEncoderTics() < Settings.liftPivotLimit) {
-			RobotMap.intakePivot1.set(ControlMode.PercentOutput, throttle);
-			RobotMap.intakePivot2.set(ControlMode.Follower, Settings.pivot1CanID);
+			RobotMap.pivot1.set(ControlMode.PercentOutput, throttle);
+			RobotMap.pivot2.set(ControlMode.Follower, Settings.pivot1CanID);
 		} else {
-			RobotMap.intakePivot1.set(0);
-			RobotMap.intakePivot2.set(0);	
+			RobotMap.pivot1.set(0);
+			RobotMap.pivot2.set(0);	
 		}
 	}
 	

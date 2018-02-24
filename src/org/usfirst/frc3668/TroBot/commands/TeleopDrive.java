@@ -45,7 +45,7 @@ double throttleIncement = 0.01;
     	//Robot.subChassis.DriveMan(throttle, throttle);
     	Robot.subChassis.Drive(Robot.oi.joyDrive);
     	//System.err.println("NavX: " + RobotMap.navx.getAngle() + " Old Gyro: " + Robot.subChassis.getGyroAngleRaw());
-    	System.err.println("Right Encoder: " + Robot.subChassis.getRightEncoderDist() + "\t Left Encoder: "+ Robot.subChassis.getLeftEncoderDist() + " throttle: " + throttle);
+    	//System.err.println("Right Encoder: " + Robot.subChassis.getRightEncoderDist() + "\t Left Encoder: "+ Robot.subChassis.getLeftEncoderDist() + " throttle: " + throttle);
     }
 
     // Make this return true when this Command no longer needs to run execute()

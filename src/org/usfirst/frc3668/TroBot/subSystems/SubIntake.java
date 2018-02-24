@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SubIntake extends Subsystem {
 
+	public boolean getLimit() {
+		return RobotMap.rightIntakeWheel.getSensorCollection().isRevLimitSwitchClosed();
+	}
+
 	public void intakeIn(double throttle) {
 		RobotMap.rightIntakeWheel.set(ControlMode.PercentOutput, throttle);
 		RobotMap.leftIntakeWheel.set(ControlMode.Follower, Settings.intakeRightIntakeWheelCanID);
@@ -19,6 +23,14 @@ public class SubIntake extends Subsystem {
 	public void intakeOut(double throttle) {
 		RobotMap.rightIntakeWheel.set(ControlMode.PercentOutput, -throttle);
 		RobotMap.leftIntakeWheel.set(ControlMode.Follower, Settings.intakeRightIntakeWheelCanID);
+
+	}
+
+	public void intakeMan(double leftThrottle, double rightThrottle) {
+		RobotMap.rightIntakeWheel.set(rightThrottle);
+		if (getLimit() == false) {
+			RobotMap.leftIntakeWheel.set(leftThrottle);
+		}
 	}
 
 	public void stopIntake() {

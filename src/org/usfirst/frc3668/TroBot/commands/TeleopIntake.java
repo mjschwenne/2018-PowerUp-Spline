@@ -1,27 +1,51 @@
 package org.usfirst.frc3668.TroBot.commands;
 
 import org.usfirst.frc3668.TroBot.Robot;
+import org.usfirst.frc3668.TroBot.RobotMap;
 import org.usfirst.frc3668.TroBot.Settings;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TeleopIntakeIn extends Command {
-	
+public class TeleopIntake extends Command {
+
+	double _leftThrottle;
+	double _rightThrottle;
+	boolean _diffThrottle = false;
+
 	private boolean _isFinished = false;
-	
-	public TeleopIntakeIn() {
+
+	public TeleopIntake(double throttle) {
 		requires(Robot.subIntake);
+		_leftThrottle = throttle;
+		_rightThrottle = throttle;
+	}
+
+	public TeleopIntake(double leftThrottle, double rightThrottle) {
+		requires(Robot.subIntake);
+		_leftThrottle = leftThrottle;
+		_rightThrottle = rightThrottle;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		if (_leftThrottle != _rightThrottle) {
+			_diffThrottle = true;
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.subIntake.intakeIn(Settings.intakeOut);
+		System.err.println("Limit: " + Robot.subIntake.getLimit() + "Diff Throttle " + _diffThrottle);
+		
+		Robot.subIntake.intakeOut(_leftThrottle);
+		if (_diffThrottle == true) {
+			Robot.subIntake.intakeMan(_leftThrottle, _rightThrottle);
+		} else {
+			Robot.subIntake.intakeOut(_rightThrottle);
+		}
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
