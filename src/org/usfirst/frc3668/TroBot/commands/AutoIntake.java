@@ -53,7 +53,7 @@ public class AutoIntake extends Command {
     protected void execute() {
     	double deltaTime = RobotMath.getTime() - _initTime;
     	System.err.println("Delta Time: " + deltaTime);
-    	Robot.subIntake.intakeOut(_throttle * _direction);
+    	Robot.subIntake.intake(_throttle * _direction);
     	if(deltaTime > _waitTime) {
     		_isFinished = true;
     	}

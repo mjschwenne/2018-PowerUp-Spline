@@ -19,8 +19,8 @@ public class Settings {
 	public static final int chassisEncoderTicsPerRevolution = 4096;
 	public static final double chassisEncoderDistancePerPulse = (6 * Math.PI) / chassisEncoderTicsPerRevolution;
 	public static final boolean chassisSquareJoyInput = true;
-	public static final double chassisRightSideScalar = 1;//9/13;//18.960002538266526 / 24.64800329974648;//18.98301225008481 / 19.843575472088656;
-	public static final double chassisLeftSideScalar = 1;//5/7;
+	public static final double chassisRightSideScalar = 1;//142.62799967681903/144.0730095790073;//141.65238789572376/145.0578252448299;//18.98301225008481 / 19.843575472088656;
+	public static final double chassisLeftSideScalar = 1;
 	public static final double chassisMaxInchesPerSecond = 168;
 	public static final double chassisDriveStraightGyroKp = 0.05;
 	public static final double chassisMaxDregeesPreSecond = 15;
@@ -37,10 +37,12 @@ public class Settings {
 	public static final int intakeLeftIntakeWheelCanID = 6;
 	public static final int intakeMaxCurrentLimit = 40;
 	public static final int intakeMaxCurrentTimeout = chassisDriveMaxCurrentTimeout;
-	public static final double intakeOut = -0.75;
-	public static final double intakeIn = 0.75;
-	public static final double intakeAutoScaleOut = -1;
-	public static final double intakeAutoSwitchOut = -0.75;
+	public static final double intakeOutSlow = 0.5;
+	public static final double intakeOutFast = 1;
+	public static final double intakeIn = -0.5;
+	public static final double intakeInOffWheel = 0;
+	public static final double intakeAutoScaleOut = 1;
+	public static final double intakeAutoSwitchOut = 0.75;
 	
 	// Pivot Settings
 	public static enum pivotStatus {
@@ -114,9 +116,11 @@ public class Settings {
 	// Interface Settings
 	public static final int joyDrivePort = 0;
 	public static final int joyDriveInvertDriveButton = 2;
-	public static final int joyDriveIntakeInButton = 3;
-	public static final int joyDriveIntakeOutButton = 5;
-	public static final int joyDriveOneWheelIntake = 4;
+	public static final int joyDriveIntakeInButton = 9;
+	public static final int joyDriveIntakeOutFastButton = 8;
+	public static final int joyDriveIntakeOutSLowButton = 12;
+	public static final int joyDriveOneWheelLeftIntake = 11;
+	public static final int joyDriveOneWheelRightIntake = 7;
 	public static final double joyDriveDeadband = 0.05;
 	public static final int joyArtPort = 1;
 	public static final int joyArtLiftUpButton = 7;
@@ -159,5 +163,4 @@ public class Settings {
 	public static final double autoForwardToBeCloseToScale = 14.57;
 	public static final boolean autoAllyToScale = false;
 	public static final boolean autoAllyNotToScale = true;
-
 }

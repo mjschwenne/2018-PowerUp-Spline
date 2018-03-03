@@ -25,8 +25,10 @@ public class OI {
     public Button invertDrive = new JoystickButton(joyDrive, Settings.joyDriveInvertDriveButton);
     
     public Button intakeIn = new JoystickButton(joyDrive, Settings.joyDriveIntakeInButton);
-    public Button intakeReverse = new JoystickButton(joyDrive, Settings.joyDriveIntakeOutButton);
-    public Button intakeOneWheel = new JoystickButton(joyDrive, Settings.joyDriveOneWheelIntake);
+    public Button intakeReverseSlow = new JoystickButton(joyDrive, Settings.joyDriveIntakeOutSLowButton);
+    public Button intakeReverseFast = new JoystickButton(joyDrive, Settings.joyDriveIntakeOutFastButton);
+    public Button intakeOneWheelRight = new JoystickButton(joyDrive, Settings.joyDriveOneWheelRightIntake);
+    public Button intakeOneWheelLeft = new JoystickButton(joyDrive, Settings.joyDriveOneWheelLeftIntake);
     
     public Button liftToZero = new JoystickButton(joyArt, Settings.joyArtSetLiftToZeroButton);
     public Button liftToSwitch = new JoystickButton(joyArt, Settings.joyArtSetLiftToSwitchButton);
@@ -45,8 +47,10 @@ public class OI {
     	invertDrive.whenPressed(new TeleopInvertDrive());
     	
     	intakeIn.whileHeld(new TeleopIntake(Settings.intakeIn));
-    	intakeReverse.whileHeld(new TeleopIntake(Settings.intakeOut));
-    	intakeOneWheel.whileHeld(new TeleopIntake(0, Settings.intakeIn));
+    	intakeReverseSlow.whileHeld(new TeleopIntake(Settings.intakeOutSlow));
+    	intakeReverseFast.whileHeld(new TeleopIntake(Settings.intakeOutFast));
+    	intakeOneWheelRight.whileHeld(new TeleopIntake(Settings.intakeInOffWheel, Settings.intakeIn));
+    	intakeOneWheelLeft.whileHeld(new TeleopIntake(Settings.intakeIn, Settings.intakeInOffWheel));
     	
     	intakeUpPivot.whenPressed(new CmdPivotDown());
     	intakeDownPivot.whenPressed(new CmdPivotUp());

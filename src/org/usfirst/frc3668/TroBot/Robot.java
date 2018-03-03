@@ -3,9 +3,9 @@ package org.usfirst.frc3668.TroBot;
 import org.usfirst.frc3668.TroBot.Settings.autoAction;
 import org.usfirst.frc3668.TroBot.Settings.autoPosition;
 import org.usfirst.frc3668.TroBot.Settings.pivotStatus;
-import org.usfirst.frc3668.TroBot.commands.AutoDriveProfileGyro;
 import org.usfirst.frc3668.TroBot.commands.AutoGroupScale;
 import org.usfirst.frc3668.TroBot.commands.AutoGroupSwitch;
+import org.usfirst.frc3668.TroBot.commands.DUMBdrive;
 import org.usfirst.frc3668.TroBot.subSystems.SubChassis;
 import org.usfirst.frc3668.TroBot.subSystems.SubClimb;
 import org.usfirst.frc3668.TroBot.subSystems.SubIntake;
@@ -106,7 +106,7 @@ public class Robot extends TimedRobot {
 				autonomousCommand = new AutoGroupScale(selectedPosition, Settings.autoAllyToScale);
 			}
 			else if(selectedAction == autoAction.autoLine) {
-				autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance);
+				autonomousCommand = new DUMBdrive(144);//new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance);
 			}
 			else {
 				autonomousCommand = null;

@@ -61,7 +61,7 @@ public class AutoDriveProfileGyro extends Command{
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double encoderVal = Robot.subChassis.getRightEncoderDist();
+		double encoderVal = Robot.subChassis.getEncoderAvgDistInch();
 		double deltaTime = RobotMath.getTime() - _startTime;
 		double profileDist = mp.getTotalDistanceTraveled(deltaTime);
 		double currentHeading = Robot.subChassis.getNormaliziedNavxAngle();
@@ -112,7 +112,7 @@ public class AutoDriveProfileGyro extends Command{
 	protected void end() {
 		Robot.subChassis.Drive(0, 0);
 		Robot.subChassis.resetBothEncoders();
-		System.out.println("AutoDriveProfileGyro is Finished");
+		System.out.println("AutoDriveProfileGyro is Finished Left Encoder: " + Robot.subChassis.getLeftEncoderDist() + " Right Encoder: " + Robot.subChassis.getRightEncoderDist());
 		System.err.println(String.format(
 				"Projected Accelration Time: %1$.3f \tProjected Cruise Time: %2$.3f \t Projected Deccelration Time: %3$.3f \t Projected Length of Drive: %4$.3f \t Given Distance: %5$.3f",
 				mp._accelTime, mp._cruiseTime, mp._deccelTime, mp._stopTime, _distance));

@@ -15,21 +15,23 @@ public class SubIntake extends Subsystem {
 		return RobotMap.rightIntakeWheel.getSensorCollection().isRevLimitSwitchClosed();
 	}
 
-	public void intakeIn(double throttle) {
+	public void intake(double throttle) {
 		RobotMap.rightIntakeWheel.set(ControlMode.PercentOutput, throttle);
 		RobotMap.leftIntakeWheel.set(ControlMode.Follower, Settings.intakeRightIntakeWheelCanID);
 	}
 
-	public void intakeOut(double throttle) {
-		RobotMap.rightIntakeWheel.set(ControlMode.PercentOutput, -throttle);
-		RobotMap.leftIntakeWheel.set(ControlMode.Follower, Settings.intakeRightIntakeWheelCanID);
-
-	}
+//	public void intake(double throttle) {
+//		RobotMap.rightIntakeWheel.set(ControlMode.PercentOutput, -throttle);
+//		RobotMap.leftIntakeWheel.set(ControlMode.Follower, Settings.intakeRightIntakeWheelCanID);
+//
+//	}
 
 	public void intakeMan(double leftThrottle, double rightThrottle) {
 		RobotMap.rightIntakeWheel.set(rightThrottle);
 		if (getLimit() == false) {
 			RobotMap.leftIntakeWheel.set(leftThrottle);
+		} else {
+			RobotMap.leftIntakeWheel.set(0);
 		}
 	}
 

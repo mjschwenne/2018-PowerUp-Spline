@@ -22,36 +22,42 @@ public class SubChassis extends Subsystem {
 	public void Drive(Joystick stick) {
 		double joyX = stick.getX();
 		double joyY = stick.getY();
-		
-		if(Math.abs(joyX) < Settings.joyDriveDeadband) {
+
+		if (Math.abs(joyX) < Settings.joyDriveDeadband) {
 			joyX = 0;
 		} else if (Math.abs(joyY) < Settings.joyDriveDeadband) {
 			joyY = 0;
 		}
-		
+
 		double rightMotorThrottle;
 		double leftMotorThrottle;
 		if (Robot.isDriveInverted) {
 			rightMotorThrottle = (joyX + joyY) * Settings.chassisRightSideScalar;
 			leftMotorThrottle = (joyX - joyY) * Settings.chassisLeftSideScalar;
-				if(Settings.chassisSquareJoyInput) {
-					double rightSignum = Math.signum(rightMotorThrottle);
-					double leftSignum = Math.signum(leftMotorThrottle);
-					rightMotorThrottle = Math.pow(rightMotorThrottle, 2) * rightSignum;
-					leftMotorThrottle = Math.pow(leftMotorThrottle, 2) * leftSignum;
-				}
-			setLeftMotors(leftMotorThrottle);
-			setRightMotors(rightMotorThrottle);
-
-		} else {
-			rightMotorThrottle = (-joyX - joyY) * Settings.chassisRightSideScalar;
-			leftMotorThrottle = (-joyX + joyY) * Settings.chassisLeftSideScalar;
-			if(Settings.chassisSquareJoyInput) {
+			if (Settings.chassisSquareJoyInput) {
 				double rightSignum = Math.signum(rightMotorThrottle);
 				double leftSignum = Math.signum(leftMotorThrottle);
 				rightMotorThrottle = Math.pow(rightMotorThrottle, 2) * rightSignum;
 				leftMotorThrottle = Math.pow(leftMotorThrottle, 2) * leftSignum;
 			}
+			//System.err.println(
+			//		String.format("Joy X: %1$.3f \t Joy Y: %2$.3f \t Right Throttle: %3$.4f \t Left Throttle: %4$.4f",
+			//				joyX, joyY, rightMotorThrottle, leftMotorThrottle));
+			setLeftMotors(leftMotorThrottle);
+			setRightMotors(rightMotorThrottle);
+
+		} else {
+			rightMotorThrottle = (joyX - joyY) * Settings.chassisRightSideScalar;
+			leftMotorThrottle = (joyX + joyY) * Settings.chassisLeftSideScalar;
+			if (Settings.chassisSquareJoyInput) {
+				double rightSignum = Math.signum(rightMotorThrottle);
+				double leftSignum = Math.signum(leftMotorThrottle);
+				rightMotorThrottle = Math.pow(rightMotorThrottle, 2) * rightSignum;
+				leftMotorThrottle = Math.pow(leftMotorThrottle, 2) * leftSignum;
+			}
+			//System.err.println(
+			//		String.format("Joy X: %1$.3f \t Joy Y: %2$.3f \t Right Throttle: %3$.4f \t Left Throttle: %4$.4f",
+			//				joyX, joyY, rightMotorThrottle, leftMotorThrottle));
 			setLeftMotors(leftMotorThrottle);
 			setRightMotors(rightMotorThrottle);
 		}
@@ -61,12 +67,12 @@ public class SubChassis extends Subsystem {
 		setLeftMotors(leftThrottle);
 		setRightMotors(-rightThrottle);
 	}
-	
+
 	public void setRightMotors(double throttle) {
 		RobotMap.rightDrive1.set(ControlMode.PercentOutput, throttle);
 		RobotMap.rightDrive2.set(ControlMode.PercentOutput, throttle);
 	}
-	
+
 	public void setLeftMotors(double throttle) {
 		RobotMap.leftDrive1.set(ControlMode.PercentOutput, throttle);
 		RobotMap.leftDrive2.set(ControlMode.PercentOutput, throttle);
@@ -91,8 +97,10 @@ public class SubChassis extends Subsystem {
 
 	public double getEncoderAvgDistInch() {
 		double retVal = 0;
-		double leftDistance = -1 * RobotMap.leftDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
-		double rightDistance = -1 * RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
+		double leftDistance = RobotMap.leftDrive1.getSelectedSensorPosition(0)
+				* Settings.chassisEncoderDistancePerPulse;
+		double rightDistance = -1 * RobotMap.rightDrive1.getSelectedSensorPosition(0)
+				* Settings.chassisEncoderDistancePerPulse;
 		if (Math.abs(leftDistance) < Settings.chassisEncoderDeadValueThreshold) {
 			retVal = rightDistance;
 		} else if (Math.abs(rightDistance) < Settings.chassisEncoderDeadValueThreshold) {
@@ -102,7 +110,7 @@ public class SubChassis extends Subsystem {
 		}
 		return retVal;
 	}
-	
+
 	public double getRightEncoderDist() {
 		return -RobotMap.rightDrive1.getSelectedSensorPosition(0) * Settings.chassisEncoderDistancePerPulse;
 	}
@@ -127,15 +135,15 @@ public class SubChassis extends Subsystem {
 	public double getGyroAngleRaw() {
 		return RobotMap.gyro.getAngle();
 	}
-	
+
 	public double getNavxAngleRaw() {
 		return RobotMap.navx.getAngle();
 	}
-	
+
 	public double getNormalizedGyroAngle() {
 		return gyroNormalize(getGyroAngleRaw());
 	}
-	
+
 	public double getNormaliziedNavxAngle() {
 		return gyroNormalize(getNavxAngleRaw());
 	}
@@ -153,7 +161,7 @@ public class SubChassis extends Subsystem {
 	public void resetNavx() {
 		RobotMap.navx.reset();
 	}
-	
+
 	public double gyroNormalize(double heading) {
 		// takes the full turns out of heading
 		// gives us values from 0 to 180 for the right side of the robot
