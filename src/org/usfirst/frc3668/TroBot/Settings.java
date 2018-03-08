@@ -163,4 +163,9 @@ public class Settings {
 	public static final double autoForwardToBeCloseToScale = 14.57;
 	public static final boolean autoAllyToScale = false;
 	public static final boolean autoAllyNotToScale = true;
+	
+	public static int visionCameraFPS = 10;
+	public static int visionImageWidthPixels = 640;
+	public static int visionImageHeightPixels = 320;
+	public static int visionImageBrightness = 60;
 }

@@ -12,6 +12,8 @@ import org.usfirst.frc3668.TroBot.subSystems.SubIntake;
 import org.usfirst.frc3668.TroBot.subSystems.SubLift;
 import org.usfirst.frc3668.TroBot.subSystems.SubPivot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -37,6 +39,7 @@ public class Robot extends TimedRobot {
 	public static boolean isDriveInverted = true;
 	public static pivotStatus pivotStatus = Settings.pivotStatus.isUnknown;
 	public static String gameData;
+	public static UsbCamera cameraOne;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -50,6 +53,12 @@ public class Robot extends TimedRobot {
 		subChassis.resetBothEncoders();
 		subClimb.disengageClimber();
 		subLift.resetEncoder();
+		
+		cameraOne = CameraServer.getInstance().startAutomaticCapture("Cube Camera", 0);
+		cameraOne.setExposureAuto();
+		cameraOne.setBrightness(Settings.visionImageBrightness);
+		cameraOne.setFPS(Settings.visionCameraFPS);
+		cameraOne.setResolution(Settings.visionImageWidthPixels, Settings.visionImageHeightPixels);
 		
 		smartDashboard = new SmartDashboard();
 
