@@ -102,7 +102,7 @@ public class Settings {
 	public static final String profileLogName = "//media//sda1//motionProfile";
 	public static final double profileAdditionLoopNumber = 50;
 	public static final String profileLogFileExtension = ".txt";
-	public static final double profileDriveAccelration = 40; // inches/sec/sec
+	public static final double profileDriveAccelration = 45; // inches/sec/sec
 	public static final double profileDriveKp = 0.1;
 	public static final double profileDriveKi = 0.002;
 	public static final double profileDriveKd = 0.0009;
@@ -129,8 +129,9 @@ public class Settings {
 	public static final int joyArtSetLiftToSwitchButton = 10;
 	public static final int joyArtSetLiftToScaleButton = 8;
 	public static final int joyArtClimbButton = 11;
-	public static final int joyArtIntakePivotUpButton = 6;
-	public static final int joyArtIntakePivotDownButton = 4;
+	public static final int joyArtPivotUpButton = 5;
+	public static final int joyArtTogglePivotStatus = 6;
+	public static final int joyArtPivotDownButton = 3;
 
 	// Auto Settings
 	public static enum autoAction {
@@ -144,7 +145,7 @@ public class Settings {
 	public static final double autoEjectCubeTime = 3;
 	public static final double autoCruiseSpeed = 145;
 	public static final double autoLineDistance = 144;
-	public static final double autoTurnSpeed = 0.25; // 0.18 for carpet, 0.12 for tile
+	public static final double autoTurnSpeed = 0.27; // 0.18 for carpet, 0.12 for tile
 	public static final double autoPivotToBumper = 30; // Not really, added a buffer
 	public static final double autoApproachSwitchLeft = 20;
 	public static final double autoApproachSwitchRight = 7;
@@ -167,5 +168,5 @@ public class Settings {
 	public static int visionCameraFPS = 10;
 	public static int visionImageWidthPixels = 640;
 	public static int visionImageHeightPixels = 320;
-	public static int visionImageBrightness = 60;
+	public static int visionImageBrightness = 50;
 }

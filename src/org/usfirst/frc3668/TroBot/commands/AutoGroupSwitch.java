@@ -28,15 +28,12 @@ public class AutoGroupSwitch extends CommandGroup {
 		}
 
 		addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoPivotToBumper));
-		addParallel(new CmdCalibrateLift());
-		addParallel(new CmdCalibratePivot());
 		addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, switchAngle));
 		addSequential(new AutoDriveProfileGyro(switchAngle, Settings.autoCruiseSpeed, switchDistance));
 		addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, 0));
 		addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, approachSwitch));
 		if (goodData == true) {
 			addSequential(new AutoIntake(Settings.intakeAutoSwitchOut, Settings.autoEjectCubeTime));
-			addSequential(new CmdPivotUp());
 		}
 	}
 }

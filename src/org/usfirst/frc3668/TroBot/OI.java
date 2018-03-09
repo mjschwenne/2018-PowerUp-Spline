@@ -3,6 +3,7 @@ package org.usfirst.frc3668.TroBot;
 import org.usfirst.frc3668.TroBot.commands.CmdLift;
 import org.usfirst.frc3668.TroBot.commands.CmdPivotDown;
 import org.usfirst.frc3668.TroBot.commands.CmdPivotUp;
+import org.usfirst.frc3668.TroBot.commands.CmdTogglePivot;
 import org.usfirst.frc3668.TroBot.commands.TeleopClimb;
 import org.usfirst.frc3668.TroBot.commands.TeleopIntake;
 import org.usfirst.frc3668.TroBot.commands.TeleopInvertDrive;
@@ -36,8 +37,9 @@ public class OI {
     
     public Button enableClimb = new JoystickButton(joyArt, Settings.joyArtClimbButton);
     
-    public Button intakeDownPivot = new JoystickButton(joyArt, Settings.joyArtIntakePivotDownButton);
-    public Button intakeUpPivot = new JoystickButton(joyArt, Settings.joyArtIntakePivotUpButton);
+    public Button downPivot = new JoystickButton(joyArt, Settings.joyArtPivotDownButton);
+    public Button upPivot = new JoystickButton(joyArt, Settings.joyArtPivotUpButton);
+    public Button togglePivotStatus = new JoystickButton(joyArt, Settings.joyArtTogglePivotStatus);
     
     public Button liftUp = new JoystickButton(joyArt, Settings.joyArtLiftUpButton);
     public Button liftDown = new JoystickButton(joyArt, Settings.joyArtLiftDownButton);
@@ -52,8 +54,9 @@ public class OI {
     	intakeOneWheelRight.whileHeld(new TeleopIntake(Settings.intakeInOffWheel, Settings.intakeIn));
     	intakeOneWheelLeft.whileHeld(new TeleopIntake(Settings.intakeIn, Settings.intakeInOffWheel));
     	
-    	intakeUpPivot.whenPressed(new CmdPivotDown());
-    	intakeDownPivot.whenPressed(new CmdPivotUp());
+    	upPivot.whenPressed(new CmdPivotDown());
+    	downPivot.whenPressed(new CmdPivotUp());
+    	togglePivotStatus.whenPressed(new CmdTogglePivot());
     	
     	liftToZero.whenPressed(new CmdLift(Settings.liftUpSpeed, 0));
     	liftToSwitch.whenPressed(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToSwitch));
