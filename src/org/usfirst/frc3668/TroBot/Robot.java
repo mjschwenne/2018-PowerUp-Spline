@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
 		subClimb.disengageClimber();
 		subLift.resetEncoder();
 		
-		cameraOne = CameraServer.getInstance().startAutomaticCapture("Cube Camera", 0);
+		cameraOne = CameraServer.getInstance().startAutomaticCapture("Cube Camera", Settings.visionCameraID);
 		cameraOne.setExposureAuto();
 		cameraOne.setBrightness(Settings.visionImageBrightness);
 		cameraOne.setFPS(Settings.visionCameraFPS);

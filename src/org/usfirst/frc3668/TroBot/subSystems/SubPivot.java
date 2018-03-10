@@ -15,14 +15,14 @@ public class SubPivot extends Subsystem {
 
 	public double getEncoders() {
 		double retVal = 0;
-		double intakePivot1Tics = -1 * RobotMap.pivot1Encoder.get();
-		double intakePivot2Tics = -1 * RobotMap.pivot2Encoder.get();
-		if (intakePivot1Tics < Settings.chassisEncoderDeadValueThreshold) {
-			retVal = intakePivot2Tics;
-		} else if (intakePivot2Tics < Settings.chassisEncoderDeadValueThreshold) {
-			retVal = intakePivot1Tics;
+		double pivot1Tics = -1 * RobotMap.pivot1Encoder.get();
+		double pivot2Tics = -1 * RobotMap.pivot2Encoder.get();
+		if (pivot1Tics < Settings.chassisEncoderDeadValueThreshold) {
+			retVal = pivot2Tics;
+		} else if (pivot2Tics < Settings.chassisEncoderDeadValueThreshold) {
+			retVal = pivot1Tics;
 		} else {
-			retVal = (intakePivot1Tics + intakePivot2Tics) / 2;
+			retVal = (pivot1Tics + pivot2Tics) / 2;
 		}
 		return retVal;
 	}
@@ -30,6 +30,7 @@ public class SubPivot extends Subsystem {
 	public void resetEncoders() {
 		RobotMap.pivot1Encoder.reset();
 		RobotMap.pivot2Encoder.reset();
+		System.err.println("Reset Pivot Encoder");
 	}
 
 	public boolean getForwardLimitSwitch() { //Talon inverted, need to change which switch is which

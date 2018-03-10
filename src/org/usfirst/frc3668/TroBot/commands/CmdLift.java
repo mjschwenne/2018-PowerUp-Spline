@@ -35,8 +35,8 @@ public class CmdLift extends Command {
 		} else {
 			throttle = Settings.liftDownSpeed;
 		}
-		System.err.println("Curr Tics: " + currentTics + " Target Tics: " + _targetTics + " throttle: " + throttle
-				+ " Pivot Status: " + Robot.pivotStatus);
+		//System.err.println("Curr Tics: " + currentTics + " Target Tics: " + _targetTics + " throttle: " + throttle
+		//		+ " Pivot Status: " + Robot.pivotStatus);
 		Robot.subLift.lift(throttle);
 		if (currentTics > _targetTics - Settings.liftWindow && currentTics < _targetTics + Settings.liftWindow) {
 			_isFinished = true;

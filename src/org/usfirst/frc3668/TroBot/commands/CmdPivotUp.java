@@ -23,8 +23,8 @@ public class CmdPivotUp extends Command {
 	protected void initialize() {
 		_isFinished = false;
 		Robot.subPivot.getPivotStatus();
-		System.err.println("Init: UP Pivot Status: " + Robot.pivotStatus + "  Frw Limit: " + Robot.subLift.getLiftForwardLimit() + " Rev Limit: "
-				+ Robot.subPivot.getReverseLimitSwitch());
+		//System.err.println("Init: UP Pivot Status: " + Robot.pivotStatus + "  Frw Limit: " + Robot.subLift.getLiftForwardLimit() + " Rev Limit: "
+		//		+ Robot.subPivot.getReverseLimitSwitch());
 	}
 
 	protected void execute() {
@@ -43,9 +43,9 @@ public class CmdPivotUp extends Command {
 			_isFinished = true;
 		}
 		
-		System.err.println("currentTics: " + currentTics + " lift Tics: " + Robot.subLift.getEncoderTics()
-		+ " Throttle: " + throttle + " Pivot Status: " + Robot.pivotStatus + " Frw Limit: " + Robot.subPivot.getForwardLimitSwitch() + " Rev Limit: "
-		+ Robot.subPivot.getReverseLimitSwitch() + " is Finished: " + _isFinished);
+		//System.err.println("currentTics: " + currentTics + " lift Tics: " + Robot.subLift.getEncoderTics()
+		//+ " Throttle: " + throttle + " Pivot Status: " + Robot.pivotStatus + " Frw Limit: " + Robot.subPivot.getForwardLimitSwitch() + " Rev Limit: "
+		//+ Robot.subPivot.getReverseLimitSwitch() + " is Finished: " + _isFinished);
 		
 		//if (Robot.subPivot.getReverseLimitSwitch()) {
 		//	_isFinished = true;
@@ -59,8 +59,8 @@ public class CmdPivotUp extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		System.err.println("UP pivot is done" + "  Frw Limit: " + Robot.subPivot.getForwardLimitSwitch() + " Rev Limit: " + Robot.subPivot.getReverseLimitSwitch());
-		Robot.pivotStatus = Settings.pivotStatus.isDown;
+		System.err.println("UP pivot done" + " Rev Limit: " + Robot.subPivot.getReverseLimitSwitch()
+		+ "  Frw Limit: " + Robot.subPivot.getForwardLimitSwitch() + "\t Pivot Status: " + Robot.pivotStatus + "\t encoder: " + Robot.subPivot.getEncoders());
 		Robot.subPivot.pivot(0);
 	}
 

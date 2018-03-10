@@ -20,8 +20,8 @@ public class CmdPivotDown extends Command {
 	protected void initialize() {
 		_isFinished = false;
 		Robot.subPivot.getPivotStatus();
-		System.err.println("Init: DOWN Pivot Status: " + Robot.pivotStatus + " Rev Limit: "
-				+ Robot.subPivot.getReverseLimitSwitch() + "  Frw Limit: " + Robot.subLift.getLiftForwardLimit());
+		//System.err.println("Init: DOWN Pivot Status: " + Robot.pivotStatus + " Rev Limit: "
+		//		+ Robot.subPivot.getReverseLimitSwitch() + "  Frw Limit: " + Robot.subLift.getLiftForwardLimit());
 	}
 
 	protected void execute() {
@@ -36,9 +36,9 @@ public class CmdPivotDown extends Command {
 
 		Robot.subPivot.pivot(throttle);
 		
-		System.err.println("currentTics: " + currentTics + " lift Tics: " + Robot.subLift.getEncoderTics()
-		+ " Throttle: " + throttle + " Pivot Status: " + Robot.pivotStatus + " Frw Limit: " + Robot.subPivot.getForwardLimitSwitch() + " Rev Limit: "
-		+ Robot.subPivot.getReverseLimitSwitch());
+		//System.err.println("currentTics: " + currentTics + " lift Tics: " + Robot.subLift.getEncoderTics()
+		//+ " Throttle: " + throttle + " Pivot Status: " + Robot.pivotStatus + " Frw Limit: " + Robot.subPivot.getForwardLimitSwitch() + " Rev Limit: "
+		//+ Robot.subPivot.getReverseLimitSwitch());
 		
 		if(Robot.pivotStatus == Settings.pivotStatus.isDown) {
 			_isFinished = true;
@@ -57,9 +57,8 @@ public class CmdPivotDown extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		System.err.println("DOWN pivot done" + " Rev Limit: " + Robot.subPivot.getReverseLimitSwitch()
-				+ "  Frw Limit: " + Robot.subPivot.getForwardLimitSwitch());
-		Robot.pivotStatus = Settings.pivotStatus.isUp;
-		// Robot.subIntake.pivotIntake(0);
+				+ "  Frw Limit: " + Robot.subPivot.getForwardLimitSwitch() + "\t Pivot Status: " + Robot.pivotStatus + "\t encoder: " + Robot.subPivot.getEncoders());
+		Robot.subPivot.pivot(0);
 	}
 
 	// Called when another command which requires one or more of the same

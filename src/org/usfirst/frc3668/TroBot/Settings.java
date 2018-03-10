@@ -1,6 +1,6 @@
 package org.usfirst.frc3668.TroBot;
 
-public class Settings {
+public class Settings {	
 	// Chassis Settings
 	public static final int chassisRightDrive1CanID = 1;
 	public static final int chassisRightDrive2CanID = 2;
@@ -42,7 +42,7 @@ public class Settings {
 	public static final double intakeIn = -0.5;
 	public static final double intakeInOffWheel = 0;
 	public static final double intakeAutoScaleOut = 1;
-	public static final double intakeAutoSwitchOut = 0.75;
+	public static final double intakeAutoSwitchOut = 0.6;
 	
 	// Pivot Settings
 	public static enum pivotStatus {
@@ -65,6 +65,7 @@ public class Settings {
 	public static final double pivotEncoderWindow = 20;
 	public static final int pivotTicsPerRevolution = 1988;// 497 * 4 (gear ratio)
 	public static final int pivotGravityFallThreshold = 497;
+	
 	// Lift Settings
 	public static final int liftMotorCanID = 9;
 	public static final int liftMaxCurrentLimit = chassisDriveMaxCurrentLimit;
@@ -87,6 +88,7 @@ public class Settings {
 	public static final double liftTeleDownSpeed = 0.5;
 	public static final int liftWindow = 5;
 	public static final double liftJoyScalar = 0.5;
+	
 	// Climb Settings
 	public static final int climbMotor1CanID = 10;
 	public static final int climbMotor2CanID = 11;
@@ -147,26 +149,27 @@ public class Settings {
 	public static final double autoLineDistance = 144;
 	public static final double autoTurnSpeed = 0.27; // 0.18 for carpet, 0.12 for tile
 	public static final double autoPivotToBumper = 30; // Not really, added a buffer
-	public static final double autoApproachSwitchLeft = 20;
-	public static final double autoApproachSwitchRight = 7;
+	public static final double autoApproachSwitchLeft = 26;
+	public static final double autoApproachSwitchRight = 17;
 	public static final double autoAngleToSwitchLeft = -45;
 	public static final double autoAngleToSwitchRight = 39.5;
 	public static final double autoDiagToSwitchLeft = 88.75;
 	public static final double autoDiagToSwitchRight = 82.5;
-	public static final double autoWallToScaleDist =  216.235;// 201.235;
+	public static final double autoBehindSwitchDist =  216.235;
 	public static final double autoTurnToFaceWall = 90;
 	public static final double autoDrivePastSwitch = 205.5;// 144;
 	public static final double autoTurnToFaceScale = 0;
 	public static final double autoDriveToScale = 88.765;// 12;
 	public static final double autoTurnToPlaceInScale = -90;
-	public static final double autoStraightToScale = 260; //297.5;
+	public static final double autoStraightToScale = 280; //297.5;
 	public static final double autoStraightTurnToScale = 45;//90;
 	public static final double autoForwardToBeCloseToScale = 14.57;
 	public static final boolean autoAllyToScale = false;
 	public static final boolean autoAllyNotToScale = true;
 	
-	public static int visionCameraFPS = 10;
-	public static int visionImageWidthPixels = 640;
-	public static int visionImageHeightPixels = 320;
+	public static int visionCameraFPS = 7;
+	public static int visionCameraID = 0;
+	public static int visionImageWidthPixels = 480;
+	public static int visionImageHeightPixels = 240;
 	public static int visionImageBrightness = 50;
 }

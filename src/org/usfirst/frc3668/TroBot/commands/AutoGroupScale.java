@@ -54,7 +54,7 @@ public class AutoGroupScale extends CommandGroup {
 			//		new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToPlaceInScale));
 			ApproachScale.addParallel(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToScale));
 
-			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoWallToScaleDist));
+			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoBehindSwitchDist));
 			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToFaceWall));
 			addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoTurnToFaceWall, Settings.autoCruiseSpeed,
 					Settings.autoDrivePastSwitch));

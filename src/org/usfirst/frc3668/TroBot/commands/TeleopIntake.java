@@ -37,7 +37,7 @@ public class TeleopIntake extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		System.err.println("Limit: " + Robot.subIntake.getLimit() + " Diff Throttle " + _diffThrottle);
+		//System.err.println("Limit: " + Robot.subIntake.getLimit() + " Diff Throttle " + _diffThrottle);
 		
 		if (_diffThrottle == true) {
 			Robot.subIntake.intakeMan(_leftThrottle, _rightThrottle);
