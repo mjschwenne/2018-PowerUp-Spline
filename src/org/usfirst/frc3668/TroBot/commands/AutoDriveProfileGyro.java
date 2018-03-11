@@ -18,6 +18,7 @@ public class AutoDriveProfileGyro extends Command{
 	private double _distanceSignum;
 	private double _absDistance;
 	private double _abortTime;
+	private double _endTime;
 	private MotionProfiler mp;
 	private PID pid = new PID(Settings.profileDriveKp, Settings.profileDriveKi, Settings.profileDriveKd);
 
@@ -52,6 +53,7 @@ public class AutoDriveProfileGyro extends Command{
 		mp = new MotionProfiler(_absDistance, Settings.profileInitVelocity, _cruiseSpeed, Settings.profileDriveAccelration);
 		Robot.subChassis.resetBothEncoders();
 		_abortTime = _absDistance / _cruiseSpeed;
+		_endTime = mp._stopTime * Settings.profileEndTimeScalar;
 		System.err.println(String.format(
 				"Projected Accelration Time: %1$.3f \tProjected Cruise Time: %2$.3f \t Projected Deccelration Time: %3$.3f \t Projected Length of Drive: %4$.3f \t Given Distance: %5$.3f \t Abort: %6$.3f",
 				mp._accelTime, mp._cruiseTime, mp._deccelTime, mp._stopTime, _distance, _abortTime));
@@ -91,6 +93,10 @@ public class AutoDriveProfileGyro extends Command{
 //		}
 		if ( encoderVal < _absDistance + Settings.profileMovementThreshold && encoderVal > _absDistance - Settings.profileMovementThreshold) {
 			System.err.println("At Distance");
+			_isFinished = true;
+		}
+		
+		if(deltaTime > _endTime) {
 			_isFinished = true;
 		}
 	}

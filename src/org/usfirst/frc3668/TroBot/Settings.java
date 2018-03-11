@@ -83,9 +83,9 @@ public class Settings {
 	public static final int liftPivotLimit = 100;
 	public static final double liftCalibrationSpeed = -0.1;
 	public static final double liftUpSpeed = -1;
-	public static final double liftDownSpeed = 0.5;
+	public static final double liftDownSpeed = 0.73;
 	public static final double liftTeleUpSpeed = -1;
-	public static final double liftTeleDownSpeed = 0.5;
+	public static final double liftTeleDownSpeed = 0.73;
 	public static final int liftWindow = 5;
 	public static final double liftJoyScalar = 0.5;
 	
@@ -104,7 +104,7 @@ public class Settings {
 	public static final String profileLogName = "//media//sda1//motionProfile";
 	public static final double profileAdditionLoopNumber = 50;
 	public static final String profileLogFileExtension = ".txt";
-	public static final double profileDriveAccelration = 45; // inches/sec/sec
+	public static final double profileDriveAccelration = 47; // inches/sec/sec
 	public static final double profileDriveKp = 0.1;
 	public static final double profileDriveKi = 0.002;
 	public static final double profileDriveKd = 0.0009;
@@ -114,6 +114,7 @@ public class Settings {
 	public static final double profileAnglarAccelration = 10;
 	public static final double profileInitVelocity = 0.0;
 	public static final double profileMovementThreshold = 0.75;
+	public static final double profileEndTimeScalar = 1.3;
 
 	// Interface Settings
 	public static final int joyDrivePort = 0;
@@ -149,7 +150,7 @@ public class Settings {
 	public static final double autoLineDistance = 144;
 	public static final double autoTurnSpeed = 0.27; // 0.18 for carpet, 0.12 for tile
 	public static final double autoPivotToBumper = 30; // Not really, added a buffer
-	public static final double autoApproachSwitchLeft = 26;
+	public static final double autoApproachSwitchLeft = 22;
 	public static final double autoApproachSwitchRight = 17;
 	public static final double autoAngleToSwitchLeft = -45;
 	public static final double autoAngleToSwitchRight = 39.5;
@@ -168,7 +169,8 @@ public class Settings {
 	public static final boolean autoAllyNotToScale = true;
 	
 	public static int visionCameraFPS = 7;
-	public static int visionCameraID = 0;
+	public static int visionCubeCameraID = 0;
+	public static int visionBackCameraID = 1;
 	public static int visionImageWidthPixels = 480;
 	public static int visionImageHeightPixels = 240;
 	public static int visionImageBrightness = 50;

@@ -13,6 +13,7 @@ import org.usfirst.frc3668.TroBot.subSystems.SubLift;
 import org.usfirst.frc3668.TroBot.subSystems.SubPivot;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -37,9 +38,11 @@ public class Robot extends TimedRobot {
 	public static final OI oi = new OI();
 
 	public static boolean isDriveInverted = true;
+	public static boolean isCameraReversed;
 	public static pivotStatus pivotStatus = Settings.pivotStatus.isUnknown;
 	public static String gameData;
-	public static UsbCamera cameraOne;
+	public static UsbCamera cubeCamera;
+	public static UsbCamera backCamera;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -54,11 +57,15 @@ public class Robot extends TimedRobot {
 		subClimb.disengageClimber();
 		subLift.resetEncoder();
 		
-		cameraOne = CameraServer.getInstance().startAutomaticCapture("Cube Camera", Settings.visionCameraID);
-		cameraOne.setExposureAuto();
-		cameraOne.setBrightness(Settings.visionImageBrightness);
-		cameraOne.setFPS(Settings.visionCameraFPS);
-		cameraOne.setResolution(Settings.visionImageWidthPixels, Settings.visionImageHeightPixels);
+		cubeCamera = CameraServer.getInstance().startAutomaticCapture("Cube Camera", Settings.visionCubeCameraID);
+		cubeCamera.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
+		cubeCamera.setExposureAuto();
+		cubeCamera.setBrightness(Settings.visionImageBrightness);
+		
+		backCamera = CameraServer.getInstance().startAutomaticCapture("Back Camera", Settings.visionBackCameraID);
+		backCamera.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
+		backCamera.setExposureAuto();
+		backCamera.setBrightness(Settings.visionImageBrightness);
 		
 		smartDashboard = new SmartDashboard();
 
