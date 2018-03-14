@@ -11,32 +11,43 @@ public class CmdLift extends Command {
 	double _throttle;
 	double _targetTics;
 	double _deltaSignum;
+	double _initTics;
 
 	public CmdLift(double throttle, double targetTicks) {
 		_throttle = throttle;
 		_targetTics = targetTicks;
+
 		requires(Robot.subLift);
 	}
 
 	@Override
 	protected void initialize() {
 		_isFinished = false;
-		double initTics = Robot.subLift.getEncoderTics();
-		_deltaSignum = Math.signum(_targetTics - initTics);
+		_initTics = Robot.subLift.getEncoderTics();
+		_deltaSignum = Math.signum(_targetTics - _initTics);
 	}
 
 	@Override
 	protected void execute() {
 		double currentTics = Robot.subLift.getEncoderTics();
 		double throttle = 0;
-		_deltaSignum = Math.signum(_targetTics - currentTics);
+		double deltaTics = _targetTics - currentTics;
+		_deltaSignum = Math.signum(deltaTics);
 		if (_deltaSignum > 0) {
 			throttle = Settings.liftUpSpeed;
 		} else {
 			throttle = Settings.liftDownSpeed;
 		}
-		//System.err.println("Curr Tics: " + currentTics + " Target Tics: " + _targetTics + " throttle: " + throttle
-		//		+ " Pivot Status: " + Robot.pivotStatus);
+		if (Math.abs(deltaTics) <= Settings.slowLiftThresh) {
+			throttle = throttle *  Settings.slowConstantForLift;
+		}
+		else if (Math.abs(_initTics - currentTics)<= Settings.slowLiftThresh){
+			throttle = throttle * Settings.slowLiftThresh;
+		}
+		
+		// System.err.println("Curr Tics: " + currentTics + " Target Tics: " +
+		// _targetTics + " throttle: " + throttle
+		// + " Pivot Status: " + Robot.pivotStatus);
 		Robot.subLift.lift(throttle);
 		if (currentTics > _targetTics - Settings.liftWindow && currentTics < _targetTics + Settings.liftWindow) {
 			_isFinished = true;

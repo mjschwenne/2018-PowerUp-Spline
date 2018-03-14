@@ -75,6 +75,8 @@ public class Settings {
 	public static final double liftEncoderTicsPerInch = (3.25 * Math.PI) / 1440;
 	public static final double liftMaxHight = 45;
 	public static final int liftMaxTics = 2203;//(int) (liftMaxHight / liftEncoderTicsPerInch);
+	public static final int slowLiftThresh = 210;
+	public static final double slowConstantForLift = 0.6;
 	public static final double liftSwitchHeight = 10;
 	public static final int liftTicsToSwitch = 1025;//(int) (liftSwitchHeight / liftEncoderTicsPerInch);
 	public static final double liftScaleHeight = 40;
