@@ -41,8 +41,8 @@ public class Robot extends TimedRobot {
 	public static boolean isCameraReversed;
 	public static pivotStatus pivotStatus = Settings.pivotStatus.isUnknown;
 	public static String gameData;
-	public static UsbCamera cubeCamera;
-	public static UsbCamera backCamera;
+	public static UsbCamera cam0;
+	public static UsbCamera cam1;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -57,15 +57,17 @@ public class Robot extends TimedRobot {
 		subClimb.disengageClimber();
 		subLift.resetEncoder();
 		
-		cubeCamera = CameraServer.getInstance().startAutomaticCapture("cam0", Settings.visionCubeCameraID);
-		cubeCamera.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
-		cubeCamera.setExposureAuto();
-		cubeCamera.setBrightness(Settings.visionImageBrightness);
+		cam0 = CameraServer.getInstance().startAutomaticCapture("cam1", Settings.visionCubeCameraID);
+		cam1 = CameraServer.getInstance().startAutomaticCapture(Settings.visionCubeCameraID);
 		
-		backCamera = CameraServer.getInstance().startAutomaticCapture("cam1", Settings.visionBackCameraID);
-		backCamera.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
-		backCamera.setExposureAuto();
-		backCamera.setBrightness(Settings.visionImageBrightness);
+		cam0.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
+		cam0.setExposureAuto();
+		cam0.setBrightness(Settings.visionImageBrightness);
+		
+//		backCamera = CameraServer.getInstance().startAutomaticCapture("cam1", Settings.visionBackCameraID);
+//		backCamera.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
+//		backCamera.setExposureAuto();
+//		backCamera.setBrightness(Settings.visionImageBrightness);
 		
 		smartDashboard = new SmartDashboard();
 

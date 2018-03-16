@@ -39,7 +39,7 @@ public class Settings {
 	public static final int intakeMaxCurrentTimeout = chassisDriveMaxCurrentTimeout;
 	public static final double intakeOutSlow = 0.5;
 	public static final double intakeOutFast = 1;
-	public static final double intakeIn = -0.5;
+	public static final double intakeIn = -0.75;
 	public static final double intakeInOffWheel = 0;
 	public static final double intakeAutoScaleOut = 1;
 	public static final double intakeAutoSwitchOut = 0.6;
@@ -106,7 +106,7 @@ public class Settings {
 	public static final String profileLogName = "//media//sda1//motionProfile";
 	public static final double profileAdditionLoopNumber = 50;
 	public static final String profileLogFileExtension = ".txt";
-	public static final double profileDriveAccelration = 47; // inches/sec/sec
+	public static final double profileDriveAccelration = 55; // inches/sec/sec
 	public static final double profileDriveKp = 0.1;
 	public static final double profileDriveKi = 0.002;
 	public static final double profileDriveKd = 0.0009;
@@ -152,13 +152,13 @@ public class Settings {
 	public static final double autoLineDistance = 144;
 	public static final double autoTurnSpeed = 0.27; // 0.18 for carpet, 0.12 for tile
 	public static final double autoPivotToBumper = 30; // Not really, added a buffer
-	public static final double autoApproachSwitchLeft = 22;
-	public static final double autoApproachSwitchRight = 17;
+	public static final double autoApproachSwitchLeft = 21;
+	public static final double autoApproachSwitchRight = 16;
 	public static final double autoAngleToSwitchLeft = -45;
 	public static final double autoAngleToSwitchRight = 39.5;
 	public static final double autoDiagToSwitchLeft = 88.75;
 	public static final double autoDiagToSwitchRight = 82.5;
-	public static final double autoBehindSwitchDist =  216.235;
+	public static final double autoBehindSwitchDist =  224;//.235;
 	public static final double autoTurnToFaceWall = 90;
 	public static final double autoDrivePastSwitch = 205.5;// 144;
 	public static final double autoTurnToFaceScale = 0;
@@ -171,8 +171,8 @@ public class Settings {
 	public static final boolean autoAllyNotToScale = true;
 	
 	public static int visionCameraFPS = 7;
-	public static int visionCubeCameraID = 0;
-	public static int visionBackCameraID = 1;
+	public static int visionCubeCameraID = 1;
+	public static int visionBackCameraID = 0;
 	public static int visionImageWidthPixels = 480;
 	public static int visionImageHeightPixels = 240;
 	public static int visionImageBrightness = 50;
