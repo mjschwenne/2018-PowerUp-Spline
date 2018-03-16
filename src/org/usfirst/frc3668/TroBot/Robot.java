@@ -57,17 +57,17 @@ public class Robot extends TimedRobot {
 		subClimb.disengageClimber();
 		subLift.resetEncoder();
 		
-		cam0 = CameraServer.getInstance().startAutomaticCapture("cam1", Settings.visionCubeCameraID);
-		cam1 = CameraServer.getInstance().startAutomaticCapture(Settings.visionCubeCameraID);
+		cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", Settings.visionCubeCameraID);
 		
 		cam0.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
 		cam0.setExposureAuto();
 		cam0.setBrightness(Settings.visionImageBrightness);
 		
-//		backCamera = CameraServer.getInstance().startAutomaticCapture("cam1", Settings.visionBackCameraID);
-//		backCamera.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
-//		backCamera.setExposureAuto();
-//		backCamera.setBrightness(Settings.visionImageBrightness);
+		cam1 = CameraServer.getInstance().startAutomaticCapture("cam1", Settings.visionBackCameraID);
+		
+		cam1.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
+		cam1.setExposureAuto();
+		cam1.setBrightness(Settings.visionImageBrightness);
 		
 		smartDashboard = new SmartDashboard();
 

@@ -175,5 +175,7 @@ public class Settings {
 	public static int visionBackCameraID = 0;
 	public static int visionImageWidthPixels = 480;
 	public static int visionImageHeightPixels = 240;
+	public static int visionHalfImageWidthPixels = 240;
+	public static int visionHalfImageHeightPixels = 120;
 	public static int visionImageBrightness = 50;
 }
