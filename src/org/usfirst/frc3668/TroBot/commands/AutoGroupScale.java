@@ -33,7 +33,7 @@ public class AutoGroupScale extends CommandGroup {
 			CommandGroup ApproachScale = new CommandGroup();
 			//ApproachScale.addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoStraightTurnToScale,
 			//		Settings.autoCruiseSpeed, Settings.autoForwardToBeCloseToScale));
-			ApproachScale.addParallel(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToScale));
+			ApproachScale.addParallel(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToMaxScaleAuto));
 
 			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoStraightToScale));
 			//addParallel(new CmdCalibrateLift());

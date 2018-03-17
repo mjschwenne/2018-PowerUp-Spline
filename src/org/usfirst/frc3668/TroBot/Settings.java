@@ -81,6 +81,7 @@ public class Settings {
 	public static final int liftTicsToSwitch = 1025;//(int) (liftSwitchHeight / liftEncoderTicsPerInch);
 	public static final double liftScaleHeight = 40;
 	public static final int liftTicsToScale = 1700;//(int) (liftScaleHeight / liftEncoderTicsPerInch);
+	public static final int liftTicsToMaxScaleAuto = liftMaxTics - 100;
 	public static final int liftDownHieghtLimit = 1025;
 	public static final int liftPivotLimit = 100;
 	public static final double liftCalibrationSpeed = -0.1;
@@ -147,7 +148,7 @@ public class Settings {
 		left, center, right, error
 	}
 
-	public static final double autoEjectCubeTime = 3;
+	public static final double autoEjectCubeTime = 1.5;
 	public static final double autoCruiseSpeed = 145;
 	public static final double autoLineDistance = 144;
 	public static final double autoTurnSpeed = 0.27; // 0.18 for carpet, 0.12 for tile
@@ -164,7 +165,7 @@ public class Settings {
 	public static final double autoTurnToFaceScale = 0;
 	public static final double autoDriveToScale = 88.765;// 12;
 	public static final double autoTurnToPlaceInScale = -90;
-	public static final double autoStraightToScale = 280; //297.5;
+	public static final double autoStraightToScale = 283; //297.5;
 	public static final double autoStraightTurnToScale = 45;//90;
 	public static final double autoForwardToBeCloseToScale = 14.57;
 	public static final boolean autoAllyToScale = false;
