@@ -39,6 +39,8 @@ public class Robot extends TimedRobot {
 
 	public static boolean isDriveInverted = true;
 	public static boolean isCameraReversed;
+	public static boolean cam0NeedReset = false;
+	public static boolean cam1NeedReset = false;
 	public static pivotStatus pivotStatus = Settings.pivotStatus.isUnknown;
 	public static String gameData;
 	public static UsbCamera cam0;
@@ -52,23 +54,51 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		RobotMap.init();
 
+		cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", Settings.visionCubeCameraID);
+
+		cam0.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels,
+				Settings.visionCameraFPS);
+		cam0.setExposureAuto();
+		cam0.setBrightness(Settings.visionImageBrightness);
+
+		cam1 = CameraServer.getInstance().startAutomaticCapture("cam1", Settings.visionBackCameraID);
+
+		cam1.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels,
+				Settings.visionCameraFPS);
+		cam1.setExposureAuto();
+		cam1.setBrightness(Settings.visionImageBrightness);
+
+		if (!cam0.isConnected()) {
+			try {
+				Thread.sleep(Settings.visionResetWaitTime);
+			} catch (InterruptedException e) {
+				e.printStackTrace(System.err);
+			}
+			cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", Settings.visionBackCameraID);
+			cam0.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels,
+					Settings.visionCameraFPS);
+			cam0.setExposureAuto();
+			cam0.setBrightness(Settings.visionImageBrightness);
+		}
+
+		if (!cam1.isConnected()) {
+			try {
+				Thread.sleep(Settings.visionResetWaitTime);
+			} catch (InterruptedException e) {
+				e.printStackTrace(System.err);
+			}
+			cam1 = CameraServer.getInstance().startAutomaticCapture("cam1", Settings.visionBackCameraID);
+			cam1.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels,
+					Settings.visionCameraFPS);
+			cam1.setExposureAuto();
+			cam1.setBrightness(Settings.visionImageBrightness);
+		}
+
 		subChassis.resetNavx();
 		subChassis.resetBothEncoders();
 		subClimb.disengageClimber();
 		subLift.resetEncoder();
-		
-		cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", Settings.visionCubeCameraID);
-		
-		cam0.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
-		cam0.setExposureAuto();
-		cam0.setBrightness(Settings.visionImageBrightness);
-		
-		cam1 = CameraServer.getInstance().startAutomaticCapture("cam1", Settings.visionBackCameraID);
-		
-		cam1.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels, Settings.visionImageHeightPixels, Settings.visionCameraFPS);
-		cam1.setExposureAuto();
-		cam1.setBrightness(Settings.visionImageBrightness);
-		
+
 		smartDashboard = new SmartDashboard();
 
 		autoPositionChooser = new SendableChooser<autoPosition>();
@@ -109,29 +139,24 @@ public class Robot extends TimedRobot {
 
 		switch (selectedPosition) {
 		case center:
-			if(selectedAction == autoAction.autoSwitch) {
-				autonomousCommand = new AutoGroupSwitch();	
-			}
-			else {
+			if (selectedAction == autoAction.autoSwitch) {
+				autonomousCommand = new AutoGroupSwitch();
+			} else {
 				autonomousCommand = null;
 			}
 			break;
 		default:
-			if(selectedAction == autoAction.autoScale) {
+			if (selectedAction == autoAction.autoScale) {
 				autonomousCommand = new AutoGroupScale(selectedPosition, Settings.autoAllyNotToScale);
-			}
-			else if(selectedAction == autoAction.autoSafeScale) {
+			} else if (selectedAction == autoAction.autoSafeScale) {
 				autonomousCommand = new AutoGroupScale(selectedPosition, Settings.autoAllyToScale);
-			}
-			else if(selectedAction == autoAction.autoLine) {
+			} else if (selectedAction == autoAction.autoLine) {
 				autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance);
-			}
-			else {
+			} else {
 				autonomousCommand = null;
 			}
 			break;
-		
-		
+
 		}
 
 		if (autonomousCommand != null)

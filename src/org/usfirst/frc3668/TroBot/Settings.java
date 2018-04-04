@@ -179,4 +179,5 @@ public class Settings {
 	public static int visionHalfImageWidthPixels = 240;
 	public static int visionHalfImageHeightPixels = 120;
 	public static int visionImageBrightness = 50;
+	public static long visionResetWaitTime = 500;
 }
