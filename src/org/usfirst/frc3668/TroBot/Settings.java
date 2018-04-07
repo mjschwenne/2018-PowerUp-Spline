@@ -153,7 +153,9 @@ public class Settings {
 	public static final double autoLineDistance = 144;
 	public static final double autoTurnSpeed = 0.27; // 0.18 for carpet, 0.12 for tile
 	public static final double autoPivotToBumper = 30; // Not really, added a buffer
-	public static final double autoApproachSwitchLeft = 21;
+	public static final double autoLeaveWallRight = 30;
+	public static final double autoLeaveWallLeft = 24;
+	public static final double autoApproachSwitchLeft = 27;
 	public static final double autoApproachSwitchRight = 16;
 	public static final double autoAngleToSwitchLeft = -45;
 	public static final double autoAngleToSwitchRight = 39.5;
@@ -170,7 +172,7 @@ public class Settings {
 	public static final double autoForwardToBeCloseToScale = 14.57;
 	public static final boolean autoAllyToScale = false;
 	public static final boolean autoAllyNotToScale = true;
-	
+
 	public static int visionCameraFPS = 7;
 	public static int visionCubeCameraID = 1;
 	public static int visionBackCameraID = 0;

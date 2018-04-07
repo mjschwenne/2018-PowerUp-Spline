@@ -9,15 +9,18 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoGroupSwitch extends CommandGroup {
 
 	public AutoGroupSwitch() {
+		double leaveWallDist = 0;
 		double switchAngle = 0;
 		double switchDistance = 0;
 		double approachSwitch = 0;
 		boolean goodData = true;
 		if (Robot.gameData.charAt(0) == 'L') {
+			leaveWallDist = Settings.autoLeaveWallLeft;
 			switchAngle = Settings.autoAngleToSwitchLeft;
 			switchDistance = Settings.autoDiagToSwitchLeft;
 			approachSwitch = Settings.autoApproachSwitchLeft;
 		} else if (Robot.gameData.charAt(0) == 'R') {
+			leaveWallDist = Settings.autoLeaveWallRight;
 			switchAngle = Settings.autoAngleToSwitchRight;
 			switchDistance = Settings.autoDiagToSwitchRight;
 			approachSwitch = Settings.autoApproachSwitchRight;
@@ -27,7 +30,7 @@ public class AutoGroupSwitch extends CommandGroup {
 			switchDistance = Settings.autoDiagToSwitchLeft;
 		}
 
-		addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoPivotToBumper));
+		addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, leaveWallDist));
 		addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, switchAngle));
 		addSequential(new AutoDriveProfileGyro(switchAngle, Settings.autoCruiseSpeed, switchDistance));
 		addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, 0));
