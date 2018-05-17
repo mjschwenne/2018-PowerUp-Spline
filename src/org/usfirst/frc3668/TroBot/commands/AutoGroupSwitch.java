@@ -26,8 +26,10 @@ public class AutoGroupSwitch extends CommandGroup {
 			approachSwitch = Settings.autoApproachSwitchRight;
 		} else {
 			goodData = false;
+			leaveWallDist = Settings.autoLeaveWallLeft;
 			switchAngle = Settings.autoAngleToSwitchLeft;
 			switchDistance = Settings.autoDiagToSwitchLeft;
+			approachSwitch = Settings.autoApproachSwitchLeft;
 		}
 
 		addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, leaveWallDist));

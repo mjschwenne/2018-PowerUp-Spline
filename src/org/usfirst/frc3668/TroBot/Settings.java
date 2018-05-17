@@ -161,7 +161,7 @@ public class Settings {
 	public static final double autoAngleToSwitchRight = 39.5;
 	public static final double autoDiagToSwitchLeft = 88.75;
 	public static final double autoDiagToSwitchRight = 82.5;
-	public static final double autoBehindSwitchDist =  224;//.235;
+	public static final double autoBehindSwitchDist =  230;//.235;
 	public static final double autoTurnToFaceWall = 90;
 	public static final double autoDrivePastSwitch = 205.5;// 144;
 	public static final double autoTurnToFaceScale = 0;
