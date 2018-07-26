@@ -14,6 +14,9 @@ import org.usfirst.frc3668.TroBot.subSystems.SubPivot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode.PixelFormat;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -43,9 +46,16 @@ public class Robot extends TimedRobot {
 	public static boolean cam1NeedReset = false;
 	public static pivotStatus pivotStatus = Settings.pivotStatus.isUnknown;
 	public static String gameData;
-	// public static UsbCamera cam0;
+	public static UsbCamera cam0;
 	public static UsbCamera cam1;
-
+	public static NetworkTableInstance inst = NetworkTableInstance.getDefault();
+	public static NetworkTable table = inst.getTable("limelight");
+	public static NetworkTableEntry tx = table.getEntry("tx");
+	public static NetworkTableEntry ty = table.getEntry("ty");
+	public static NetworkTableEntry ta = table.getEntry("ta");
+	public static NetworkTableEntry tv = table.getEntry("tv");
+	public static NetworkTableEntry ts = table.getEntry("ts");
+	public static NetworkTableEntry tl = table.getEntry("tl");
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -53,15 +63,15 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-
-		// cam0 = CameraServer.getInstance().startAutomaticCapture("cam0",
-		// Settings.visionCubeCameraID);
-		//
-		// cam0.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels,
-		// Settings.visionImageHeightPixels,
-		// Settings.visionCameraFPS);
-		// cam0.setExposureAuto();
-		// cam0.setBrightness(Settings.visionImageBrightness);
+		
+		 cam0 = CameraServer.getInstance().startAutomaticCapture("cam0",
+		 Settings.visionCubeCameraID);
+		
+		 cam0.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels,
+		 Settings.visionImageHeightPixels,
+		 Settings.visionCameraFPS);
+		 cam0.setExposureAuto();
+		 cam0.setBrightness(Settings.visionImageBrightness);
 
 		cam1 = CameraServer.getInstance().startAutomaticCapture("cam1", Settings.visionBackCameraID);
 

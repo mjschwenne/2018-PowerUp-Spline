@@ -3,6 +3,7 @@ package org.usfirst.frc3668.TroBot.subSystems;
 import org.usfirst.frc3668.TroBot.Robot;
 import org.usfirst.frc3668.TroBot.RobotMap;
 import org.usfirst.frc3668.TroBot.Settings;
+import org.usfirst.frc3668.TroBot.commands.carmaData;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -63,7 +64,7 @@ public class SubPivot extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new CmdCameraManager());
+        setDefaultCommand(new carmaData());
     }
 }
 
