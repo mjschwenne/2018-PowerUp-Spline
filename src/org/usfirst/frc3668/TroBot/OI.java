@@ -8,6 +8,7 @@ import org.usfirst.frc3668.TroBot.commands.TeleopClimb;
 import org.usfirst.frc3668.TroBot.commands.TeleopIntake;
 import org.usfirst.frc3668.TroBot.commands.TeleopInvertDrive;
 import org.usfirst.frc3668.TroBot.commands.TeleopLift;
+import org.usfirst.frc3668.TroBot.commands.cmdLimeLightIntake;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -43,7 +44,7 @@ public class OI {
     
     public Button liftUp = new JoystickButton(joyArt, Settings.joyArtLiftUpButton);
     public Button liftDown = new JoystickButton(joyArt, Settings.joyArtLiftDownButton);
-    
+    public Button limeLightIntake = new JoystickButton(joyArt, Settings.joyArtlimeLightIntake);
     
     public OI() {
     	invertDrive.whenPressed(new TeleopInvertDrive());
@@ -64,6 +65,8 @@ public class OI {
     	
     	liftUp.whileHeld(new TeleopLift(Settings.liftTeleUpSpeed));
     	liftDown.whileHeld(new TeleopLift(Settings.liftTeleDownSpeed));
+    	
+    	limeLightIntake.whileHeld(new cmdLimeLightIntake());
     	
     	enableClimb.whileHeld(new TeleopClimb());
     }

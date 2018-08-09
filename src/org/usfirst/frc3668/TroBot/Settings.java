@@ -129,6 +129,7 @@ public class Settings {
 	public static final int joyDriveOneWheelRightIntake = 7;
 	public static final double joyDriveDeadband = 0.05;
 	public static final int joyArtPort = 1;
+	public static final int joyArtlimeLightIntake = 4;
 	public static final int joyArtLiftUpButton = 7;
 	public static final int joyArtLiftDownButton = 9;
 	public static final int joyArtSetLiftToZeroButton = 12;
@@ -182,4 +183,6 @@ public class Settings {
 	public static int visionHalfImageHeightPixels = 120;
 	public static int visionImageBrightness = 50;
 	public static long visionResetWaitTime = 500;
+//limelightsettings 
+	public static double limeLightWindow = 15;
 }
