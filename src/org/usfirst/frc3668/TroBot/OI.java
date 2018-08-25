@@ -66,7 +66,7 @@ public class OI {
     	liftUp.whileHeld(new TeleopLift(Settings.liftTeleUpSpeed));
     	liftDown.whileHeld(new TeleopLift(Settings.liftTeleDownSpeed));
     	
-    	limeLightIntake.whileHeld(new cmdLimeLightIntake());
+    	//limeLightIntake.whileHeld(new cmdLimeLightIntake());
     	
     	enableClimb.whileHeld(new TeleopClimb());
     }

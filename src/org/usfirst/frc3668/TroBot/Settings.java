@@ -24,7 +24,7 @@ public class Settings {
 	public static final double chassisMaxInchesPerSecond = 168;
 	public static final double chassisDriveStraightGyroKp = 0.05;
 	public static final double chassisMaxDregeesPreSecond = 15;
-	public static final double chassisTurnKp = 0.0027;
+	public static final double chassisTurnKp = 0.003; // former 0.0027
 	public static final int limitSwitchTimeOut = 30;
 	public static final int talonTimeOut = 10;
 
@@ -152,7 +152,7 @@ public class Settings {
 	public static final double autoEjectCubeTime = 1.5;
 	public static final double autoCruiseSpeed = 145;
 	public static final double autoLineDistance = 144;
-	public static final double autoTurnSpeed = 0.27; // 0.18 for carpet, 0.12 for tile
+	public static final double autoTurnSpeed = 0.27; // 0.27 for carpet, 0.12 for tile
 	public static final double autoPivotToBumper = 30; // Not really, added a buffer
 	public static final double autoLeaveWallRight = 30;
 	public static final double autoLeaveWallLeft = 24;
@@ -166,14 +166,16 @@ public class Settings {
 	public static final double autoTurnToFaceWall = 90;
 	public static final double autoDrivePastSwitch = 205.5;// 144;
 	public static final double autoTurnToFaceScale = 0;
-	public static final double autoDriveToScale = 88.765;// 12;
+	public static final double autoDriveToScale = 36;// 88.765;
 	public static final double autoTurnToPlaceInScale = -90;
 	public static final double autoStraightToScale = 283; //297.5;
+	public static final double autoExpStraightToScale = 300;
 	public static final double autoStraightTurnToScale = 45;//90;
+	public static final double autoExpStraightTurnToScale = 90;
 	public static final double autoForwardToBeCloseToScale = 14.57;
-	public static final boolean autoAllyToScale = false;
-	public static final boolean autoAllyNotToScale = true;
-
+	public static final boolean autoScaleSafe = true;
+	public static final boolean autoScaleExp = false;
+	
 	public static int visionCameraFPS = 7;
 	public static int visionCubeCameraID = 1;
 	public static int visionBackCameraID = 0;

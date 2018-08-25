@@ -9,12 +9,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoGroupScale extends CommandGroup {
 
-	public AutoGroupScale(autoPosition position, boolean safe) {
+	public AutoGroupScale(autoPosition position, boolean exp) {
 		autoPosition scaleSide;
 		boolean goodData = true;
 		double angleMod = 1;
-
-		if (Robot.gameData.charAt(1) == 'R') {
+		double StraightToScale = 0;
+		double StraightTurnToScale = 0;
+ 		if (Robot.gameData.charAt(1) == 'R') {
 			scaleSide = autoPosition.right;
 		} else if (Robot.gameData.charAt(1) == 'L') {
 			scaleSide = autoPosition.left;
@@ -23,6 +24,13 @@ public class AutoGroupScale extends CommandGroup {
 			SmartDashboard.putString("error", "GAME DATA ERROR");
 			goodData = false;
 		}
+ 		if(!exp) {
+ 			StraightToScale = Settings.autoStraightToScale;
+ 			StraightTurnToScale	= Settings.autoStraightTurnToScale;
+ 		}else {
+ 			StraightToScale = Settings.autoExpStraightToScale;
+ 			StraightTurnToScale	= Settings.autoExpStraightTurnToScale;
+ 		}
 
 		if (position == autoPosition.right) {
 			angleMod = -1;
@@ -35,10 +43,10 @@ public class AutoGroupScale extends CommandGroup {
 			//		Settings.autoCruiseSpeed, Settings.autoForwardToBeCloseToScale));
 			ApproachScale.addParallel(new CmdLift(Settings.liftUpSpeed, Settings.liftTicsToMaxScaleAuto));
 
-			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoStraightToScale));
+			addSequential(new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed,StraightToScale));
 			//addParallel(new CmdCalibrateLift());
 			//addParallel(new CmdCalibratePivot());
-			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoStraightTurnToScale));
+			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * StraightTurnToScale));
 			addSequential(ApproachScale);
 			//if (safe) {
 				addSequential(new AutoIntake(Settings.intakeAutoScaleOut, Settings.autoEjectCubeTime)); 
@@ -58,7 +66,7 @@ public class AutoGroupScale extends CommandGroup {
 			addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToFaceWall));
 			addSequential(new AutoDriveProfileGyro(angleMod * Settings.autoTurnToFaceWall, Settings.autoCruiseSpeed,
 					Settings.autoDrivePastSwitch));
-			if (safe) {
+			if (exp) {
 				addSequential(new AutoTurnGyro(Settings.autoTurnSpeed, angleMod * Settings.autoTurnToFaceScale));
 				addSequential(new AutoDriveProfileGyro(Settings.autoTurnToFaceScale, Settings.autoCruiseSpeed,
 						Settings.autoDriveToScale));

@@ -123,7 +123,7 @@ public class Robot extends TimedRobot {
 
 		autoActionChooser = new SendableChooser<autoAction>();
 		autoActionChooser.addObject("Switch", autoAction.autoSwitch);
-		autoActionChooser.addObject("Scale", autoAction.autoScale);
+		autoActionChooser.addObject("Experimertal Scale", autoAction.autoScale);
 		autoActionChooser.addObject("Safe Scale", autoAction.autoSafeScale);
 		autoActionChooser.addDefault("Line", autoAction.autoLine);
 		autoActionChooser.addObject("Nothing", autoAction.nothing);
@@ -161,9 +161,9 @@ public class Robot extends TimedRobot {
 			break;
 		default:
 			if (selectedAction == autoAction.autoScale) {
-				autonomousCommand = new AutoGroupScale(selectedPosition, Settings.autoAllyNotToScale);
+				autonomousCommand = new AutoGroupScale(selectedPosition, Settings.autoScaleExp);
 			} else if (selectedAction == autoAction.autoSafeScale) {
-				autonomousCommand = new AutoGroupScale(selectedPosition, Settings.autoAllyToScale);
+				autonomousCommand = new AutoGroupScale(selectedPosition, Settings.autoScaleSafe);
 			} else if (selectedAction == autoAction.autoLine) {
 				autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance);
 			} else {
