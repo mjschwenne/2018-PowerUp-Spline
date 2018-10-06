@@ -187,4 +187,6 @@ public class Settings {
 	public static long visionResetWaitTime = 500;
 //limelightsettings 
 	public static double limeLightWindow = 15;
+	public static double limelightDistEXPC = 121.889;
+	public static double limelightDistEXPS = -0.0993399;
 }
