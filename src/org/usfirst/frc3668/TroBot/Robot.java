@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		RobotMap.init();
 		
-		 cam0 = CameraServer.getInstance().startAutomaticCapture("cam0",
+	/*	 cam0 = CameraServer.getInstance().startAutomaticCapture("cam0",
 		 Settings.visionCubeCameraID);
 		
 		 cam0.setVideoMode(PixelFormat.kMJPEG, Settings.visionImageWidthPixels,
@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
 				Settings.visionCameraFPS);
 		cam1.setExposureAuto();
 		cam1.setBrightness(Settings.visionImageBrightness);
-
+	
 		// if (!cam0.isConnected()) {
 		// try {
 		// Thread.sleep(Settings.visionResetWaitTime);
@@ -107,7 +107,7 @@ public class Robot extends TimedRobot {
 			cam1.setExposureAuto();
 			cam1.setBrightness(Settings.visionImageBrightness);
 		}
-
+*/
 		subChassis.resetNavx();
 		subChassis.resetBothEncoders();
 		subClimb.disengageClimber();
@@ -127,6 +127,7 @@ public class Robot extends TimedRobot {
 		autoActionChooser.addObject("Safe Scale", autoAction.autoSafeScale);
 		autoActionChooser.addDefault("Line", autoAction.autoLine);
 		autoActionChooser.addObject("Nothing", autoAction.nothing);
+		autoActionChooser.addObject("EXLime", autoAction.EXLime);
 		smartDashboard.putData("Action Chooser", autoActionChooser);
 	}
 
@@ -166,7 +167,10 @@ public class Robot extends TimedRobot {
 				autonomousCommand = new AutoGroupScale(selectedPosition, Settings.autoScaleSafe);
 			} else if (selectedAction == autoAction.autoLine) {
 				autonomousCommand = new AutoDriveProfileGyro(0, Settings.autoCruiseSpeed, Settings.autoLineDistance);
-			} else {
+			} else if (selectedAction == autoAction.EXLime) {
+				autonomousCommand = new AutoDriveProfileGyro(Settings.autoCruiseSpeed);
+			}
+			else {
 				autonomousCommand = null;
 			}
 			break;

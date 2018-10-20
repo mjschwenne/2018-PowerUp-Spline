@@ -142,7 +142,7 @@ public class Settings {
 
 	// Auto Settings
 	public static enum autoAction {
-		autoSwitch, autoScale, autoSafeScale, autoLine, nothing
+		autoSwitch, autoScale, autoSafeScale, autoLine, nothing,EXLime
 	}
 
 	public static enum autoPosition {

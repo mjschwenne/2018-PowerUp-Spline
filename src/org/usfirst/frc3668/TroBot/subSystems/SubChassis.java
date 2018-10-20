@@ -97,10 +97,8 @@ public class SubChassis extends Subsystem {
 
 	public double getEncoderAvgDistInch() {
 		double retVal = 0;
-		double leftDistance = RobotMap.leftDrive1.getSelectedSensorPosition(0)
-				* Settings.chassisEncoderDistancePerPulse;
-		double rightDistance = -1 * RobotMap.rightDrive1.getSelectedSensorPosition(0)
-				* Settings.chassisEncoderDistancePerPulse;
+		double leftDistance = getLeftEncoderDist();
+		double rightDistance = getRightEncoderDist();
 		if (Math.abs(leftDistance) < Settings.chassisEncoderDeadValueThreshold) {
 			retVal = rightDistance;
 		} else if (Math.abs(rightDistance) < Settings.chassisEncoderDeadValueThreshold) {
