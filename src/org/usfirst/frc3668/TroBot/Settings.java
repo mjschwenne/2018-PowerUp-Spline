@@ -139,6 +139,9 @@ public class Settings {
 	public static final int joyArtPivotUpButton = 5;
 	public static final int joyArtTogglePivotStatus = 6;
 	public static final int joyArtPivotDownButton = 3;
+	public static final int joyArtLimelightLEDOff = 1;
+	public static final int joyArtLimelightLEDOn = 0;
+	public static final int joyArrtLimeLightLEDBlinking = 2;
 
 	// Auto Settings
 	public static enum autoAction {

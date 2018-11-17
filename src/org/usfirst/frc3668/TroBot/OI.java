@@ -25,7 +25,10 @@ public class OI {
     public Joystick joyArt = new Joystick(Settings.joyArtPort);
     
     public Button invertDrive = new JoystickButton(joyDrive, Settings.joyDriveInvertDriveButton);
-    
+    public Button ledOff = new JoystickButton(joyArt,Settings.joyArtLimelightLEDOff );
+    public Button ledOn = new JoystickButton(joyArt,Settings.joyArtLimelightLEDOn );
+    public Button ledBlinking = new JoystickButton(joyArt,Settings.joyArrtLimeLightLEDBlinking );
+     
     public Button intakeIn = new JoystickButton(joyDrive, Settings.joyDriveIntakeInButton);
     public Button intakeReverseSlow = new JoystickButton(joyDrive, Settings.joyDriveIntakeOutSLowButton);
     public Button intakeReverseFast = new JoystickButton(joyDrive, Settings.joyDriveIntakeOutFastButton);

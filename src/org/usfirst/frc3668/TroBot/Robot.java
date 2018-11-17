@@ -56,6 +56,11 @@ public class Robot extends TimedRobot {
 	public static NetworkTableEntry tv = table.getEntry("tv");
 	public static NetworkTableEntry ts = table.getEntry("ts");
 	public static NetworkTableEntry tl = table.getEntry("tl");
+	
+	public static NetworkTableEntry blink = table.getEntry("3");
+	public static NetworkTableEntry on = table.getEntry("0");
+	public static NetworkTableEntry Off = table.getEntry("1");
+	
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
