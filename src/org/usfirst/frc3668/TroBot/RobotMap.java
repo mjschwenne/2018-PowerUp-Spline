@@ -7,7 +7,7 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.RemoteLimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -31,7 +31,7 @@ public class RobotMap {
 	public static WPI_TalonSRX leftDrive1;
 	public static WPI_TalonSRX leftDrive2;
 	public static AnalogGyro gyro;
-	public static AHRS navx;
+	//public static AHRS navx;
 	public static WPI_TalonSRX rightIntakeWheel;
 	public static WPI_TalonSRX leftIntakeWheel;
 	public static WPI_TalonSRX pivot1;
@@ -71,7 +71,7 @@ public class RobotMap {
 		gyro = new AnalogGyro(Settings.chassisGyroAnalogPort);
 		gyro.setSensitivity(Settings.chassisGyroSensitivity);
 
-		navx = new AHRS(SPI.Port.kMXP);
+		//navx = new AHRS(SPI.Port.kMXP);
 
 		rightIntakeWheel = new WPI_TalonSRX(Settings.intakeRightIntakeWheelCanID);
 		rightIntakeWheel.configPeakCurrentLimit(Settings.intakeMaxCurrentLimit, Settings.talonTimeOut);

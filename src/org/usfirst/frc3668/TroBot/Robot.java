@@ -113,7 +113,7 @@ public class Robot extends TimedRobot {
 			cam1.setBrightness(Settings.visionImageBrightness);
 		}
 */
-		subChassis.resetNavx();
+//		subChassis.resetNavx();
 		subChassis.resetBothEncoders();
 		subClimb.disengageClimber();
 		subLift.resetEncoder();

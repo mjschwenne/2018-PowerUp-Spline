@@ -47,7 +47,7 @@ public class AutoDriveProfileGyro extends Command {
 		_distanceSignum = Math.signum(_distance);
 		_cruiseSpeed = cruiseSpeed; 
 		System.err.println("AHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-		_requestedHeading = calculateAngle(Robot.ts.getDouble(0));
+//		_requestedHeading = calculateAngle(Robot.ts.getDouble(0));
 	}
 
 	protected void ProfileMockConstructor(double Speed, double distance) {
@@ -77,30 +77,30 @@ public class AutoDriveProfileGyro extends Command {
 		double encoderVal = Robot.subChassis.getEncoderAvgDistInch();
 		double deltaTime = RobotMath.getTime() - _startTime;
 		double profileDist = mp.getTotalDistanceTraveled(deltaTime);
-		double currentHeading = Robot.subChassis.getNormaliziedNavxAngle();
-		double turnValue = calcTurnRate(currentHeading);
+//		double currentHeading = Robot.subChassis.getNormaliziedNavxAngle();
+//		double turnValue = calcTurnRate(currentHeading);
 		double profileVelocity = mp.getProfileCurrVelocity(deltaTime);
 		double throttlePos = (profileVelocity / Settings.chassisMaxInchesPerSecond);
 		double pidVal = pid.calcPID(profileDist, encoderVal);
 		double finalThrottle = throttlePos + pidVal;
 
-		String msg = String.format(
-				"CurrVel: %1$.3f \t throttle: %2$.3f \t Time: %3$.3f \t ProfileX: %4$.3f \t Encoder: %5$.3f \t PID Value: %10$.3f \t P: %14$.3f \t I: %13$.3f \t D: %11$.3f \t Final Throttle: %12$.3f \t Gyro: %15$.3f",
-				profileVelocity, throttlePos, deltaTime, mp.getTotalDistanceTraveled(deltaTime), encoderVal,
-				Robot.subChassis.getLeftEncoderDist(), Robot.subChassis.getRightEncoderDist(), currentHeading,
-				turnValue, pidVal, pid.getDError(), finalThrottle, pid.getIError(), pid.getPError(), currentHeading);
+//		String msg = String.format(
+//				"CurrVel: %1$.3f \t throttle: %2$.3f \t Time: %3$.3f \t ProfileX: %4$.3f \t Encoder: %5$.3f \t PID Value: %10$.3f \t P: %14$.3f \t I: %13$.3f \t D: %11$.3f \t Final Throttle: %12$.3f \t Gyro: %15$.3f",
+//				profileVelocity, throttlePos, deltaTime, mp.getTotalDistanceTraveled(deltaTime), encoderVal,
+//				Robot.subChassis.getLeftEncoderDist(), Robot.subChassis.getRightEncoderDist(), currentHeading,
+//				turnValue, pidVal, pid.getDError(), finalThrottle, pid.getIError(), pid.getPError(), currentHeading);
 		// FULL LOG MESSAGE: CurrVel: %1$.3f \t throttle: %2$.3f \t deltaTime: %3$.3f \t
 		// Disantce Travelled: %4$.3f \t AvgEncoder: %5$.3f \t Left Encoder: %6$.3f \t
 		// Right Encoder: %7$.3f \t Gyro Raw Heading: %8$.3f \t Turn Value: %9$.3f \t
 		// PID Value: %10$.3f \t P Value: %11$.3f \t Final Throttle: %12$.3f
-		System.err.println(msg);
+//		System.err.println(msg);
 		// log.makeEntry(msg);
 		// SmartDashboard.putNumber("Drive Left Encoder:",
 		// Robot.subChassis.getLeftEncoderDist());
 		// SmartDashboard.putNumber("Drive Right Encoder: ",
 		// Robot.subChassis.getRightEncoderDist());
 
-		Robot.subChassis.Drive((finalThrottle * _distanceSignum), turnValue);
+//		Robot.subChassis.Drive((finalThrottle * _distanceSignum), turnValue);
 
 		// if (deltaTime > _abortTime && Robot.subChassis.getEncoderAvgDistInch() == 0)
 		// {
@@ -132,9 +132,9 @@ public class AutoDriveProfileGyro extends Command {
 		return Settings.limelightDistEXPC * (Math.pow(Math.E, (Settings.limelightDistEXPS * area)));
 	}
 
-	public double calculateAngle(double rotation) {
-		return Robot.subChassis.getNormaliziedNavxAngle() - rotation;
-	}
+//	public double calculateAngle(double rotation) {
+//		return Robot.subChassis.getNormaliziedNavxAngle() - rotation;
+//	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {

@@ -31,7 +31,7 @@ double throttleIncement = 0.01;
     protected void initialize() {
     	Robot.subChassis.resetRightEncoder();
     	Robot.subChassis.resetGyro();
-    	RobotMap.navx.reset();
+    	//RobotMap.navx.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run

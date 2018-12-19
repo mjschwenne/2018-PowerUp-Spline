@@ -134,17 +134,17 @@ public class SubChassis extends Subsystem {
 		return RobotMap.gyro.getAngle();
 	}
 
-	public double getNavxAngleRaw() {
-		return RobotMap.navx.getAngle();
-	}
+//	public double getNavxAngleRaw() {
+//		return RobotMap.navx.getAngle();
+//	}
 
 	public double getNormalizedGyroAngle() {
 		return gyroNormalize(getGyroAngleRaw());
 	}
 
-	public double getNormaliziedNavxAngle() {
-		return gyroNormalize(getNavxAngleRaw());
-	}
+//	public double getNormaliziedNavxAngle() {
+//		return gyroNormalize(getNavxAngleRaw());
+//	}
 
 	public void initializeGyro() {
 		RobotMap.gyro.initGyro();
@@ -156,9 +156,9 @@ public class SubChassis extends Subsystem {
 		RobotMap.gyro.reset();
 	}
 
-	public void resetNavx() {
-		RobotMap.navx.reset();
-	}
+//	public void resetNavx() {
+//		RobotMap.navx.reset();
+//	}
 
 	public double gyroNormalize(double heading) {
 		// takes the full turns out of heading
